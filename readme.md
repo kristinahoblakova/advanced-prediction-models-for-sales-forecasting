@@ -16,7 +16,7 @@ Fedora users will write:
 
 ```bash
 sudo dnf install texlive-collection-latexrecommended \
-    texlive-collection-langczechslovak \
+    texlive-collection-langczechslovak texlive-totalcount \
     texlive-biblatex texlive-biblatex-iso690 texlive-glossaries \
     latexmk texstudio
 ```
