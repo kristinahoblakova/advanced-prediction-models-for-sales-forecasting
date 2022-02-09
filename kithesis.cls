@@ -614,7 +614,7 @@
         \fieldofstudyname:& \@fieldofstudy \\
         \departmentname:& \@department~(\@departmentacr) \\
         \supervisorname:& \@supervisor \\
-        \consultantname:& \@consultant \\
+        \if\@consultant\empty\else\consultantname:& \@consultant \\ \fi
     \end{tabular}
 
     \vspace{2\baselineskip}
