@@ -1,14 +1,17 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [2021.3] - 2020-09-29
+## [2022.1] - 2021-10-04
+- consultant definition is now optional
+
+## [2021.3] - 2021-09-29
 - specification of the bibliography file removed from the class and added to the thesis.tex
 
-## [2021.2] - 2020-03-23
+## [2021.2] - 2021-03-23
 - full support for English documents
 - `readme.md` translated to English
 
-## [2021.1] - 2020-02-08
+## [2021.1] - 2021-02-08
 - znovu zapnuté farebné ramčeky okolo odkazov
 - pridaný súbor latexmkrc s konfiguráciou automatického generovania slovníkov (#10)
 

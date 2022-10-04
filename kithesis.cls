@@ -11,7 +11,7 @@
 %%
 %%%%%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{kithesis}[2021/09/29 KPI Thesis Class, v2021.3]
+\ProvidesClass{kithesis}[2022/10/04 KPI Thesis Class, v2022.1]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
