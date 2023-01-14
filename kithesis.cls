@@ -175,21 +175,10 @@
     \thispagestyle{empty}
     \vspace*{\fill}
     \begin{center}
-    \iflanguage{slovak}{
-        Tu vložte zadávací list pomocou príkazu\\
-        {\tt{\textbackslash{}thesisspec\{cesta/k/suboru/so/zadavacim.listom\}}}\\
-        v preambule dokumentu. 
-        
-        Kópiu zadávacieho listu skenujte čiernobielo (v odtieňoch sivej) na $200$ až $300$ DPI!
-        Nezabudnite do jednej práce vložiť originál zadávacieho listu!
-    }{
-        Here insert the assignment statement using the command\\
-        {\tt{\textbackslash{}thesisspec\{path/to/the/filw/with/assignment.statement\}}}\\
-        in the preamble of the document.
-        
-        Copy of the assignment statement should be scanned black\&white (grayscale) using DPI from $200$ to $300$!
-        Don't forget to insert the original assignment statement into one of the theses copies.
-    }
+        \begin{figure}[!ht]
+            \centering
+            \includegraphics[width=1\textwidth]{figures/zl}
+        \end{figure}
     \end{center}
     \vspace*{\fill}
     \newpage
@@ -220,7 +209,7 @@
 
 % DOCVAR: college (The name of the thesis writer's college)
 \newcommand{\@college@en}{Technical University of Košice}
-\newcommand{\@college@sk}{Technická univerzita v Košiciach}
+\newcommand{\@college@sk}{Technical University of Košice}
 \newcommand{\@college}{\@college@en}
 \newcommand{\college}[2]{
     \renewcommand{\@college@en}{#1}
@@ -230,8 +219,8 @@
 \newcommand{\@college@city}{Košice}
 
 % DOCVAR: faculty (The name of the thesis writer's faculty)
-\newcommand{\@faculty@en}{Faculty of Electrical Engineering and Informatics}
-\newcommand{\@faculty@sk}{Fakulta elektrotechniky a informatiky}
+\newcommand{\@faculty@sk}{Faculty of Electrical Engineering and Informatics}
+\newcommand{\@faculty@en}{Faculty of Mining, Ecology, Process Control\\ and Geotechnologies}
 \newcommand{\@faculty}{\@faculty@en}
 \newcommand{\faculty}[2]{
     \renewcommand{\@faculty@en}{#1}
@@ -240,8 +229,8 @@
 
 
 % DOCVAR: department (name of the thesis writer's department)
-\newcommand{\@department@en}{Department of Computers and Informatics}
-\newcommand{\@department@sk}{Katedra počítačov a informatiky}
+\newcommand{\@department@sk}{Institute of Control and Informatization of Production Processes}
+\newcommand{\@department@en}{Faculty of Mining, Ecology, Process Control and Geotechnologies}
 \newcommand{\@department}{\@department@en}
 \newcommand{\department}[2]{
     \renewcommand{\@department@en}{#1}
@@ -249,7 +238,7 @@
 }
 
 % DOCVAR: department's shortcut
-\newcommand{\@departmentacr@en}{DCI}
+\newcommand{\@departmentacr@en}{FBERG}
 \newcommand{\@departmentacr@sk}{KPI}
 \newcommand{\@departmentacr}{\@departmentacr@en}
 \newcommand{\departmentacr}[2]{
@@ -267,16 +256,16 @@
 \newcommand{\consultant}[1]{\renewcommand{\@consultant}{#1}}
 
 % DOCVAR: field of study
-\newcommand{\@fieldofstudy}{9.2.1. Informatika}
+\newcommand{\@fieldofstudy}{Cybernetics}
 \newcommand{\fieldofstudy}[1]{\renewcommand{\@fieldofstudy}{#1}}
 
 % DOCVAR: study programme
-\newcommand{\@studyprogramme}{Informatika}
+\newcommand{\@studyprogramme}{Process control of raw materials and material extraction and processing}
 \newcommand{\studyprogramme}[1]{\renewcommand{\@studyprogramme}{#1}}
 
 % DOCVAR: thesis (type of the thesis)
-\newcommand{\@thesis@en}{Bachelor thesis}
-\newcommand{\@thesis@sk}{Bakalárska práca}
+\newcommand{\@thesis@en}{Master thesis}
+\newcommand{\@thesis@sk}{Master thesis}
 \newcommand{\@thesis}{\@thesis@en}
 \newcommand{\thesis}[2]{
     \renewcommand{\@thesis@en}{#1}
