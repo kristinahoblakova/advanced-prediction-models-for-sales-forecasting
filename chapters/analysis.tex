@@ -4,10 +4,145 @@
 
 \section{Introduction} \label{sec:introduction}
 
+Linear prediction is a statistical method used to predict future values based on historical data.
+The Durbin-Levinson algorithm is a method for solving the linear prediction problem for autoregressive (AR) 
+models\footnote{Autoregressive (AR) models are time series models that describe the relationship between the current
+value of a variable and its past values. In an autoregressive model, each observation is modeled as a linear combination of
+past observations, with weights called AR coefficients. AR models are widely used in various fields such as economics,
+engineering, and finance for modeling and forecasting time series data. The order of the AR model, denoted as "p",
+refers to the number of past values used to predict the current value. For example, an AR(1) model uses only the previous
+observation to predict the current value, while an AR(2) model uses the previous two observations.},
+which are models where the current output depends on previous outputs. The algorithm solves the linear prediction problem by
+finding the coefficients of the AR model that minimize the prediction error. The resulting AR coefficients can be
+used to make predictions about future values based on past observations. This method should be used with using the pattern of
+linear relationship between the independent and dependent variables. 
+Here's a basic outline of the steps involved in using linear prediction to forecast sales data:
+\begin{enumerate}
+    \item Collect sales data: Gather the historical sales data for the product or service that you want to forecast.
+    \item Plot the data: Plot the sales data over time to visually inspect the trend and identify any patterns.
+    \item Choose a model: Select an appropriate linear model to represent the relationship between the independent and dependent variables in the data. For example, you might choose a simple linear regression model.
+    \item Train the model: Train the selected model on the historical sales data using a method such as least squares regression.
+    \item Make predictions: Use the trained model to make predictions on future sales data. You may want to generate predictions for several months or years in advance.
+    \item Evaluate the model: Assess the accuracy of the predictions by comparing them to the actual sales data. Use metrics such as mean absolute error or root mean squared error to quantify the model's performance.
+    \item Refine the model: If necessary, refine the model by adding additional independent variables or transforming the existing variables. Repeat the training and evaluation steps until you have a model that provides accurate forecasts.
+\end{enumerate}
+
+
 \section{Levinson-Durbin sheme} \label{sec:levinson}
 
+The Levinson-Durbin algorithm~\cite{Levinson} is an iterative numerical method used to solve the autoregressive (AR) model of a time series.
+AR models are used to model and forecast time series data~\cite{Durbin}, such as sales data, by assuming that each future value of the series
+depends on a linear combination of previous values.
+\\
+The Levinson-Durbin algorithm solves the AR model by iteratively updating the coefficients of the model to minimize the prediction
+error between the model and the actual data. The algorithm is fast and efficient, and it is widely used in digital signal processing,
+speech processing, and control systems, among other applications.
+\\
+The Levinson-Durbin algorithm is often used as an alternative to the Yule-Walker equations, which are another commonly used method for
+solving AR models. Unlike the Yule-Walker equations, the Levinson-Durbin algorithm can be easily modified to handle non-stationary time
+series data, and it is also more robust to numerical issues such as rounding errors.
+
 \section{Linear prediction} \label{sec:lp}
+Linear prediction is a statistical technique used to forecast future values based on past observations. It is a method for modeling the
+relationship between a dependent variable and one or more independent variables in a linear form. The goal of linear prediction is to find
+the best linear approximation of the relationship between the variables, which can then be used to make predictions about future values of
+the dependent variable.
+\\
+Linear prediction can be performed using simple linear regression or multiple linear regression, depending on the number of independent variables
+involved~\cite{Parks}. In simple linear regression, a single independent variable is used to predict the value of the dependent variable, while in multiple linear
+regression, multiple independent variables are used to make the prediction.
+\\
+Linear prediction models are commonly used in finance, economics, and engineering, among other fields, to forecast future values of time series data,
+such as stock prices, sales, or demand. The accuracy of linear prediction models depends on several factors, including the quality of the data,
+the choice of independent variables, and the degree of linearity in the relationship between the variables.
 
     \subsection{Short-term linear prediction} \label{sec:shortlp}
 
+    Short-term linear prediction~\cite{Riahy} refers to the use of linear prediction techniques to make predictions about the near-term future values of a time series.
+    It is used to forecast future values of a dependent variable based on its past values and any relevant independent variables.
+    \\
+    In short-term linear prediction, the focus is on accurately predicting the next few values of the dependent variable, typically in the range of
+    several weeks to a few months. The linear prediction models used for short-term forecasting are typically simple and straightforward, often
+    using a small number of independent variables. The goal is to provide a quick and easily interpretable forecast that can be used to make operational
+    decisions in the short-term.
+    \\
+    Common techniques for short-term linear prediction include moving average models, exponential smoothing, and autoregressive models. These methods
+    use the historical data of the time series to model the relationship between the dependent and independent variables, and to make predictions
+    about future values. The accuracy of short-term linear predictions can be evaluated using metrics such as mean absolute error, mean squared
+    error, or the correlation coefficient between the actual and predicted values.
     \subsection{Long-term linear prediction} \label{sec:longlp}
+    Long-term linear prediction refers to the use of linear prediction techniques to make predictions about the future values of a time series
+    over an extended period of time, typically several months to several years. Unlike short-term linear prediction, which focuses on forecasting the
+    near-term future, long-term linear prediction aims to provide a more comprehensive and accurate forecast of future values.
+    \\
+    In long-term linear prediction, more sophisticated models~\cite{Nave} are typically used, such as multiple linear regression or time series models, and a larger
+    number of independent variables may be considered. The models are also trained on a larger historical dataset to ensure that they capture any
+    long-term trends or patterns in the data.
+    \\
+    Long-term linear prediction is commonly used in fields such as finance, economics, and marketing, to make long-term projections about variables
+    such as sales, demand, or stock prices. The goal is to provide a comprehensive and accurate forecast that can be used to make strategic
+    decisions in the long-term. The accuracy of long-term linear predictions can be evaluated using the same metrics as for short-term linear
+    predictions~\cite{Baker}, as well as additional metrics such as mean absolute percentage error or mean absolute scaled error.
+    \\
+    In some long-term prediction use cases it needs to solve the suppression of Late Reverberation Effect\footnote{Late Reverberation Effect
+    refers to the decay of sound in an environment after the initial sound source has stopped. This effect results in the persistence of
+    sound in a space for a short period of time and helps create the characteristic ambiance of a room or space.
+    It is an important aspect of room acoustics and is used in sound design and music production to enhance the perceived sound
+    quality and spatial experience of audio.} this can be done by with minimal performance degradation by framework developed by Keisuke
+    Kinoshita~\cite{Kinoshita} for both single-channel and multichannel scenarios.
+\section{Models used for sales data} \label{sec:models}
+There are several mathematical models used for sales prediction, including:
+\\
+\begin{enumerate}
+    \item Time series models: These models are used to analyze and forecast sales data over time, such as seasonal patterns, trends, and fluctuations. Examples include ARIMA (AutoRegressive Integrated Moving Average), SARIMA (Seasonal ARIMA), and exponential smoothing.
+    \item Regression models: These models use historical data to determine the relationship between sales and one or more independent variables, such as price, promotion, and advertising. Examples include linear regression, logistic regression, and multiple regression.
+    \item Decision tree models: These models use a tree-like structure to make decisions based on the relationship between sales and multiple independent variables. Examples include CART (Classification and Regression Tree) and Random Forest.
+    \item Machine learning models: These models use algorithms such as neural networks and support vector machines to make predictions based on patterns in the data.
+\end{enumerate}
+The choice of mathematical model depends on the characteristics of the data, the desired level of accuracy, and the computational resources available.
+\\
+    \subsection{Time-series models} \label{sec:longlp}
+    Time-series models are mathematical models used to analyze and forecast data that are collected over time~\cite{Cryer}. These models are used to study and make predictions about the trends, patterns, and behavior of the data over time, taking into account historical values and their relationship with the present. Time-series models are widely used in areas such as economics, finance, and weather forecasting, among others. The models are based on various statistical techniques, including ARIMA (AutoRegressive Integrated Moving Average), SARIMA (Seasonal ARIMA), and exponential smoothing, among others. The goal of time-series modeling is to build a mathematical representation of the underlying process that generates the time-series data, allowing for accurate prediction of future values.
+    \subsection{Regression models} \label{sec:longlp}
+    Regression models are a type of statistical models used to examine the relationship between a dependent variable and one or more independent variables~\cite{Fahrmeir}.
+    The goal of regression analysis is to model the relationship between these variables and make predictions about the dependent variable based on
+    the values of the independent variables. Regression models are widely used in many fields, including economics, finance, marketing, and social sciences,
+    to make predictions and understand the relationship between variables.
+    \\
+    There are several types of regression models, including:
+    \\
+    \begin{enumerate}
+        \item Linear regression: a simple regression model where the relationship between the dependent and independent variables is modeled using a linear equation.
+        \item Logistic regression: used for binary classification problems where the dependent variable is binary and the goal is to model the relationship between the independent variables and the probability of the dependent variable being either 0 or 1.
+        \item Multiple regression: used when there are multiple independent variables and the goal is to model the relationship between all of these variables and the dependent variable.
+        \item Polynomial regression: used when the relationship between the dependent and independent variables is non-linear and can be modeled using a polynomial equation.
+    \end{enumerate}
+
+    The choice of regression model depends on the nature of the data and the research question being asked.
+    \subsection{Decision tree models} \label{sec:longlp}
+    Decision tree models are a type of machine learning models used for both regression and classification tasks~\cite{Kotsiantis}. They are tree-like structures that
+    make predictions by breaking down a dataset into smaller and smaller subsets, based on the values of the input variables. At each internal
+    node of the tree, a decision rule is used to split the data based on the value of a feature, and the process continues until the data are separated
+    into homogeneous groups, or leaves. The predictions are then made based on the average or majority class in each leaf node.
+    \\
+    Decision trees have several advantages, including ease of interpretability, handling of non-linear relationships, and ability to handle both
+    categorical and numerical data. Some examples of decision tree algorithms are CART (Classification and Regression Tree) and Random Forest.
+    \\
+    The decision tree model is trained using a dataset, and the tree structure is built using a greedy algorithm that seeks to maximize
+    the reduction in impurity of the target variable at each split. The model can then be used to make predictions on new data by following
+    the decision rules in the tree.
+    \subsection{Machine learning models} \label{sec:longlp}
+    Machine learning models are a subset of artificial intelligence that allows computers to learn and make predictions or decisions without being
+    explicitly programmed. Machine learning models are based on algorithms that use statistical methods to find patterns in data and make predictions
+    about new, unseen data.
+    \\
+    There are several types of machine learning models, including:
+    \begin{enumerate}
+        \item Supervised learning: where the model is trained on labeled data, with the goal of learning the relationship between the input features and the target variable, and making predictions about the target variable for new, unseen data.
+        \item Unsupervised learning: where the model is trained on unlabeled data, with the goal of finding patterns or structure in the data, such as clustering or dimensionality reduction.
+        \item Reinforcement learning: where the model learns by receiving rewards or penalties for its actions in an environment, with the goal of maximizing the reward over time.
+        \item Deep learning: a subset of machine learning that uses artificial neural networks with multiple hidden layers to model complex relationships in the data.
+    \end{enumerate}
+    The choice of machine learning model depends on the problem being solved and the type of data being used. Machine learning models have been
+    applied to a wide range of tasks, including image and speech recognition, natural language processing, and predictive modeling.
+    Advances in machine learning (ML), faster processors and the availability of digitized healthcare data have contributed to a growing number of papers describing ML applications in healthcare.~\cite{Chen}
