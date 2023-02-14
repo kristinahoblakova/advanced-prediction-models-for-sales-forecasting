@@ -1,11 +1,141 @@
 % !TEX root = ../thesis.tex
+\chapter{Goal of the thesis} \label{sec:goal}
+In this thesis we are focus on improving linear prediction in sales and financial forecasting and combine it with modern machine learning approaches.
+Machine learning techniques are used to improve the accuracy of linear prediction models.
+Specifically, there are two ways in which machine learning are applied to linear prediction:
+\begin{enumerate}
+    \item Feature engineering: In this approach, machine learning is used to extract relevant features from the input signal that can be used as input to a linear prediction model.
+The extracted features can capture complex patterns in the data that are not captured by the raw input.
+Feature engineering can be done using techniques such as principal component analysis, wavelet transform, and Fourier transform.
+    \item Model selection and training: In this approach, machine learning is used to select the best linear model for the prediction task and to estimate its
+parameters from the data. This can involve selecting the best set of input variables for the linear model, choosing the best
+regularization parameter to avoid overfitting, and optimizing the model hyperparameters. Common machine learning algorithms used for linear
+prediction include linear regression, support vector regression, and artificial neural networks.
+\end{enumerate}
+The goal of long-term linear prediction is to estimate future values of a signal or time series based on its past
+values using a linear model.
+The linear prediction model uses a set of coefficients to weight past values of the signal and produce a prediction for
+future values. The accuracy of the prediction depends on the quality of the model and the complexity of the underlying signal.
+Combine this principles get to us the best results from linear prediction over sales and financial datasets.
+\chapter{Methodology} \label{sec:methodology}
+\section{Characteristics of the research object} \label{subsec:research_object}
+Sales data and financial datasets are two broad categories of data that have different characteristics and are used for different purposes.
+Here are some general characteristics of each type of dataset:
+\\
+\textbf{Sales data}\\
+Typically contains transactional information, such as the date, time, location, and amount of a purchase
+Can include additional information about the customer, such as their demographic profile, purchase history, and preferences
+Often analyzed to understand customer behavior, such as buying patterns, trends, and preferences
+May have seasonal or cyclical patterns, depending on the nature of the product or service being sold
+Can be used to optimize marketing and sales strategies, such as targeting specific customer segments, promoting certain products, or adjusting prices and discounts
+\\
+\textbf{Financial datasets}\\
+Typically contains financial information, such as the revenue, expenses, assets, liabilities, and cash flow of a company or organization
+Can include additional information about the market, such as interest rates, exchange rates, and stock prices
+Often analyzed to evaluate the financial performance and health of a company, such as profitability, solvency, and liquidity
+May have regulatory or compliance requirements, such as financial reporting standards or tax laws
+Can be used to make strategic decisions, such as investment, merger and acquisition, or divestiture
+Both sales data and financial datasets can be used for forecasting and modeling, but they have different analytical
+techniques and tools. Sales data often requires customer segmentation, predictive analytics, and machine learning algorithms,
+while financial datasets require financial ratio analysis, time series forecasting, and risk assessment.
+\section{Methods} \label{subsec:methods}
+\subsection{Linear regression} \label{sec:linear}
+Linear regression~\cite{linear} attempts to model the relationship between two variables by fitting a linear equation to observed data.
+One variable is considered to be an explanatory variable, and the other is considered to be a dependent variable.
+For example, we want to relate the weights of individuals to their heights using a linear regression model.
+Before attempting to fit a linear model to observed data, we should first determine if there exists a relationship between the variables of interest.
+This does not necessarily mean that one variable causes the other, but that there is some significant association between them.
+To determine the strength of relationship a scatterplot can be a helpful tool.
+If there appears to be no association between the proposed explanatory and dependent variables, then fitting a linear regression
+model to the data probably will not provide a useful model.
+A valuable numerical measure of association between two variables is the correlation coefficient.
+That is a value from $[-1, 1]$ range indicating the strength of the association of the observed data for the two variables.\\
+A linear regression line has an equation of the form $Y = a + bX$, where $X$ is the explanatory variable and $Y$ is the dependent variable.
+The slope of the line is $b$, and $a$ is the intercept.
+Example of some basic linear models:\\
+\begin{equation} \label{eq:4}
+\begin{array}{l@{}l}
+    Y = ax + b\\
+    Y = a + bx + c\\
+    Y = a\sin x + b\\
+\end{array}
+\end{equation}
+\subsection{Linear prediction} \label{subsec:lp}
+Linear prediction is a statistical technique used to forecast future values based on past observations. It is a method for modeling the
+relationship between a dependent variable and one or more independent variables in a linear form. The goal of linear prediction is to find
+the best linear approximation of the relationship between the variables, which can then be used to make predictions about future values of
+the dependent variable.
+\subsection{Backpropagation} \label{subsec:lp}
+Backpropagation is a widely used algorithm for computing the gradients of the loss function with respect to the weights of a neural network.
+It is the backbone of training deep neural networks using stochastic gradient descent (SGD) or its variants.
+The backpropagation algorithm computes the gradient of the loss function with respect to each weight in the network by recursively
+applying the chain rule of differentiation. The algorithm is typically implemented in two phases:
+\begin{enumerate}
+    \item Forward pass: The forward pass involves computing the output of each layer in the network, starting from the input layer and propagating through the hidden layers to the output layer. The output of each layer is computed as a function of the input to the layer and the weights of the layer. The forward pass computes the predictions of the network on a given input.
+    \item Backward pass: The backward pass involves computing the gradients of the loss function with respect to each weight in the network, starting from the output layer and propagating backwards through the hidden layers to the input layer. The gradients are computed by applying the chain rule of differentiation to the output of each layer. The gradients are then used to update the weights of the network using an optimization algorithm such as SGD.
+\end{enumerate}
+The backpropagation algorithm can be optimized using various techniques, such as parallel computing, weight sharing, and regularization.
+It is a powerful tool for training deep neural networks with many layers and millions of parameters, and has enabled
+significant advances in many areas of machine learning, including computer vision, natural language processing, and speech recognition.
+\section{Datasets} \label{subsec:datasets}
 
-\chapter{Syntactic part} \label{sec:methodology}
+\section{Comparison criteria} \label{subsec:comparison}
+Finally we define the method to compare our models results.
+Absolute number of income value prediction should not be important for the store owners because of that we calculated the aberration for each month
+prediction and then we easily calculate quarterly and yearly results.
+The sum of squared errors (SSE), defined by:
+$$SSE = \sum^n_{i=1}w_i(y_i - \overline{y_i})^2,$$
+between the fitting models and the used data serves as the fitting criterion,
+with values closer to $0$ indicating a smaller random error component of the model.
+Also some other quality measures were evaluated, \textit{i.e.} the R-square from interval $[0,\ 1]$,
+that indicates the proportion of variance satisfactory explained by the fitting-model (\textit{e.g.}  R-square $= 0.7325$ means
+that the fit explains $73.25\%$ of the total variation in the data about the average);
+R-square is defined as the ratio of the sum of squares of the regression (SSR) and the total sum of squares (SST).
+SSR is defined as
+$$SSR = \sum_{i=1}^nw_i(\overline{y_i} - \overline{y_i})^2.$$
+SST is also called the sum of squares about the mean, and is defined as
+$$SST = \sum_{i=1}^nw_i(y_i - \overline{y})^2,$$
+where SST = SSR + SSE. Givenm these definition, R-square is expressed as
+$$\frac{SSR}{SST} = 1 - \frac{SSE}{SST}.$$
+The adjusted R-square statistic, with values smaller or equal to $1$, where values closer to $1$ indicate a better fit; the root mean squared error (RMSE):\\
+$$RMSE = s = \sqrt{\frac{SSE}{v}}$$
+with values closer to $0$ indicating a fit more useful for prediction.
+\section{Statistics methods} \label{subsec:statistics}
+\textbf{Median}\\
+The median is a statistical measure that represents the middle value of a dataset. It is a value that separates the dataset
+into two halves: half of the values are greater than the median, and half of the values are less than the median. In other words,
+the median is the value that is exactly in the middle of the dataset when the values are arranged in order of magnitude.
+\\
+To compute the median of a dataset, we first sort the values in ascending or descending order. If the dataset has an odd number of values,
+the median is the middle value. For example, in the dataset ${1, 2, 3, 4, 5}$, the median is $3$.
+If the dataset has an even number of values, the median is the average of the two middle values.
+For example, in the dataset ${1, 2, 3, 4}$, the median is $(2 + 3) / 2 = 2.5$.
+\\
+The median is a robust statistic, meaning that it is not affected by outliers or extreme values in the dataset,
+unlike the mean. This makes it a useful measure of central tendency in datasets with a large number of outliers or
+skewed distributions. The median is commonly used in various applications, such as finance, economics, and social sciences,
+to summarize and compare datasets.
+\\
+\textbf{Standard deviation}\\
+Standard deviation is a statistical measure that quantifies the amount of variation or dispersion in a dataset.
+It measures how far the values in a dataset deviate from the mean, or average, of the dataset. The standard
+deviation is a non-negative number and has the same units as the data being measured.
+\\
+To compute the standard deviation of a dataset, we first calculate the mean of the dataset.
+Then, we calculate the difference between each value in the dataset and the mean, square each difference, and sum up the
+squared differences. Finally, we divide the sum of squared differences by the number of values in the dataset, and take the
+square root of the result. This gives us the standard deviation of the dataset.
+\\
+A small standard deviation indicates that the values in the dataset are tightly clustered around the mean,
+while a large standard deviation indicates that the values are widely spread out from the mean. Standard deviation is commonly
+used in various applications, such as finance, engineering, and natural sciences, to analyze and compare datasets.
+It is also an important parameter in many statistical tests and models, such as the normal distribution and the t-test.
+\chapter{Syntactic part} \label{sec:syntactic}
 Based on the Analytical part~\ref{sec:analytical} let us create new mathematical models and approaches to made a fast and accuracy sales forcasting
 consist of long-therm linear prediction with individual weights calculated for each period all based on Levinson-Durbin scheme caled Extended linear prediction (ELP)
 We expect to get better results than by using prediction based on short-term or long-term standard linear prediction (see section~\ref{sec:lp}).
 Finally, our approach will return future values for sales companies based on previous data with better aberration than linear prediction has.
-\section{Extended long-term prediction} \label{sec:models}
-\section{Weights for each period} \label{sec:models}
-\section{AI principles to detect best order of linear prediction} \label{sec:models}
+\section{Extended long-term prediction} \label{sec:extlonglp}
+\section{Weights for each period} \label{sec:weights}
+\section{AI principles to detect best order of linear prediction} \label{sec:aiprincipoles}
 \section{Combining all principles to forecast process} \label{subsec:combining_models}

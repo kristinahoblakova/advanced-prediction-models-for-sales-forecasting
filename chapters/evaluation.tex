@@ -4,26 +4,5 @@
 \section{Experiment} \label{sec:experiment}
 \subsection{Preprocessing of input data} \label{subsec:preprocessing}
 \subsection{Models for sales forecasting} \label{subsec:calculate_models}
-\subsection{Comparison criteria} \label{subsec:result_metodology}
-Finally we define the method to compare our models results.
-Absolute number of income value prediction should not be important for the store owners because of that we calculated the aberration for each month
-prediction and then we easily calculate quarterly and yearly results.
-The sum of squared errors (SSE), defined by:
-$$SSE = \sum^n_{i=1}w_i(y_i - \overline{y_i})^2,$$
-between the fitting models and the used data serves as the fitting criterion,
-with values closer to $0$ indicating a smaller random error component of the model.
-Also some other quality measures were evaluated, \textit{i.e.} the R-square from interval $[0,\ 1]$,
-that indicates the proportion of variance satisfactory explained by the fitting-model (\textit{e.g.}  R-square $= 0.7325$ means
-that the fit explains $73.25\%$ of the total variation in the data about the average);
-R-square is defined as the ratio of the sum of squares of the regression (SSR) and the total sum of squares (SST).
-SSR is defined as
-$$SSR = \sum_{i=1}^nw_i(\overline{y_i} - \overline{y_i})^2.$$
-SST is also called the sum of squares about the mean, and is defined as
-$$SST = \sum_{i=1}^nw_i(y_i - \overline{y})^2,$$
-where SST = SSR + SSE. Givenm these definition, R-square is expressed as
-$$\frac{SSR}{SST} = 1 - \frac{SSE}{SST}.$$
-The adjusted R-square statistic, with values smaller or equal to $1$, where values closer to $1$ indicate a better fit; the root mean squared error (RMSE):\\
-$$RMSE = s = \sqrt{\frac{SSE}{v}}$$
-with values closer to $0$ indicating a fit more useful for prediction.
 \subsection{Results} \label{subsec:experimentResults}
 \section{Matlab Live script application} \label{sec:livescript}
