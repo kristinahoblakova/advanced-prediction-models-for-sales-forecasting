@@ -4,13 +4,13 @@ In this thesis we are focus on improving linear prediction in sales and financia
 Machine learning techniques are used to improve the accuracy of linear prediction models.
 Specifically, there are two ways in which machine learning are applied to linear prediction:
 \begin{enumerate}
-    \item Feature engineering: In this approach, machine learning is used to extract relevant features from the input signal that can be used as input to a linear prediction model.
-The extracted features can capture complex patterns in the data that are not captured by the raw input.
-Feature engineering can be done using techniques such as principal component analysis, wavelet transform, and Fourier transform.
-    \item Model selection and training: In this approach, machine learning is used to select the best linear model for the prediction task and to estimate its
-parameters from the data. This can involve selecting the best set of input variables for the linear model, choosing the best
-regularization parameter to avoid overfitting, and optimizing the model hyperparameters. Common machine learning algorithms used for linear
-prediction include linear regression, support vector regression, and artificial neural networks.
+    \item Feature engineering: In this approach, machine learning is used to extract relevant features from the input signal that can be used as
+    input to a linear prediction model.The extracted features can capture complex patterns in the data that are not captured by the raw input.
+    Feature engineering can be done using techniques such as principal component analysis, wavelet transform, and Fourier transform.
+    \item Model selection and training: In this approach, machine learning is used to select the best linear model for the prediction
+     task and to estimate its parameters from the data. This can involve selecting the best set of input variables for the linear model,
+     choosing the best regularization parameter to avoid overfitting, and optimizing the model hyperparameters. Common machine learning
+     algorithms used for linear prediction include linear regression, support vector regression, and artificial neural networks.
 \end{enumerate}
 The goal of long-term linear prediction is to estimate future values of a signal or time series based on its past
 values using a linear model.
@@ -20,14 +20,15 @@ Combine this principles get to us the best results from linear prediction over s
 \chapter{Methodology} \label{sec:methodology}
 \section{Characteristics of the research object} \label{subsec:research_object}
 Sales data and financial datasets are two broad categories of data that have different characteristics and are used for different purposes.
-Here are some general characteristics of each type of dataset:
+Here are some general characteristics of each type of dataset:\\
 \\
 \textbf{Sales data}\\
 Typically contains transactional information, such as the date, time, location, and amount of a purchase
 Can include additional information about the customer, such as their demographic profile, purchase history, and preferences
 Often analyzed to understand customer behavior, such as buying patterns, trends, and preferences
 May have seasonal or cyclical patterns, depending on the nature of the product or service being sold
-Can be used to optimize marketing and sales strategies, such as targeting specific customer segments, promoting certain products, or adjusting prices and discounts
+Can be used to optimize marketing and sales strategies, such as targeting specific customer segments, promoting certain products, or adjusting
+prices and discounts.\\
 \\
 \textbf{Financial datasets}\\
 Typically contains financial information, such as the revenue, expenses, assets, liabilities, and cash flow of a company or organization
@@ -71,14 +72,40 @@ It is the backbone of training deep neural networks using stochastic gradient de
 The backpropagation algorithm computes the gradient of the loss function with respect to each weight in the network by recursively
 applying the chain rule of differentiation. The algorithm is typically implemented in two phases:
 \begin{enumerate}
-    \item Forward pass: The forward pass involves computing the output of each layer in the network, starting from the input layer and propagating through the hidden layers to the output layer. The output of each layer is computed as a function of the input to the layer and the weights of the layer. The forward pass computes the predictions of the network on a given input.
-    \item Backward pass: The backward pass involves computing the gradients of the loss function with respect to each weight in the network, starting from the output layer and propagating backwards through the hidden layers to the input layer. The gradients are computed by applying the chain rule of differentiation to the output of each layer. The gradients are then used to update the weights of the network using an optimization algorithm such as SGD.
+    \item Forward pass: The forward pass involves computing the output of each layer in the network, starting from the input layer and propagating
+    through the hidden layers to the output layer. The output of each layer is computed as a function of the input to the layer and the weights of the layer.
+    The forward pass computes the predictions of the network on a given input.
+    \item Backward pass: The backward pass involves computing the gradients of the loss function with respect to each weight in the network,
+    starting from the output layer and propagating backwards through the hidden layers to the input layer. The gradients are computed by applying the chain
+    rule of differentiation to the output of each layer. The gradients are then used to update the weights of the network using an optimization algorithm
+    such as SGD.
 \end{enumerate}
 The backpropagation algorithm can be optimized using various techniques, such as parallel computing, weight sharing, and regularization.
 It is a powerful tool for training deep neural networks with many layers and millions of parameters, and has enabled
 significant advances in many areas of machine learning, including computer vision, natural language processing, and speech recognition.
 \section{Datasets} \label{subsec:datasets}
-
+Creating a science research dataset involves several steps, which may vary depending on the nature of the research and the specific field of science.
+Here are some general steps to consider:
+\begin{enumerate}
+    \item Determine the research question: The first step in creating a research dataset is to determine the research question. This will help you
+    identify the data you need to collect and the type of dataset you need to create.
+    \item Choose the data sources: Once you have identified the research question, you need to determine the data sources you will use to create your dataset.
+    Depending on the research question, you may use publicly available data, data from surveys or experiments, data from literature, or a combination of these.
+    \item Collect and organize the data: Collecting data can involve different methods, such as surveys, experiments, literature reviews, or data mining.
+    You need to make sure that the data you collect is reliable, accurate, and relevant to your research question. Once you have collected the data,
+    you need to organize it in a way that is easy to analyze.
+    \item Clean and preprocess the data: Before you can analyze the data, you need to clean and preprocess it. This involves removing any errors,
+    missing values, or duplicates in the data. You may also need to transform or normalize the data to make it compatible with the analysis
+    methods you plan to use.
+    \item Perform exploratory analysis: Once the data is cleaned and preprocessed, you can perform exploratory analysis to identify patterns,
+    trends, or relationships in the data. This can help you refine your research question or identify areas that require further investigation.
+    \item Perform statistical analysis: Depending on the research question, you may need to perform statistical analysis to test
+    hypotheses or evaluate the significance of the results. This can involve using regression analysis, hypothesis testing, or other statistical methods.
+\end{enumerate}
+Validate the dataset: After we have analyzed the data, we need to validate the dataset to ensure that the results are accurate and reliable.
+This can involve comparing the results to other datasets or conducting further experiments to verify the results.
+Overall, creating a science research dataset involves careful planning, data collection, preprocessing, and analysis to ensure that the data is accurate,
+reliable, and relevant to the research question.
 \section{Comparison criteria} \label{subsec:comparison}
 Finally we define the method to compare our models results.
 Absolute number of income value prediction should not be important for the store owners because of that we calculated the aberration for each month
@@ -99,7 +126,28 @@ where SST = SSR + SSE. Givenm these definition, R-square is expressed as
 $$\frac{SSR}{SST} = 1 - \frac{SSE}{SST}.$$
 The adjusted R-square statistic, with values smaller or equal to $1$, where values closer to $1$ indicate a better fit; the root mean squared error (RMSE):\\
 $$RMSE = s = \sqrt{\frac{SSE}{v}}$$
-with values closer to $0$ indicating a fit more useful for prediction.
+with values closer to $0$ indicating a fit more useful for prediction.\\
+\\
+Mean square error (MSE) is a commonly used metric to measure the average squared difference between the actual and predicted values of a continuous variable.
+It is a measure of how well a prediction model performs in predicting continuous outcomes.\\
+To calculate the MSE, you first take the difference between the predicted and actual values for each data point, square these differences, and then take the
+average of the squared differences across all data points.\\
+\\
+The formula for calculating MSE is:
+
+\begin{equation}
+MSE = \frac{1}{n}\sum_{i=1}^{n}(y_i - \hat{y}_i)^2,
+\end{equation}
+\\
+where n is the total number of data points, $y_i$ is the actual value of the $i-th$ data point, and $\hat{y}_i$ is the predicted
+value of the $i-th$ data point.\\
+\\
+The square of the difference in each data point ensures that the errors are positive and provides a way to measure the magnitude of the error.
+By squaring the errors, the MSE gives more weight to larger errors and less weight to smaller errors.\\
+\\
+MSE is a popular metric used in many fields, such as machine learning, statistics, and engineering, to evaluate the performance of prediction models.
+A lower MSE indicates better performance of the model in predicting the outcomes.
+
 \section{Statistics methods} \label{subsec:statistics}
 \textbf{Median}\\
 The median is a statistical measure that represents the middle value of a dataset. It is a value that separates the dataset
@@ -114,7 +162,7 @@ For example, in the dataset ${1, 2, 3, 4}$, the median is $(2 + 3) / 2 = 2.5$.
 The median is a robust statistic, meaning that it is not affected by outliers or extreme values in the dataset,
 unlike the mean. This makes it a useful measure of central tendency in datasets with a large number of outliers or
 skewed distributions. The median is commonly used in various applications, such as finance, economics, and social sciences,
-to summarize and compare datasets.
+to summarize and compare datasets.\\
 \\
 \textbf{Standard deviation}\\
 Standard deviation is a statistical measure that quantifies the amount of variation or dispersion in a dataset.
@@ -132,9 +180,31 @@ used in various applications, such as finance, engineering, and natural sciences
 It is also an important parameter in many statistical tests and models, such as the normal distribution and the t-test.
 \chapter{Syntactic part} \label{sec:syntactic}
 Based on the Analytical part~\ref{sec:analytical} let us create new mathematical models and approaches to made a fast and accuracy sales forcasting
-consist of long-therm linear prediction with individual weights calculated for each period all based on Levinson-Durbin scheme caled Extended linear prediction (ELP)
+consist of long-therm linear prediction with individual weights calculated for each period all based on Levinson-Durbin scheme caled Extended linear
+prediction (ELP)
 We expect to get better results than by using prediction based on short-term or long-term standard linear prediction (see section~\ref{sec:lp}).
 Finally, our approach will return future values for sales companies based on previous data with better aberration than linear prediction has.
+\section{Order calculation} \label{sec:ordercalc}
+\section{Shift calculation} \label{sec:shiftcalc}
+    \subsection{Autocorrelation} \label{subsec:acorr}
+    1. Compute the autocorrelation function of the signal using the xcorr function in MATLAB. The xcorr function returns the cross-correlation
+    sequence of the signal with itself.\\
+    \\
+    $[Rxx, lag] = xcorr(x, maxlag);$\\
+    \\
+    where x is the input signal and maxlag is the maximum lag to compute. Rxx is the cross-correlation sequence, and lag is the corresponding lag vector.\\
+    2. Find the index of the maximum value in the autocorrelation function. You can use the max function to find the maximum value and its index.\\
+    \\
+    $[~, idx] = max(Rxx);$\\
+    \\
+    The ~ ignores the value of the maximum, and idx is the index of the maximum value in the Rxx vector.\\
+    3. Calculate the shift value from the lag index. The shift value is simply the lag value corresponding to the maximum value in the autocorrelation function.\\
+    \\
+    $shift = lag(idx);$\\
+    \\
+    The shift value is the lag at which the autocorrelation function has its maximum value, which corresponds to the shift value for long-term linear prediction.
+    Note that the shift value is expressed in samples, so we may need to convert it to a time delay if your signal has a specific sampling rate.
+    \subsection{Neural networkl} \label{subsec:neural}
 \section{Extended long-term prediction} \label{sec:extlonglp}
 \section{Weights for each period} \label{sec:weights}
 \section{AI principles to detect best order of linear prediction} \label{sec:aiprincipoles}
