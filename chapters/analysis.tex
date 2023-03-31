@@ -30,6 +30,8 @@ Here's a basic outline of the steps involved in using linear prediction to forec
     \item Refine the model: If necessary, refine the model by adding additional independent variables or transforming the existing variables.
     Repeat the training and evaluation steps until you have a model that provides accurate forecasts.
 \end{enumerate}
+For shift calculation in longterm prediction can be used autocorrelation method, in this thesis neural site for identification shift
+will be developed and similar mechanism for optimal order detection.
 
 \section{Models used for sales data} \label{sec:models}
 There are several mathematical models used for sales prediction, including:
@@ -138,6 +140,16 @@ It is composed of interconnected nodes, called neurons, that are organized into 
 passes it on to the hidden layers, which perform calculations and apply weights to the input data to create a prediction. Finally, the output layer
 produces the final prediction or classification.\\
 \\
+As you can see on image \ref{fig:perceptron} each input $Xn$ should be properly weighted by a certain weight $Wn$ before all the signals enter the
+summation stage. Afterwards, the weighted summation is forwarded into the activation unit producing the neuron’s output signal.
+\begin{center}
+    \begin{figure}[!ht]
+        \centering
+        \includegraphics[width=1\textwidth]{figures/nn}
+        \caption{Perceptron preview \cite{Mourgias-Alexandris:19}}
+        \label{fig:perceptron}
+    \end{figure}
+\end{center}
 Neural networks are trained on large datasets using a process called backpropagation, which adjusts the weights and biases of the neurons to minimize the
 error between the predicted output and the actual output. Once a neural network has been trained, it can be used to make predictions on new data.\\
 \\
@@ -148,6 +160,7 @@ signals to other neurons.\\
 In a neural network, a neuron receives input from other neurons or directly from the input data, applies a mathematical function to the input, and
 produces an output that is sent to other neurons in the network. The input to a neuron is usually a vector of numbers, and each input is multiplied
 by a corresponding weight. The neuron then sums up the weighted inputs, adds a bias term, and applies an activation function to the result.\\
+\\
 The purpose of the activation function is to introduce nonlinearity into the neuron, which allows the neural network to learn complex
 patterns and relationships in the data. There are several different types of activation functions that can be used, such as the sigmoid function,
 ReLU (Rectified Linear Unit) function, and tanh (hyperbolic tangent) function.\\
@@ -163,18 +176,66 @@ Neural networks can be broadly classified into the following types:
 \begin{enumerate}
     \item Feedforward Neural Networks: These are the most basic type of neural networks, where the information flows only in one direction,
     from input to output. These networks can have one or more hidden layers and are often used for classification or regression tasks.
+    \begin{center}
+        \begin{figure}[!ht]
+            \centering
+            \includegraphics[width=0.6\textwidth]{figures/ff}
+            \caption{Typical feed-forward neural network composed of three layers. \cite{SVOZIL199743}}
+            \label{fig:ff}
+        \end{figure}
+    \end{center}
     \item Convolutional Neural Networks (CNNs): These networks are specialized for processing images and are commonly used in computer vision tasks.
     They use convolutional layers to extract features from images and can learn to recognize patterns and objects in images.
+    \begin{center}
+        \begin{figure}[!ht]
+            \centering
+            \includegraphics[width=0.8\textwidth]{figures/cn}
+            \caption{Illustration of (a) Convolution, (b) Tiled Convolution, (c) Dilated Convolution, and (d) Deconvolution. \cite{GU2018354}}
+            \label{fig:cn}
+        \end{figure}
+    \end{center}
     \item Recurrent Neural Networks (RNNs): These networks are designed to work with sequential data, such as time-series or natural language data.
     They have loops that allow information to be passed from one time-step to the next, enabling them to capture temporal dependencies in the data.
+    \begin{center}
+        \begin{figure}[!ht]
+            \centering
+            \includegraphics[width=0.8\textwidth]{figures/rn}
+            \caption{Typical recurrent network. \cite{medsker2001recurrent}}
+            \label{fig:rn}
+        \end{figure}
+    \end{center}
     \item Long Short-Term Memory Networks (LSTMs): These are a type of RNN that are designed to address the problem of vanishing gradients in traditional RNNs.
     They use memory cells and gates to selectively retain or forget information over time, making them well-suited for learning from long sequences.
+    \begin{center}
+        \begin{figure}[!ht]
+            \centering
+            \includegraphics[width=0.4\textwidth]{figures/ltmn}
+            \caption{Long short-term memory network. Color indicates degree of memory activation. \cite{cheng2016long}}
+            \label{fig:ltmn}
+        \end{figure}
+    \end{center}
     \item Autoencoder Neural Networks: These networks are used for unsupervised learning and are designed to learn a compressed
     representation of the input data. They consist of an encoder that maps the input data to a compressed representation, and a decoder
     that maps the compressed representation back to the original data.
+    \begin{center}
+        \begin{figure}[!ht]
+            \centering
+            \includegraphics[width=0.5\textwidth]{figures/ann}
+            \caption{An autoencoder neural network. \cite{luo2018distributed}}
+            \label{fig:ann}
+        \end{figure}
+    \end{center}
     \item Generative Adversarial Networks (GANs): These networks consist of two networks, a generator and a discriminator,
     that are trained together in a game-theoretic framework. The generator is trained to generate realistic data samples, while the discriminator is
     trained to distinguish between real and generated data samples.
+    \begin{center}
+        \begin{figure}[!ht]
+            \centering
+            \includegraphics[width=0.5\textwidth]{figures/gan}
+            \caption{the conditional GAN example. \cite{creswell2018generative}}
+            \label{fig:ann}
+        \end{figure}
+    \end{center}
 \end{enumerate}
 These are some of the most common types of neural networks, but there are many other specialized types of neural networks that have been
 developed for specific tasks, such as object detection, speech recognition, and natural language processing.\\
@@ -191,27 +252,85 @@ developed for specific tasks, such as object detection, speech recognition, and 
     with the highest probability indicating the predicted class.\\
     Neural network data classification has been successfully applied to a wide range of tasks, including image classification, speech recognition,
     natural language processing, and fraud detection, among others.
+    \begin{center}
+        \begin{figure}[!ht]
+            \centering
+            \includegraphics[width=0.6\textwidth]{figures/classification}
+            \caption{The staircase effect: on this toy problem, the true variable is in a one-dimensional factor space
+            obtained by a linear combination of the inputs. The splits produced by the tree can obtain accurate
+            performance in classification, but cannot be used to interpret the classification.\cite{feraud2002methodology} }
+            \label{fig:tahn}
+        \end{figure}
+    \end{center}
     \subsection{Activation functions} \label{subsec:nnaf}
     There are several types of activation functions used in neural networks, including:
     \begin{enumerate}
         \item Sigmoid Function: The sigmoid function is a commonly used activation function that maps any input value to a value between 0 and 1.
         It is typically used in binary classification problems and in the output layer of neural networks that produce probability estimates.
+        \begin{center}
+            \begin{figure}[!ht]
+                \centering
+                \includegraphics[width=0.5\textwidth]{figures/sigmoid}
+                \caption{Exmaple of Sigmoid function}
+                \label{fig:sigmoid}
+            \end{figure}
+        \end{center}
         \item ReLU (Rectified Linear Unit): The ReLU function is another popular activation function that maps any input value less than 0 to 0, and any
         input value greater than or equal to 0 to the input value itself. It is computationally efficient and has been shown to work
         well in deep neural networks.
+        \begin{center}
+            \begin{figure}[!ht]
+                \centering
+                \includegraphics[width=0.5\textwidth]{figures/relu}
+                \caption{Exmaple of ReLU function}
+                \label{fig:relu}
+            \end{figure}
+        \end{center}
         \item Tanh Function: The tanh (hyperbolic tangent) function is similar to the sigmoid function, but it maps input values to a range
         between -1 and 1. It is commonly used in the hidden layers of neural networks.
+        \begin{center}
+            \begin{figure}[!ht]
+                \centering
+                \includegraphics[width=0.5\textwidth]{figures/tanh}
+                \caption{Exmaple of Tanh function}
+                \label{fig:tahn}
+            \end{figure}
+        \end{center}
         \item Softmax Function: The softmax function is often used in the output layer of neural networks that produce multi-class
         classification predictions. It maps the outputs to a probability distribution over the possible classes.
+        \begin{center}
+            \begin{figure}[!ht]
+                \centering
+                \includegraphics[width=0.5\textwidth]{figures/softmax}
+                \caption{Exmaple of Softmax function}
+                \label{fig:sigmsoftmaxoid}
+            \end{figure}
+        \end{center}
         \item Leaky ReLU: The Leaky ReLU function is similar to the ReLU function, but it allows a small, non-zero gradient when the input
         value is negative. This can help to prevent the "dying ReLU" problem, where some ReLU units become inactive and stop
         contributing to the network's output.
+        \begin{center}
+            \begin{figure}[!ht]
+                \centering
+                \includegraphics[width=0.5\textwidth]{figures/leakyrelu}
+                \caption{Exmaple of Leaky ReLU function}
+                \label{fig:leakyrelu}
+            \end{figure}
+        \end{center}
         \item ELU (Exponential Linear Unit): The ELU function is similar to the ReLU function, but it allows negative values to have non-zero outputs.
         This can help to prevent the "dying ReLU" problem and can improve the performance of deep neural networks.
+        \begin{center}
+            \begin{figure}[!ht]
+                \centering
+                \includegraphics[width=0.5\textwidth]{figures/elu}
+                \caption{Exmaple of ELU function}
+                \label{fig:elu}
+            \end{figure}
+        \end{center}
     \end{enumerate}
     These are some of the most commonly used activation functions in neural networks, but there are many other types of activation
     functions that have been developed for specific tasks or to address certain problems.
-
+    \newpage
     \subsection{Network prediction} \label{subsec:nnprediction}
     Neural networks can be used for long-term linear prediction in time-series data, including speech, health, and stock data.
     Neural networks can be trained to model and forecast the patterns in the data, including shifts in the long-term linear prediction.
@@ -456,3 +575,119 @@ developed for specific tasks, such as object detection, speech recognition, and 
     \\
     To calculate the shift for long-term linear prediction, you can use the autocorrelation function of the signal.
     The shift value corresponds to the lag at which the autocorrelation function has its maximum value.
+    \section{Detection of repeatable patterns}
+    To detect repeatable patterns in time series data, you can use several techniques. Here are a few methods that can be used:
+    \begin{enumerate}
+        \item Autocorrelation: Autocorrelation measures the correlation between the time series data at different time lags.
+        By calculating the autocorrelation at different lags, you can identify whether there are any repeating patterns in the data.
+        If there are repeating patterns, the autocorrelation plot will show peaks at the lags corresponding to the pattern.
+        \item Seasonal decomposition: Seasonal decomposition separates the time series data into different components such as trend,
+        seasonal, and residual. By analyzing the seasonal component, you can identify whether there are any repeating patterns in the data.
+        If there are repeating patterns, the seasonal component will show a consistent pattern over time.
+        \item Fourier transform: Fourier transform can be used to analyze the frequency components of the time series data. By applying
+        Fourier transform, you can identify whether there are any repeating frequency patterns in the data.
+        \item Wavelet analysis: Wavelet analysis is a mathematical technique that can be used to analyze the time-frequency
+        structure of the time series data. By applying wavelet analysis, you can identify whether there are any repeating patterns at different
+        frequency scales.
+        \item Hidden Markov models: Hidden Markov models can be used to identify repeating patterns in the data.
+        These models assume that the data follows a probabilistic process, where the state of the process is not directly observable.
+        By estimating the model parameters, you can identify the underlying pattern and predict future values of the time series data.
+        \item PDMD alghoritm developed on University of California, Riverside
+    \end{enumerate}
+    These techniques can be used individually or in combination to detect repeatable patterns in time series data.
+    It's important to note that the choice of technique depends on the characteristics of the data and the specific problem being addressed.
+        \subsection{Hidden Markov models}
+        Hidden Markov Models (HMMs) are probabilistic models that are used to analyze sequential data where the state of the system is not directly observable.
+        HMMs consist of a set of hidden states that are not directly observable, and a set of observable symbols that are emitted from the hidden states.\\
+        \\
+        The HMM assumes that the hidden states form a Markov chain, which means that the probability of transitioning from one hidden state to another
+        depends only on the current state and not on the previous states. The emission probabilities of the observable symbols depend
+        only on the current hidden state.\\
+        \\
+        HMMs are typically used for two main tasks:
+        \begin{enumerate}
+            \item Evaluation: Given a sequence of observable symbols, HMMs can be used to evaluate the probability of the sequence of symbols occurring, given a particular set of model parameters.
+            \item Decoding: Given a sequence of observable symbols, HMMs can be used to determine the most likely sequence of hidden states that generated the sequence of symbols.
+            \item HMMs are used in a wide range of applications such as speech recognition, handwriting recognition, natural language processing, bioinformatics, and financial time series analysis.
+        \end{enumerate}
+        The basic steps involved in building an HMM model are as follows:
+        \begin{enumerate}
+            \item Define the set of hidden states: Determine the set of hidden states that the system can be in at any given time.
+            \item Define the set of observable symbols: Determine the set of observable symbols that can be emitted from each hidden state.
+            \item Define the transition probabilities: Determine the probability of transitioning from one hidden state to another.
+            \item Define the emission probabilities: Determine the probability of emitting each observable symbol from each hidden state.
+            \item Estimate the model parameters: Estimate the transition and emission probabilities of the HMM using a training dataset.
+            \item Use the model for evaluation or decoding: Once the model parameters have been estimated, the HMM
+            can be used for evaluation or decoding tasks.
+        \end{enumerate}
+        It's important to note that building an HMM model requires knowledge of probability theory and statistical
+        modeling, and may require significant computational resources.
+        \subsection{Fourier transform}
+        Fourier transform is a mathematical technique that is used to analyze the frequency components of a signal or a time series data.
+        It transforms a signal from the time domain into the frequency domain, which allows us to analyze the signal in terms of its frequency components.
+        The Fourier transform is widely used in many fields, including signal processing, image processing, and physics.\\
+        \\
+        The Fourier transform decomposes a signal into a set of sinusoidal waves with different frequencies, amplitudes, and phases.
+        These sinusoidal waves are called the Fourier series, and they represent the signal as a sum of complex exponential functions.\\
+        \\
+        The Fourier transform can be expressed as an integral equation that takes a time-domain signal and produces a frequency-domain
+        representation of that signal. The formula for the Fourier transform is:\\
+        \begin{equation}
+            F(\omega) = \int f(t) e^{(-i \omega t)} dt,
+        \end{equation}
+        where $F(\omega)$ is the frequency-domain representation of the signal, $f(t)$ is the time-domain signal, $\omega$ is the frequency,
+        and i is the imaginary unit.\\
+        \\
+        The inverse Fourier transform can be used to transform the frequency-domain representation of a signal back into the time domain.
+        The formula for the inverse Fourier transform is:
+        \begin{equation}
+            f(t) = (\frac{1}{2\pi}) \int F(\omega) e^{(i \omega t)} d\omega
+        \end{equation}
+        where $f(t)$ is the time-domain signal, $F(\omega)$ is the frequency-domain representation of the signal, $\omega$ is the frequency,
+        and i is the imaginary unit.\\
+        \\
+        The Fourier transform has many practical applications. For example, it can be used to analyze the frequency components of a music signal,
+        to filter out noise from a signal, or to compress data by removing high-frequency components that are not essential for the representation of the signal.
+        It is a powerful tool for understanding the underlying structure of signals and is widely used in scientific research and engineering applications.
+        \subsection{Seasonal decomposition}
+        Seasonal decomposition is a statistical technique that is used to decompose a time series into its underlying components, including trend,
+        seasonal, and residual components. This technique is useful for identifying and understanding the repeating patterns or seasonal
+        effects in a time series data.\\
+        \\
+        The seasonal decomposition of a time series involves separating the data into four components:
+        \begin{enumerate}
+            \item Trend component: This component represents the long-term pattern in the data, such as increasing or decreasing trends over time.
+            \item Seasonal component: This component represents the repeating pattern in the data that occurs over a fixed period,
+            such as daily, weekly, or monthly patterns.
+            \item Residual component: This component represents the remaining variation in the data that cannot be explained 
+            y the trend or seasonal components. It may include random noise or other unexplained factors.
+            \item Irregular component: This component represents any unexpected or irregular variation in the data that is not
+            accounted for by the other components.
+        \end{enumerate}
+        The seasonal decomposition process involves applying a smoothing algorithm to the time series data to estimate the trend and
+        seasonal components, and then subtracting them from the original data to obtain the residual component.
+        There are various methods for performing seasonal decomposition, including moving averages, exponential smoothing, and regression models.\\
+        \\
+        Once the components of the time series have been separated, they can be analyzed and modeled separately.
+        This can help in detecting the repeating patterns or seasonal effects in the data and in making accurate forecasts for future time periods.\\
+        \\
+        Overall, seasonal decomposition is a powerful tool for identifying and analyzing the seasonal patterns in a time series
+        data, and it can be useful in a wide range of applications, including finance, economics, and meteorology.\\
+        \subsection{PDMD algorithm}
+        PDMD (Probabilistic Data Mining on Data Streams) is an algorithm for online learning and prediction in data streams that was
+        developed by KDD Lab at University of California, Riverside. It is a probabilistic model-based approach that can learn from a stream of input
+        data and make predictions in real-time.
+        \\
+        PDMD uses a probabilistic generative model to represent the joint distribution of the input data and the target variable.
+        The model is updated in an online manner as new data arrives, using a Bayesian inference method to estimate the posterior
+        distribution of the model parameters. This allows PDMD to adapt to changes in the data distribution over time.
+        \\
+        To make predictions, PDMD calculates the posterior predictive distribution of the target variable given the observed data.
+        This distribution represents the uncertainty in the prediction, and can be used to estimate the expected value of the target
+        variable or to calculate prediction intervals.
+        \\
+        PDMD has been applied to various applications such as anomaly detection, classification, and regression on data streams.
+        It has shown to be effective in handling data streams with changing distributions, noisy data, and missing values.
+        \\
+        Overall, PDMD is a promising algorithm for online learning and prediction in data streams that can adapt to changes in the data distribution
+        over time and provide probabilistic predictions.

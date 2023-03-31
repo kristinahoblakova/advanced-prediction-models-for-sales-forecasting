@@ -18,194 +18,375 @@ The linear prediction model uses a set of coefficients to weight past values of 
 future values. The accuracy of the prediction depends on the quality of the model and the complexity of the underlying signal.
 Combine this principles get to us the best results from linear prediction over sales and financial datasets.
 \chapter{Methodology} \label{sec:methodology}
-\section{Characteristics of the research object} \label{subsec:research_object}
-Sales data and financial datasets are two broad categories of data that have different characteristics and are used for different purposes.
-Here are some general characteristics of each type of dataset:\\
-\\
-\textbf{Sales data}\\
-Typically contains transactional information, such as the date, time, location, and amount of a purchase
-Can include additional information about the customer, such as their demographic profile, purchase history, and preferences
-Often analyzed to understand customer behavior, such as buying patterns, trends, and preferences
-May have seasonal or cyclical patterns, depending on the nature of the product or service being sold
-Can be used to optimize marketing and sales strategies, such as targeting specific customer segments, promoting certain products, or adjusting
-prices and discounts.\\
-\\
-\textbf{Financial datasets}\\
-Typically contains financial information, such as the revenue, expenses, assets, liabilities, and cash flow of a company or organization
-Can include additional information about the market, such as interest rates, exchange rates, and stock prices
-Often analyzed to evaluate the financial performance and health of a company, such as profitability, solvency, and liquidity
-May have regulatory or compliance requirements, such as financial reporting standards or tax laws
-Can be used to make strategic decisions, such as investment, merger and acquisition, or divestiture
-Both sales data and financial datasets can be used for forecasting and modeling, but they have different analytical
-techniques and tools. Sales data often requires customer segmentation, predictive analytics, and machine learning algorithms,
-while financial datasets require financial ratio analysis, time series forecasting, and risk assessment.
-\section{Methods} \label{subsec:methods}
-\subsection{Linear regression} \label{sec:linear}
-Linear regression~\cite{linear} attempts to model the relationship between two variables by fitting a linear equation to observed data.
-One variable is considered to be an explanatory variable, and the other is considered to be a dependent variable.
-For example, we want to relate the weights of individuals to their heights using a linear regression model.
-Before attempting to fit a linear model to observed data, we should first determine if there exists a relationship between the variables of interest.
-This does not necessarily mean that one variable causes the other, but that there is some significant association between them.
-To determine the strength of relationship a scatterplot can be a helpful tool.
-If there appears to be no association between the proposed explanatory and dependent variables, then fitting a linear regression
-model to the data probably will not provide a useful model.
-A valuable numerical measure of association between two variables is the correlation coefficient.
-That is a value from $[-1, 1]$ range indicating the strength of the association of the observed data for the two variables.\\
-A linear regression line has an equation of the form $Y = a + bX$, where $X$ is the explanatory variable and $Y$ is the dependent variable.
-The slope of the line is $b$, and $a$ is the intercept.
-Example of some basic linear models:\\
-\begin{equation} \label{eq:4}
-\begin{array}{l@{}l}
-    Y = ax + b\\
-    Y = a + bx + c\\
-    Y = a\sin x + b\\
-\end{array}
-\end{equation}
-\subsection{Linear prediction} \label{subsec:lp}
-Linear prediction is a statistical technique used to forecast future values based on past observations. It is a method for modeling the
-relationship between a dependent variable and one or more independent variables in a linear form. The goal of linear prediction is to find
-the best linear approximation of the relationship between the variables, which can then be used to make predictions about future values of
-the dependent variable.
-\subsection{Backpropagation} \label{subsec:lp}
-Backpropagation is a widely used algorithm for computing the gradients of the loss function with respect to the weights of a neural network.
-It is the backbone of training deep neural networks using stochastic gradient descent (SGD) or its variants.
-The backpropagation algorithm computes the gradient of the loss function with respect to each weight in the network by recursively
-applying the chain rule of differentiation. The algorithm is typically implemented in two phases:
-\begin{enumerate}
-    \item Forward pass: The forward pass involves computing the output of each layer in the network, starting from the input layer and propagating
-    through the hidden layers to the output layer. The output of each layer is computed as a function of the input to the layer and the weights of the layer.
-    The forward pass computes the predictions of the network on a given input.
-    \item Backward pass: The backward pass involves computing the gradients of the loss function with respect to each weight in the network,
-    starting from the output layer and propagating backwards through the hidden layers to the input layer. The gradients are computed by applying the chain
-    rule of differentiation to the output of each layer. The gradients are then used to update the weights of the network using an optimization algorithm
-    such as SGD.
-\end{enumerate}
-The backpropagation algorithm can be optimized using various techniques, such as parallel computing, weight sharing, and regularization.
-It is a powerful tool for training deep neural networks with many layers and millions of parameters, and has enabled
-significant advances in many areas of machine learning, including computer vision, natural language processing, and speech recognition.
-\section{Datasets} \label{subsec:datasets}
-Creating a science research dataset involves several steps, which may vary depending on the nature of the research and the specific field of science.
-Here are some general steps to consider:
-\begin{enumerate}
-    \item Determine the research question: The first step in creating a research dataset is to determine the research question. This will help you
-    identify the data you need to collect and the type of dataset you need to create.
-    \item Choose the data sources: Once you have identified the research question, you need to determine the data sources you will use to create your dataset.
-    Depending on the research question, you may use publicly available data, data from surveys or experiments, data from literature, or a combination of these.
-    \item Collect and organize the data: Collecting data can involve different methods, such as surveys, experiments, literature reviews, or data mining.
-    You need to make sure that the data you collect is reliable, accurate, and relevant to your research question. Once you have collected the data,
-    you need to organize it in a way that is easy to analyze.
-    \item Clean and preprocess the data: Before you can analyze the data, you need to clean and preprocess it. This involves removing any errors,
-    missing values, or duplicates in the data. You may also need to transform or normalize the data to make it compatible with the analysis
-    methods you plan to use.
-    \item Perform exploratory analysis: Once the data is cleaned and preprocessed, you can perform exploratory analysis to identify patterns,
-    trends, or relationships in the data. This can help you refine your research question or identify areas that require further investigation.
-    \item Perform statistical analysis: Depending on the research question, you may need to perform statistical analysis to test
-    hypotheses or evaluate the significance of the results. This can involve using regression analysis, hypothesis testing, or other statistical methods.
-\end{enumerate}
-Validate the dataset: After we have analyzed the data, we need to validate the dataset to ensure that the results are accurate and reliable.
-This can involve comparing the results to other datasets or conducting further experiments to verify the results.
-Overall, creating a science research dataset involves careful planning, data collection, preprocessing, and analysis to ensure that the data is accurate,
-reliable, and relevant to the research question.
-\section{Comparison criteria} \label{subsec:comparison}
-Finally we define the method to compare our models results.
-Absolute number of income value prediction should not be important for the store owners because of that we calculated the aberration for each month
-prediction and then we easily calculate quarterly and yearly results.
-The sum of squared errors (SSE), defined by:
-$$SSE = \sum^n_{i=1}w_i(y_i - \overline{y_i})^2,$$
-between the fitting models and the used data serves as the fitting criterion,
-with values closer to $0$ indicating a smaller random error component of the model.
-Also some other quality measures were evaluated, \textit{i.e.} the R-square from interval $[0,\ 1]$,
-that indicates the proportion of variance satisfactory explained by the fitting-model (\textit{e.g.}  R-square $= 0.7325$ means
-that the fit explains $73.25\%$ of the total variation in the data about the average);
-R-square is defined as the ratio of the sum of squares of the regression (SSR) and the total sum of squares (SST).
-SSR is defined as
-$$SSR = \sum_{i=1}^nw_i(\overline{y_i} - \overline{y_i})^2.$$
-SST is also called the sum of squares about the mean, and is defined as
-$$SST = \sum_{i=1}^nw_i(y_i - \overline{y})^2,$$
-where SST = SSR + SSE. Givenm these definition, R-square is expressed as
-$$\frac{SSR}{SST} = 1 - \frac{SSE}{SST}.$$
-The adjusted R-square statistic, with values smaller or equal to $1$, where values closer to $1$ indicate a better fit; the root mean squared error (RMSE):\\
-$$RMSE = s = \sqrt{\frac{SSE}{v}}$$
-with values closer to $0$ indicating a fit more useful for prediction.\\
-\\
-Mean square error (MSE) is a commonly used metric to measure the average squared difference between the actual and predicted values of a continuous variable.
-It is a measure of how well a prediction model performs in predicting continuous outcomes.\\
-To calculate the MSE, you first take the difference between the predicted and actual values for each data point, square these differences, and then take the
-average of the squared differences across all data points.\\
-\\
-The formula for calculating MSE is:
+    \section{Characteristics of the research object} \label{subsec:research_object}
+    Sales data and financial datasets are two broad categories of data that have different characteristics and are used for different purposes.
+    Here are some general characteristics of each type of dataset:\\
+    \\
+    \textbf{Sales data}\\
+    Typically contains transactional information, such as the date, time, location, and amount of a purchase
+    Can include additional information about the customer, such as their demographic profile, purchase history, and preferences
+    Often analyzed to understand customer behavior, such as buying patterns, trends, and preferences
+    May have seasonal or cyclical patterns, depending on the nature of the product or service being sold
+    Can be used to optimize marketing and sales strategies, such as targeting specific customer segments, promoting certain products, or adjusting
+    prices and discounts.\\
+    \\
+    \textbf{Financial datasets}\\
+    Typically contains financial information, such as the revenue, expenses, assets, liabilities, and cash flow of a company or organization
+    Can include additional information about the market, such as interest rates, exchange rates, and stock prices
+    Often analyzed to evaluate the financial performance and health of a company, such as profitability, solvency, and liquidity
+    May have regulatory or compliance requirements, such as financial reporting standards or tax laws
+    Can be used to make strategic decisions, such as investment, merger and acquisition, or divestiture
+    Both sales data and financial datasets can be used for forecasting and modeling, but they have different analytical
+    techniques and tools. Sales data often requires customer segmentation, predictive analytics, and machine learning algorithms,
+    while financial datasets require financial ratio analysis, time series forecasting, and risk assessment.
+    \section{Methods} \label{subsec:methods}
+        \subsection{Linear regression} \label{sec:linear}
+        Linear regression~\cite{linear} attempts to model the relationship between two variables by fitting a linear equation to observed data.
+        One variable is considered to be an explanatory variable, and the other is considered to be a dependent variable.
+        For example, we want to relate the weights of individuals to their heights using a linear regression model.
+        Before attempting to fit a linear model to observed data, we should first determine if there exists a relationship between the variables of interest.
+        This does not necessarily mean that one variable causes the other, but that there is some significant association between them.
+        To determine the strength of relationship a scatterplot can be a helpful tool.
+        If there appears to be no association between the proposed explanatory and dependent variables, then fitting a linear regression
+        model to the data probably will not provide a useful model.
+        A valuable numerical measure of association between two variables is the correlation coefficient.
+        That is a value from $[-1, 1]$ range indicating the strength of the association of the observed data for the two variables.\\
+        A linear regression line has an equation of the form $Y = a + bX$, where $X$ is the explanatory variable and $Y$ is the dependent variable.
+        The slope of the line is $b$, and $a$ is the intercept.
+        Example of some basic linear models:\\
+        \begin{equation} \label{eq:4}
+        \begin{array}{l@{}l}
+            Y = ax + b\\
+            Y = a + bx + c\\
+            Y = a\sin x + b\\
+        \end{array}
+        \end{equation}
+        \subsection{Linear prediction} \label{subsec:lp}
+        Linear prediction is a statistical technique used to forecast future values based on past observations. It is a method for modeling the
+        relationship between a dependent variable and one or more independent variables in a linear form. The goal of linear prediction is to find
+        the best linear approximation of the relationship between the variables, which can then be used to make predictions about future values of
+        the dependent variable.
+        \subsection{Backpropagation} \label{subsec:lp}
+        Backpropagation is a widely used algorithm for computing the gradients of the loss function with respect to the weights of a neural network.
+        It is the backbone of training deep neural networks using stochastic gradient descent (SGD) or its variants.
+        The backpropagation algorithm computes the gradient of the loss function with respect to each weight in the network by recursively
+        applying the chain rule of differentiation. The algorithm is typically implemented in two phases:
+        \begin{enumerate}
+            \item Forward pass: The forward pass involves computing the output of each layer in the network, starting from the input layer and propagating
+            through the hidden layers to the output layer. The output of each layer is computed as a function of the input to the layer and the weights of the layer.
+            The forward pass computes the predictions of the network on a given input.
+            \item Backward pass: The backward pass involves computing the gradients of the loss function with respect to each weight in the network,
+            starting from the output layer and propagating backwards through the hidden layers to the input layer. The gradients are computed by applying the chain
+            rule of differentiation to the output of each layer. The gradients are then used to update the weights of the network using an optimization algorithm
+            such as SGD.
+        \end{enumerate}
+        The backpropagation algorithm can be optimized using various techniques, such as parallel computing, weight sharing, and regularization.
+        It is a powerful tool for training deep neural networks with many layers and millions of parameters, and has enabled
+        significant advances in many areas of machine learning, including computer vision, natural language processing, and speech recognition.
+        \section{Datasets} \label{subsec:datasets}
+        Creating a science research dataset involves several steps, which may vary depending on the nature of the research and the specific field of science.
+        Here are some general steps to consider:
+        \begin{enumerate}
+            \item Determine the research question: The first step in creating a research dataset is to determine the research question. This will help you
+            identify the data you need to collect and the type of dataset you need to create.
+            \item Choose the data sources: Once you have identified the research question, you need to determine the data sources you will use to create your dataset.
+            Depending on the research question, you may use publicly available data, data from surveys or experiments, data from literature, or a combination of these.
+            \item Collect and organize the data: Collecting data can involve different methods, such as surveys, experiments, literature reviews, or data mining.
+            You need to make sure that the data you collect is reliable, accurate, and relevant to your research question. Once you have collected the data,
+            you need to organize it in a way that is easy to analyze.
+            \item Clean and preprocess the data: Before you can analyze the data, you need to clean and preprocess it. This involves removing any errors,
+            missing values, or duplicates in the data. You may also need to transform or normalize the data to make it compatible with the analysis
+            methods you plan to use.
+            \item Perform exploratory analysis: Once the data is cleaned and preprocessed, you can perform exploratory analysis to identify patterns,
+            trends, or relationships in the data. This can help you refine your research question or identify areas that require further investigation.
+            \item Perform statistical analysis: Depending on the research question, you may need to perform statistical analysis to test
+            hypotheses or evaluate the significance of the results. This can involve using regression analysis, hypothesis testing, or other statistical methods.
+        \end{enumerate}
+        Validate the dataset: After we have analyzed the data, we need to validate the dataset to ensure that the results are accurate and reliable.
+        This can involve comparing the results to other datasets or conducting further experiments to verify the results.
+        Overall, creating a science research dataset involves careful planning, data collection, preprocessing, and analysis to ensure that the data is accurate,
+        reliable, and relevant to the research question.
+    \section{Comparison criteria} \label{subsec:comparison}
+    Finally we define the method to compare our models results.
+    Absolute number of income value prediction should not be important for the store owners because of that we calculated the aberration for each month
+    prediction and then we easily calculate quarterly and yearly results.
+    The sum of squared errors (SSE), defined by:
+    $$SSE = \sum^n_{i=1}w_i(y_i - \overline{y_i})^2,$$
+    between the fitting models and the used data serves as the fitting criterion,
+    with values closer to $0$ indicating a smaller random error component of the model.
+    Also some other quality measures were evaluated, \textit{i.e.} the R-square from interval $[0,\ 1]$,
+    that indicates the proportion of variance satisfactory explained by the fitting-model (\textit{e.g.}  R-square $= 0.7325$ means
+    that the fit explains $73.25\%$ of the total variation in the data about the average);
+    R-square is defined as the ratio of the sum of squares of the regression (SSR) and the total sum of squares (SST).
+    SSR is defined as
+    $$SSR = \sum_{i=1}^nw_i(\overline{y_i} - \overline{y_i})^2.$$
+    SST is also called the sum of squares about the mean, and is defined as
+    $$SST = \sum_{i=1}^nw_i(y_i - \overline{y})^2,$$
+    where SST = SSR + SSE. Givenm these definition, R-square is expressed as
+    $$\frac{SSR}{SST} = 1 - \frac{SSE}{SST}.$$
+    The adjusted R-square statistic, with values smaller or equal to $1$, where values closer to $1$ indicate a better fit; the root mean squared error (RMSE):\\
+    $$RMSE = s = \sqrt{\frac{SSE}{v}}$$
+    with values closer to $0$ indicating a fit more useful for prediction.\\
+    \\
+    Mean square error (MSE) is a commonly used metric to measure the average squared difference between the actual and predicted values of a continuous variable.
+    It is a measure of how well a prediction model performs in predicting continuous outcomes.\\
+    To calculate the MSE, you first take the difference between the predicted and actual values for each data point, square these differences, and then take the
+    average of the squared differences across all data points.\\
+    \\
+    The formula for calculating MSE is:
 
-\begin{equation}
-MSE = \frac{1}{n}\sum_{i=1}^{n}(y_i - \hat{y}_i)^2,
-\end{equation}
-\\
-where n is the total number of data points, $y_i$ is the actual value of the $i-th$ data point, and $\hat{y}_i$ is the predicted
-value of the $i-th$ data point.\\
-\\
-The square of the difference in each data point ensures that the errors are positive and provides a way to measure the magnitude of the error.
-By squaring the errors, the MSE gives more weight to larger errors and less weight to smaller errors.\\
-\\
-MSE is a popular metric used in many fields, such as machine learning, statistics, and engineering, to evaluate the performance of prediction models.
-A lower MSE indicates better performance of the model in predicting the outcomes.
+    \begin{equation}
+    MSE = \frac{1}{n}\sum_{i=1}^{n}(y_i - \hat{y}_i)^2,
+    \end{equation}
+    \\
+    where n is the total number of data points, $y_i$ is the actual value of the $i-th$ data point, and $\hat{y}_i$ is the predicted
+    value of the $i-th$ data point.\\
+    \\
+    The square of the difference in each data point ensures that the errors are positive and provides a way to measure the magnitude of the error.
+    By squaring the errors, the MSE gives more weight to larger errors and less weight to smaller errors.\\
+    \\
+    MSE is a popular metric used in many fields, such as machine learning, statistics, and engineering, to evaluate the performance of prediction models.
+    A lower MSE indicates better performance of the model in predicting the outcomes.
 
-\section{Statistics methods} \label{subsec:statistics}
-\textbf{Median}\\
-The median is a statistical measure that represents the middle value of a dataset. It is a value that separates the dataset
-into two halves: half of the values are greater than the median, and half of the values are less than the median. In other words,
-the median is the value that is exactly in the middle of the dataset when the values are arranged in order of magnitude.
-\\
-To compute the median of a dataset, we first sort the values in ascending or descending order. If the dataset has an odd number of values,
-the median is the middle value. For example, in the dataset ${1, 2, 3, 4, 5}$, the median is $3$.
-If the dataset has an even number of values, the median is the average of the two middle values.
-For example, in the dataset ${1, 2, 3, 4}$, the median is $(2 + 3) / 2 = 2.5$.
-\\
-The median is a robust statistic, meaning that it is not affected by outliers or extreme values in the dataset,
-unlike the mean. This makes it a useful measure of central tendency in datasets with a large number of outliers or
-skewed distributions. The median is commonly used in various applications, such as finance, economics, and social sciences,
-to summarize and compare datasets.\\
-\\
-\textbf{Standard deviation}\\
-Standard deviation is a statistical measure that quantifies the amount of variation or dispersion in a dataset.
-It measures how far the values in a dataset deviate from the mean, or average, of the dataset. The standard
-deviation is a non-negative number and has the same units as the data being measured.
-\\
-To compute the standard deviation of a dataset, we first calculate the mean of the dataset.
-Then, we calculate the difference between each value in the dataset and the mean, square each difference, and sum up the
-squared differences. Finally, we divide the sum of squared differences by the number of values in the dataset, and take the
-square root of the result. This gives us the standard deviation of the dataset.
-\\
-A small standard deviation indicates that the values in the dataset are tightly clustered around the mean,
-while a large standard deviation indicates that the values are widely spread out from the mean. Standard deviation is commonly
-used in various applications, such as finance, engineering, and natural sciences, to analyze and compare datasets.
-It is also an important parameter in many statistical tests and models, such as the normal distribution and the t-test.
+    \section{Statistics methods} \label{subsec:statistics}
+    \textbf{Median}\\
+    The median is a statistical measure that represents the middle value of a dataset. It is a value that separates the dataset
+    into two halves: half of the values are greater than the median, and half of the values are less than the median. In other words,
+    the median is the value that is exactly in the middle of the dataset when the values are arranged in order of magnitude.
+    \\
+    To compute the median of a dataset, we first sort the values in ascending or descending order. If the dataset has an odd number of values,
+    the median is the middle value. For example, in the dataset ${1, 2, 3, 4, 5}$, the median is $3$.
+    If the dataset has an even number of values, the median is the average of the two middle values.
+    For example, in the dataset ${1, 2, 3, 4}$, the median is $(2 + 3) / 2 = 2.5$.
+    \\
+    The median is a robust statistic, meaning that it is not affected by outliers or extreme values in the dataset,
+    unlike the mean. This makes it a useful measure of central tendency in datasets with a large number of outliers or
+    skewed distributions. The median is commonly used in various applications, such as finance, economics, and social sciences,
+    to summarize and compare datasets.\\
+    \\
+    \textbf{Standard deviation}\\
+    Standard deviation is a statistical measure that quantifies the amount of variation or dispersion in a dataset.
+    It measures how far the values in a dataset deviate from the mean, or average, of the dataset. The standard
+    deviation is a non-negative number and has the same units as the data being measured.
+    \\
+    To compute the standard deviation of a dataset, we first calculate the mean of the dataset.
+    Then, we calculate the difference between each value in the dataset and the mean, square each difference, and sum up the
+    squared differences. Finally, we divide the sum of squared differences by the number of values in the dataset, and take the
+    square root of the result. This gives us the standard deviation of the dataset.
+    \\
+    A small standard deviation indicates that the values in the dataset are tightly clustered around the mean,
+    while a large standard deviation indicates that the values are widely spread out from the mean. Standard deviation is commonly
+    used in various applications, such as finance, engineering, and natural sciences, to analyze and compare datasets.
+    It is also an important parameter in many statistical tests and models, such as the normal distribution and the t-test.
+
 \chapter{Syntactic part} \label{sec:syntactic}
 Based on the Analytical part~\ref{sec:analytical} let us create new mathematical models and approaches to made a fast and accuracy sales forcasting
 consist of long-therm linear prediction with individual weights calculated for each period all based on Levinson-Durbin scheme caled Extended linear
 prediction (ELP)
 We expect to get better results than by using prediction based on short-term or long-term standard linear prediction (see section~\ref{sec:lp}).
 Finally, our approach will return future values for sales companies based on previous data with better aberration than linear prediction has.
-\section{Order calculation} \label{sec:ordercalc}
-\section{Shift calculation} \label{sec:shiftcalc}
-    \subsection{Autocorrelation} \label{subsec:acorr}
-    1. Compute the autocorrelation function of the signal using the xcorr function in MATLAB. The xcorr function returns the cross-correlation
-    sequence of the signal with itself.\\
+    \section{Order calculation} \label{sec:ordercalc}
+        \textbf{Create neural site for order prediction}\\
+        \\
+        Creating a neural network for linear prediction and optimal order detection involves several steps. Here's a general overview of the process:
+        \begin{enumerate}
+            \item Data Preparation: Collect a dataset of input/output pairs that represent the relationship you want the neural network to learn.
+            For linear prediction, this could be a time-series dataset where you want to predict the next value based on the previous values.
+            For optimal order detection, this could be a dataset where you have inputs and the corresponding optimal order.
+            \item Data Preprocessing: Preprocess the dataset by normalizing the inputs and outputs to a common range, shuffling the
+            dataset, and splitting it into training, validation, and testing sets.
+            \item Model Architecture: Choose an appropriate neural network architecture for your problem. For linear prediction, you could
+            use a recurrent neural network (RNN) such as LSTM or GRU. For optimal order detection, you could use a feedforward neural network.
+            \item Training: Train the neural network on the training set using an appropriate optimization algorithm
+            such as stochastic gradient descent (SGD), Adam, or RMSProp. During training, monitor the performance of the
+            network on the validation set to detect overfitting and adjust the hyperparameters accordingly.
+            \item Testing: Evaluate the performance of the trained neural network on the testing set
+            to get an estimate of its generalization ability.
+            \item Deployment: Deploy the trained neural network to make predictions on new data.
+        \end{enumerate}
+        \textbf{Choose activation function}\\
+        \\
+        Choosing the right activation function for linear prediction order detection in neural networks depends on several factors
+        such as the type of data, the complexity of the problem, and the architecture of the neural network. Here are some
+        guidelines to help you choose the right activation function:
+        \begin{enumerate}
+            \item Linear activation function: If you want to perform linear regression or linear prediction, you can use a linear activation function.
+            The output of a linear activation function is proportional to the input, which makes it ideal for linear regression problems.
+            \item ReLU activation function: The Rectified Linear Unit (ReLU) activation function is one of the most popular activation
+            functions used in deep learning. ReLU is simple to compute and provides good results for most classification and regression problems.
+            \item Sigmoid activation function: The Sigmoid activation function maps any input value to a value between 0 and 1. It is commonly
+            used in binary classification problems, where the goal is to classify data into two categories.
+            \item Tanh activation function: The hyperbolic tangent (Tanh) activation function is similar to the sigmoid function but maps
+            input values to a range between -1 and 1. It is also used in binary classification problems.
+            \item Softmax activation function: The Softmax activation function is used in multi-class classification problems. It maps input
+            values to a probability distribution over the output classes.
+            \item In general, it's a good idea to start with the ReLU activation function and see if it works well for your problem.
+            If not, you can try other activation functions that are appropriate for your problem. It's also important to experiment with
+            different architectures and hyperparameters to find the best model for your data.
+        \end{enumerate}
+        \textbf{Train neural site}\\
+        \\
+        Training a neural network involves several steps:
+        \begin{enumerate}
+            \item Preparing the data: This involves collecting and preprocessing the data that will be used to train the neural network.
+            The data needs to be cleaned, normalized, and split into training, validation, and testing sets.
+            \item Defining the architecture: This involves selecting the number and type of layers, the activation functions, the optimization
+            algorithm, and the loss function. The architecture should be chosen based on the problem being solved.
+            \item Initializing the weights: The weights of the neural network are initialized randomly.
+            \item Forward propagation: The input data is fed into the neural network, and the outputs of each layer are
+            computed using the activation functions.
+            \item Backward propagation: This involves computing the gradient of the loss function with respect to the 
+            weights of the neural network. The gradients are computed using the chain rule of differentiation.
+            \item Updating the weights: The weights of the neural network are updated using an optimization algorithm such as stochastic gradient descent.
+            \item Testing the model: Once the model is trained, it needs to be tested on a separate dataset to evaluate its performance.
+            \item Fine-tuning the model: Based on the performance of the model, adjustments can be made to the architecture,
+            hyperparameters, or training data to improve its performance.
+            \item The above steps are repeated multiple times until the performance of the model reaches a satisfactory level.
+            It's important to note that training a neural network is a computationally intensive task, and it may take a significant
+            amount of time and resources.
+        \end{enumerate}
+        \textbf{Run neural site to get optimal order}\\
+        \\
+        Once a neural network is trained, there are several steps you can take to get the best performance out of it:
+        \begin{enumerate}
+            \item Use the validation set to tune hyperparameters: The validation set is a dataset that is separate from the training and testing
+            sets and is used to tune hyperparameters such as learning rate, batch size, and number of epochs. By experimenting with different
+            hyperparameters, you can find the optimal settings that result in the best performance.
+            \item Test the model on a separate dataset: Once the model is trained and the hyperparameters are tuned, it's important to
+            test the model on a separate dataset to evaluate its performance. This dataset should be completely separate from the training and validation sets.
+            \item Use data augmentation techniques: Data augmentation techniques such as rotation, translation, and scaling can be used to generate
+            additional training data, which can improve the performance of the model.
+            \item Use ensembling techniques: Ensembling techniques such as bagging and boosting can be used to combine the predictions of multiple
+            models to improve the overall performance.
+            \item Use regularization techniques: Regularization techniques such as L1 and L2 regularization can be used to prevent
+            overfitting and improve the generalization of the model.
+            \item Fine-tune the model on new data: If new data becomes available, the model can be fine-tuned on the
+            new data to further improve its performance.
+            \item By following these steps, you can get the best performance out of a trained neural network.
+            It's important to remember that there is no single approach that works best for all problems, and experimentation is often
+            necessary to find the optimal solution.
+        \end{enumerate}
+    \section{Shift calculation} \label{sec:shiftcalc}
+        \subsection{Autocorrelation} \label{subsec:acorr}
+        \begin{enumerate}
+            \item Compute the autocorrelation function of the signal using the xcorr function in MATLAB.
+            The xcorr function returns the cross-correlation sequence of the signal with itself.\\
+            \\
+            $[Rxx, lag] = xcorr(x, maxlag);$\\
+            \\
+            where x is the input signal and maxlag is the maximum lag to compute. Rxx is the cross-correlation
+            sequence, and lag is the corresponding lag vector.
+            \item Find the index of the maximum value in the autocorrelation function. You can use the max function to find the maximum value and its index.\\
+            \\
+            $[~, idx] = max(Rxx);$\\
+            \\
+            The ~ ignores the value of the maximum, and idx is the index of the maximum value in the Rxx vector.
+            \item Calculate the shift value from the lag index. The shift value is simply the lag value
+            corresponding to the maximum value in the autocorrelation function.\\
+            \\
+            $shift = lag(idx);$\\
+            \\
+            The shift value is the lag at which the autocorrelation function has its maximum value, which
+            corresponds to the shift value for long-term linear prediction. Note that the shift value is expressed in
+            samples, so we may need to convert it to a time delay if your signal has a specific sampling rate.
+        \end{enumerate}
+        \subsection{Neural network} \label{subsec:neural}
+        \textbf{Create neural site for shift and long shift prediction}\\
+        \\
+        To create a neural network for shift and long shift prediction, you can follow these steps:
+        \begin{enumerate}
+            \item Define the problem: The first step is to define the problem you want to solve. In this case, the problem is to predict the
+            shift and long shift of a time series data.
+            \item Collect and preprocess the data: Collect the data that you want to use for training and testing the neural network.
+            Preprocess the data by normalizing it and splitting it into training, validation, and testing sets.
+            \item Choose the architecture: Choose the architecture for your neural network based on the problem you want to solve.
+            In this case, a recurrent neural network (RNN) architecture such as a Long Short-Term Memory (LSTM) or Gated Recurrent Unit (GRU) may be
+            suitable, as they are specifically designed to handle sequential data.
+            \item Define the input and output: Define the input and output of your neural network. The input should be the time series data, and the
+            output should be the predicted shift and long shift.
+            \item Define the loss function: Choose an appropriate loss function to measure the difference between the predicted shift and long
+            shift and the actual shift and long shift.
+            \item Train the model: Train the model using the training data and tune the hyperparameters to improve the performance of the model.
+            Monitor the model's performance using the validation set.
+            \item Evaluate the model: Evaluate the performance of the model on the testing set to see how well it generalizes to new data.
+            \item Fine-tune the model: If the model does not perform well on the testing set, fine-tune the model by adjusting the architecture,
+            hyperparameters, or training data.
+            \item Use the model: Once you have a well-performing model, you can use it to predict the shift and long shift of new time series data.
+        \end{enumerate}
+        By following these steps, you can create a neural network for shift and long shift prediction. It's important to experiment with different
+        architectures and hyperparameters to find the best model for your data.\\
+        \\
+        \textbf{Choose activation function}\\
+        \\
+        Choosing the activation function for a neural network for shift and long shift prediction depends on the architecture of the
+        network and the problem being solved.\\
+        \\
+        For a recurrent neural network (RNN) architecture such as Long Short-Term Memory (LSTM) or Gated Recurrent Unit (GRU), the most commonly
+        used activation function is the hyperbolic tangent (tanh) function. This is because the tanh function produces outputs in the range [-1, 1],
+        which makes it suitable for RNNs that use recurrent connections to store and update memory over time.\\
+        \\
+        However, other activation functions such as the Rectified Linear Unit (ReLU) or its variants, such as leaky ReLU or exponential ReLU,
+        can also be used in RNNs for shift and long shift prediction. These activation functions are computationally efficient and can be
+        used in deep neural networks without the problem of vanishing gradients.\\
+        \\
+        In general, the choice of activation function should be based on the characteristics of the problem being solved, the architecture of the network,
+        and the properties of the activation function itself. Experimentation with different activation functions can help to determine the most
+        appropriate one for a given problem.\\
+        \\
+        \textbf{Train neural site}\\
+        \\
+        To train a neural network for shift and long shift prediction, you can follow these steps:
+        \begin{enumerate}
+            \item Collect and preprocess the data: Collect the time series data that you want to use for training and testing the neural network. Preprocess the data by normalizing it and splitting it into training, validation, and testing sets.
+            \item Define the architecture: Choose the architecture for your neural network based on the problem you want to solve. For shift and long shift prediction, a recurrent neural network (RNN) architecture such as a Long Short-Term Memory (LSTM) or Gated Recurrent Unit (GRU) may be suitable.
+            \item Define the input and output: Define the input and output of your neural network. The input should be a sequence of data points, and the output should be the predicted shift and long shift.
+            \item Define the loss function: Choose an appropriate loss function to measure the difference between the predicted shift and long shift and the actual shift and long shift. Mean Squared Error (MSE) is commonly used for regression problems such as this.
+            \item Train the model: Train the model using the training data and tune the hyperparameters to improve the performance of the model. Use the validation set to monitor the model's performance and avoid overfitting.
+            \item Evaluate the model: Evaluate the performance of the model on the testing set to see how well it generalizes to new data. Compare the predicted shift and long shift values with the actual values.
+            \item Fine-tune the model: If the model does not perform well on the testing set, fine-tune the model by adjusting the architecture, hyperparameters, or training data.
+            \item Use the model: Once you have a well-performing model, you can use it to predict the shift and long shift of new time series data.
+        \end{enumerate}
+        It's important to experiment with different architectures and hyperparameters to find the best model for your data.
+        Additionally, it's important to properly preprocess the data and monitor the model's performance to avoid overfitting.
+        With these steps, you can train a neural network for shift and long shift prediction.\\
+        \\
+        \textbf{Run neural site to get optimal shift and long shift}\\
+        \\
+        To run a trained neural network for shift and long shift prediction, you can follow these steps:
+        \begin{enumerate}
+            \item Preprocess the data: If you have new data that you want to use for prediction, preprocess it in the same way as the training data by normalizing it and formatting it into sequences.
+            \item Load the trained model: Load the trained model into memory using a deep learning framework such as Tensorflow, PyTorch, or Keras.
+            \item Prepare the input data: Prepare the input data by formatting it into sequences that match the input shape of the model.
+            \item Make predictions: Use the predict function of the model to make predictions on the input data. The output of the model will be the predicted shift and long shift values.
+            \item Postprocess the output: If necessary, postprocess the output of the model by denormalizing it or transforming it back into the original format.
+            \item Evaluate the predictions: Evaluate the quality of the predicted shift and long shift values by comparing them with the actual shift and long shift values. Calculate performance metrics such as mean squared error or mean absolute error to quantify the accuracy of the predictions.
+            \item Refine the model: If the predicted shift and long shift values are not accurate enough, refine the model by adjusting the architecture, hyperparameters, or training data and repeat the process.
+        \end{enumerate}
+        With these steps, you can run a trained neural network for shift and long shift prediction and obtain optimal
+        shift and long shift values. It's important to note that the quality of the predictions depends on the quality and
+        quantity of the data used for training and the architecture and hyperparameters of the model. Therefore, it's important
+        to experiment with different models and training data to find the optimal solution.
+    \section{Weights for each period} \label{sec:weights}
+    To create a mathematical model for predicting sales data with periodical trends, you can use a seasonal ARIMA (SARIMA) model.
+    This model takes into account seasonal variations in the data and uses autoregressive and moving average terms to capture the
+    patterns and trends in the data.\\
     \\
-    $[Rxx, lag] = xcorr(x, maxlag);$\\
-    \\
-    where x is the input signal and maxlag is the maximum lag to compute. Rxx is the cross-correlation sequence, and lag is the corresponding lag vector.\\
-    2. Find the index of the maximum value in the autocorrelation function. You can use the max function to find the maximum value and its index.\\
-    \\
-    $[~, idx] = max(Rxx);$\\
-    \\
-    The ~ ignores the value of the maximum, and idx is the index of the maximum value in the Rxx vector.\\
-    3. Calculate the shift value from the lag index. The shift value is simply the lag value corresponding to the maximum value in the autocorrelation function.\\
-    \\
-    $shift = lag(idx);$\\
-    \\
-    The shift value is the lag at which the autocorrelation function has its maximum value, which corresponds to the shift value for long-term linear prediction.
-    Note that the shift value is expressed in samples, so we may need to convert it to a time delay if your signal has a specific sampling rate.
-    \subsection{Neural networkl} \label{subsec:neural}
-\section{Extended long-term prediction} \label{sec:extlonglp}
-\section{Weights for each period} \label{sec:weights}
-\section{AI principles to detect best order of linear prediction} \label{sec:aiprincipoles}
-\section{Combining all principles to forecast process} \label{subsec:combining_models}
+    To create the weights for the SARIMA model, you can follow these steps:
+    \begin{enumerate}
+        \item Identify the seasonal period: Determine the seasonal period of the sales data. This can be done by analyzing the autocorrelation function (ACF) and partial autocorrelation function (PACF) of the data.
+        \item Estimate the parameters: Estimate the parameters of the SARIMA model using the sales data. This can be done using statistical software such as R or Python.
+        \item Interpret the weights: Once the parameters have been estimated, interpret the weights of the model to understand how they contribute to the prediction. The weights represent the strength of the relationship between the sales data and the predictor variables.
+        \item Validate the model: Validate the model by comparing the predicted sales data with the actual sales data. Use statistical measures such as mean squared error or mean absolute error to evaluate the accuracy of the predictions.
+        \item Refine the model: Refine the model by adjusting the weights or the parameters of the model based on the validation results. Repeat the validation process until the model provides accurate predictions.
+    \end{enumerate}
+    It's important to note that creating a SARIMA model can be complex and requires knowledge of time series analysis and statistical modeling.
+    Therefore, it's recommended to seek the help of a data scientist or a statistician for assistance.
+    \section{Extended long-term prediction} \label{sec:extlonglp}
+    \section{Combining all principles to forecast process} \label{subsec:combining_models}
+    \begin{enumerate}
+        \item Run neural site to get right order of linear prediction
+        \item Run neural site to get righ shift and long shift of linear prediction
+        \item Run extended long-term prediction to ger predicted values of sales data
+        \item Apply periodical wages to previous response data
+        \item Calculate comparison criteria for results and plot data and mean square errors
+    \end{enumerate}
