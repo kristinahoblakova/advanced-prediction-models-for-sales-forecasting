@@ -337,13 +337,20 @@ Finally, our approach will return future values for sales companies based on pre
         \\
         To train a neural network for shift and long shift prediction, you can follow these steps:
         \begin{enumerate}
-            \item Collect and preprocess the data: Collect the time series data that you want to use for training and testing the neural network. Preprocess the data by normalizing it and splitting it into training, validation, and testing sets.
-            \item Define the architecture: Choose the architecture for your neural network based on the problem you want to solve. For shift and long shift prediction, a recurrent neural network (RNN) architecture such as a Long Short-Term Memory (LSTM) or Gated Recurrent Unit (GRU) may be suitable.
-            \item Define the input and output: Define the input and output of your neural network. The input should be a sequence of data points, and the output should be the predicted shift and long shift.
-            \item Define the loss function: Choose an appropriate loss function to measure the difference between the predicted shift and long shift and the actual shift and long shift. Mean Squared Error (MSE) is commonly used for regression problems such as this.
-            \item Train the model: Train the model using the training data and tune the hyperparameters to improve the performance of the model. Use the validation set to monitor the model's performance and avoid overfitting.
-            \item Evaluate the model: Evaluate the performance of the model on the testing set to see how well it generalizes to new data. Compare the predicted shift and long shift values with the actual values.
-            \item Fine-tune the model: If the model does not perform well on the testing set, fine-tune the model by adjusting the architecture, hyperparameters, or training data.
+            \item Collect and preprocess the data: Collect the time series data that you want to use for training and testing the neural network.
+            Preprocess the data by normalizing it and splitting it into training, validation, and testing sets.
+            \item Define the architecture: Choose the architecture for your neural network based on the problem you want to solve. For shift and long
+            shift prediction, a recurrent neural network (RNN) architecture such as a Long Short-Term Memory (LSTM) or Gated Recurrent Unit (GRU) may be suitable.
+            \item Define the input and output: Define the input and output of your neural network. The input should be a sequence of data
+            points, and the output should be the predicted shift and long shift.
+            \item Define the loss function: Choose an appropriate loss function to measure the difference between the predicted
+            shift and long shift and the actual shift and long shift. Mean Squared Error (MSE) is commonly used for regression problems such as this.
+            \item Train the model: Train the model using the training data and tune the hyperparameters to improve the performance of the model.
+            Use the validation set to monitor the model's performance and avoid overfitting.
+            \item Evaluate the model: Evaluate the performance of the model on the testing set to see how well it generalizes to new data.
+            Compare the predicted shift and long shift values with the actual values.
+            \item Fine-tune the model: If the model does not perform well on the testing set, fine-tune the model by adjusting the architecture,
+            hyperparameters, or training data.
             \item Use the model: Once you have a well-performing model, you can use it to predict the shift and long shift of new time series data.
         \end{enumerate}
         It's important to experiment with different architectures and hyperparameters to find the best model for your data.
@@ -354,13 +361,18 @@ Finally, our approach will return future values for sales companies based on pre
         \\
         To run a trained neural network for shift and long shift prediction, you can follow these steps:
         \begin{enumerate}
-            \item Preprocess the data: If you have new data that you want to use for prediction, preprocess it in the same way as the training data by normalizing it and formatting it into sequences.
+            \item Preprocess the data: If you have new data that you want to use for prediction, preprocess it in the same way as the training
+            data by normalizing it and formatting it into sequences.
             \item Load the trained model: Load the trained model into memory using a deep learning framework such as Tensorflow, PyTorch, or Keras.
             \item Prepare the input data: Prepare the input data by formatting it into sequences that match the input shape of the model.
-            \item Make predictions: Use the predict function of the model to make predictions on the input data. The output of the model will be the predicted shift and long shift values.
+            \item Make predictions: Use the predict function of the model to make predictions on the input data. The output of the model will be the predicted
+            shift and long shift values.
             \item Postprocess the output: If necessary, postprocess the output of the model by denormalizing it or transforming it back into the original format.
-            \item Evaluate the predictions: Evaluate the quality of the predicted shift and long shift values by comparing them with the actual shift and long shift values. Calculate performance metrics such as mean squared error or mean absolute error to quantify the accuracy of the predictions.
-            \item Refine the model: If the predicted shift and long shift values are not accurate enough, refine the model by adjusting the architecture, hyperparameters, or training data and repeat the process.
+            \item Evaluate the predictions: Evaluate the quality of the predicted shift and long shift values by comparing them with the actual
+            shift and long shift values. Calculate performance metrics such as mean squared error or mean absolute error to quantify the
+            accuracy of the predictions.
+            \item Refine the model: If the predicted shift and long shift values are not accurate enough, refine the model by
+            adjusting the architecture, hyperparameters, or training data and repeat the process.
         \end{enumerate}
         With these steps, you can run a trained neural network for shift and long shift prediction and obtain optimal
         shift and long shift values. It's important to note that the quality of the predictions depends on the quality and
@@ -373,20 +385,69 @@ Finally, our approach will return future values for sales companies based on pre
     \\
     To create the weights for the SARIMA model, you can follow these steps:
     \begin{enumerate}
-        \item Identify the seasonal period: Determine the seasonal period of the sales data. This can be done by analyzing the autocorrelation function (ACF) and partial autocorrelation function (PACF) of the data.
-        \item Estimate the parameters: Estimate the parameters of the SARIMA model using the sales data. This can be done using statistical software such as R or Python.
-        \item Interpret the weights: Once the parameters have been estimated, interpret the weights of the model to understand how they contribute to the prediction. The weights represent the strength of the relationship between the sales data and the predictor variables.
-        \item Validate the model: Validate the model by comparing the predicted sales data with the actual sales data. Use statistical measures such as mean squared error or mean absolute error to evaluate the accuracy of the predictions.
-        \item Refine the model: Refine the model by adjusting the weights or the parameters of the model based on the validation results. Repeat the validation process until the model provides accurate predictions.
+        \item Identify the seasonal period: Determine the seasonal period of the sales data. This can be done by analyzing the autocorrelation
+        function (ACF) and partial autocorrelation function (PACF) of the data.
+        \item Estimate the parameters: Estimate the parameters of the SARIMA model using the sales data. This can be done using statistical
+        software such as R or Python.
+        \item Interpret the weights: Once the parameters have been estimated, interpret the weights of the model to understand how they
+        contribute to the prediction. The weights represent the strength of the relationship between the sales data and the predictor variables.
+        \item Validate the model: Validate the model by comparing the predicted sales data with the actual sales data.
+        Use statistical measures such as mean squared error or mean absolute error to evaluate the accuracy of the predictions.
+        \item Refine the model: Refine the model by adjusting the weights or the parameters of the model based on the validation results.
+        Repeat the validation process until the model provides accurate predictions.
     \end{enumerate}
     It's important to note that creating a SARIMA model can be complex and requires knowledge of time series analysis and statistical modeling.
     Therefore, it's recommended to seek the help of a data scientist or a statistician for assistance.
     \section{Extended long-term prediction} \label{sec:extlonglp}
+    For my purpose i created extended long-term prediction which handle the seasonality and repeated patterns in economics data.
+    This correction mechanism is used to reflect historical peaks in graphs thrue dataset. This simple correction increase accuracy of the
+    model and get better response due tue psychology, sociology and marketing aspects in dataset.\\
+    \\
+    To set up periodical weights its needs to create a vector of correction parameters from orginial dataset using median and standard deviation
+    statistical parameters from dataset.
+    As a base equation we will user equation fro long-term prediction\ref{eq:ltlp} with the new weights and get:
+    \begin{equation} \label{eq:ltlp}
+        \hat{y}(t) = \sum_{i=1}^{p} \beta_i y(t-i) * \gamma(t)
+    \end{equation}
+    \begin{itemize}
+        \item $\hat{y}(t)$ is the predicted value of the time series at time t
+        \item $y(t-i)$ is the value of the time series at time $t-i$ (i.e., p lags back)
+        \item $\beta_1, \beta_2, \dots, \beta_p$ are the coefficients or weights assigned to the past values of the time series
+        \item $\gamma(t)$ is the weight from weights vector for each position corresponding to dataset
+    \end{itemize}
+    When building a long-term prediction model, the use of weights in this use case have a significant effect on the model's performance.
+    Weights are used to assign different levels of importance to different features or inputs in the model.\\
+    \\
+    In a long-term prediction model, the weight assigned to each input can determine its impact on the model's predictions.
+    Using weights in order prediction model, the weight assigned to a historical company's financial data are more important
+    than the weight assigned to its historical visitors. This is why we are ignore this data for prediction.\\
+    \\
+    If the weights are not carefully chosen, the model may give too much importance to some inputs and not enough to others,
+    leading to inaccurate predictions. Therefore, selecting the right weights is crucial for creating an accurate and effective long-term prediction model.
+    In our case it reduce the prediction error and returns more usable data for order prediction.\\
+    \\
+    In addition, the choice of weights can also affect the model's ability to adapt to changing conditions over time.
+    A model with carefully chosen weights can be more resilient and adaptable to changes in the input data,
+    while a model with poorly chosen weights may be less flexible and struggle to adjust to new information. So it's really important to set correct
+    shift and period to recalculation of the shift. This is ride by neural site from \ref{subsec:neural}.\\
+    \\
+    Overall, the use of weights is an important consideration in building our predictive model, and careful selection can significantly
+    improve the accuracy and effectiveness of our long-term prediction model.
+
     \section{Combining all principles to forecast process} \label{subsec:combining_models}
     \begin{enumerate}
-        \item Run neural site to get right order of linear prediction
-        \item Run neural site to get righ shift and long shift of linear prediction
-        \item Run extended long-term prediction to ger predicted values of sales data
-        \item Apply periodical wages to previous response data
-        \item Calculate comparison criteria for results and plot data and mean square errors
+        \item Run neural site to get right order of linear prediction \\
+        \\
+        In this section we have trained Neural site from section \ref{subsec:neural} and detect correct order from our neural site
+        really fast.  
+        \item Run neural site to get righ shift and long shift of linear prediction\\
+        Than ve can run our next neural site trained for detect shift for our prediction. In this neural site as one of the inputs
+        we are using results from previous neural site.
+        \item Run extended long-term prediction to ger predicted values of sales data\\
+        When we have optimal order and shift we are able to run linear prediction in a standard way.
+        \item Apply periodical wages to previous response data\\
+        Results from previous step are corrected by the weights vector which is calculated over the trained dataset.
+        \item Calculate comparison criteria for results and plot data and mean square errors\\
+        When we run all the models we are able to calculate comparison criteris from \ref{subsec:comparison} and get a table of results to plot errors and compare
+        predicted and meassured orders from validation dataset.
     \end{enumerate}

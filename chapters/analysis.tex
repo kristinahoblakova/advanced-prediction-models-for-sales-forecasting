@@ -134,6 +134,21 @@ The choice of mathematical model depends on the characteristics of the data, the
     Advances in machine learning (ML), faster processors and the availability of digitized healthcare data have contributed to a growing
     number of papers describing ML applications in healthcare.~\cite{Chen}
 
+    \textbf{K-Nearest Neighbors (KNN)} \label{sec:knn}
+    Machine learning algorithms, K-Nearest Neighbors (KNN), is a type of artificial intelligence that allows computers to learn and make
+    decisions based on data. KNN is a simple yet effective algorithm used for classification and regression tasks in supervised learning.\\
+    \\
+    KNN is a non-parametric algorithm, which means it doesn't make any assumptions about the underlying distribution of the data.
+    Instead, it uses the similarity between data points to classify or predict the target variable. The algorithm works by
+    finding the k-nearest neighbors to a new data point and then assigning the class label of the majority of those neighbors to the new data point.\\
+    \\
+    For example, if we have a dataset of images with labels indicating whether each image contains a cat or a dog, we can use
+    KNN to classify a new image by finding the k-nearest neighbors to the new image and assigning the label of the majority of those neighbors to the new image.\\
+    \\
+    KNN is a relatively simple algorithm, but it can be very effective when applied to the right problems.
+    It is particularly useful in cases where the decision boundary is nonlinear or where there is no clear separation between classes.
+    However, KNN can be computationally expensive when working with large datasets, and it may not perform well in high-dimensional spaces.
+
 \section{Neural networks} \label{sec:nn}
 A neural network is a type of machine learning algorithm inspired by the structure and function of biological neurons in the human brain.
 It is composed of interconnected nodes, called neurons, that are organized into layers. The input layer receives raw data, such as images or text, and
@@ -489,12 +504,12 @@ developed for specific tasks, such as object detection, speech recognition, and 
     Long-term linear prediction refers to the use of linear prediction techniques to make predictions about the future values of a time series
     over an extended period of time, typically several months to several years. Unlike short-term linear prediction, which focuses on forecasting the
     near-term future, long-term linear prediction aims to provide a more comprehensive and accurate forecast of future values.
-    \begin{equation}
+    \begin{equation} \label{eq:ltlp}
         \hat{y}(t) = \sum_{i=1}^{p} \beta_i y(t-i)
     \end{equation}
     \begin{itemize}
         \item $\hat{y}(t)$ is the predicted value of the time series at time t
-        \item $y(t-i)$ is the value of the time series at time t-i (i.e., p lags back)
+        \item $y(t-i)$ is the value of the time series at time $t-i$ (i.e., p lags back)
         \item $\beta_1, \beta_2, \dots, \beta_p$ are the coefficients or weights assigned to the past values of the time series
     \end{itemize}
     
