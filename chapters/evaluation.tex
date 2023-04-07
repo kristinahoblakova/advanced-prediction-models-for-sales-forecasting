@@ -47,5 +47,153 @@ the model if necessary.
     Overall, the goal of this steps for linear order prediction experiment is to ensure that the data is clean, complete, and properly
     formatted for use in the linear prediction model. This helps to improve the accuracy and effectiveness of the model in predicting online store orders.
     \subsection{Model for sales forecasting} \label{subsec:calculate_models}
-    \subsection{Validation model} \label{subsec:validatibg_models}
+    Let's prepare 4 models to test our theory and result expectation.  Set up MATLAB live script to prepare our dataset, calculate statistical variables and
+    develop several versions of linear predictors to get reults of our experiment. We will use this models:
+    \begin{enumerate}
+        \item Short-term linear prediction 
+        Based on linear prediction \ref{subsec:shortlp} we calculate optimal coeficients by \ref{subsec:levinson} and made prediction over our dataset.
+        This model is described in equation \ref{eq:slp}.
+
+        \item Extended short-term linear prediction 
+        This model is based on linear prediction \ref{subsec:shortlp} with optimal parameters by levinson schema \ref{subsec:levinson}.
+        To compare our developed model \label{subsec:extlonglp} and we will prepare similar principle as in equation \ref{eq:eltlp} to the short-term linear
+        prediction with results:
+        
+        \begin{equation} \label{eq:slp}
+            \begin{aligned}
+                &\hat{y} = \sum_{j=1}^{n} a(j)*y(n-j) * \gamma(t)
+            \end{aligned}
+        \end{equation}
+        \begin{itemize}
+            \item $\hat{y}$ is the value of the predicted order
+            \item $a(1), a(2), ..., a(n)$ are the prediction coefficients
+            \item $y(n-1), y(n-2), ..., y[n-j]$ are the past values of the signal that are used to make the prediction
+        \end{itemize}
+
+        \item Long-term linear prediction 
+        To compare more linear prediction and check theorem about application of long-term prediction on sales data we will prepare the model
+        based on \label{subsec:longlp} and use the equation \ref{eq:ltlp}.
+
+        \item Extended long-term linear prediction
+        The last model in our comparison will be our developed model which is based on long-term linear prediction describe in \ref{subsec:longlp} and
+        use weights coefficients \ref{sec:weights} to get better results in economics data. This model is describe in equation \ref{eq:eltlp}.
+    \end{enumerate}
+    % reference to equations: eq:eltlp, 
+    All the models will be used dataset prepared in \ref{subsec:preprocessing} and results of prediction is described in \ref{subsec:experimentResults}.
     \subsection{Results} \label{subsec:experimentResults}
+        \subsubsection{Short-term linear prediction} \label{subsec:res_slp}
+        \begin{figure}[h]
+            \centering
+            \begin{minipage}{0.45\textwidth}
+                \centering
+                \includegraphics[width=1\textwidth]{figures/expLP.png}
+                \caption{Results of short-term linear prediction.}
+                \label{fig:slpres}
+            \end{minipage}\hfill
+            \begin{minipage}{0.45\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{figures/expMseLP.png}
+                \caption{MSE of short-term linear prediction.}
+                \label{fig:slpmse}
+            \end{minipage}
+        \end{figure}
+        \newpage
+
+        \subsubsection{Extended short-term linear prediction} \label{subsec:res_estlp}
+        \begin{figure}[h]
+            \centering
+            \begin{minipage}{0.45\textwidth}
+                \centering
+                \includegraphics[width=1\textwidth]{figures/expELP.png}
+                \caption{Results of extended short-term linear prediction.}
+                \label{fig:eslpres}
+            \end{minipage}\hfill
+            \begin{minipage}{0.45\textwidth}
+                \centering
+                \includegraphics[width=1\textwidth]{figures/expMseELP.png}
+                \caption{MSE of extended short-term linear prediction.}
+                \label{fig:eslpmse}
+            \end{minipage}
+        \end{figure}
+        \newpage
+
+        \subsubsection{Long-term linear prediction} \label{subsec:res_ltlp}
+        \begin{figure}[h]
+            \centering
+            \begin{minipage}{0.45\textwidth}
+                \centering
+                \includegraphics[width=1\textwidth]{figures/expLTLP.png}
+                \caption{Results of long-term linear prediction.}
+                \label{fig:ltlp}
+            \end{minipage}\hfill
+            \begin{minipage}{0.45\textwidth}
+                \centering
+                \includegraphics[width=1\textwidth]{figures/expMseLTLP.png}
+                \caption{MSE of long-term linear prediction.}
+                \label{fig:ltlpmse}
+            \end{minipage}
+        \end{figure}
+        \newpage
+        \subsubsection{Extended long-term linear prediction} \label{subsec:res_eltlp}
+        \begin{figure}[h]
+            \centering
+            \begin{minipage}{0.45\textwidth}
+                \centering
+                \includegraphics[width=1\textwidth]{figures/expELTLP.png}
+                \caption{Results of extended long-term linear prediction.}
+                \label{fig:eltlpres}
+            \end{minipage}\hfill
+            \begin{minipage}{0.45\textwidth}
+                \centering
+                \includegraphics[width=1\textwidth]{figures/expMseELTLP.png}
+                \caption{MSE of long-term linear prediction.}
+                \label{fig:eltlpmse}
+            \end{minipage}
+        \end{figure}
+        \newpage
+        \subsubsection{Comparison of the predictors} \label{subsec:res_comparison}
+        \begin{table}[!ht]
+            \centering
+            \begin{tabular}{|l|c|c|c|}
+                \hline
+                Model & $R^2$ & RMSE & MSE \\
+                \hline
+                Short-term linear prediction & 0.8872 & 40.6215 & 1650.1 \\
+                Short-term extended linear prediction & 0.8881 & 40.4662 & 1637.5 \\
+                Long-term linear prediction & 0.9160 & 35.0163 & 1223.3 \\
+                Long-term extended linear prediction & 0.9171 & 34.7782 & 1206.7 \\
+                \hline
+            \end{tabular}
+            \caption{Comparison of linear prediction models}
+            \label{tab:model_comparison}
+        \end{table}
+
+        \begin{figure}[!ht]
+            \begin{minipage}{0.45\textwidth}
+                \centering
+                \includegraphics[width=1\textwidth]{figures/expCompLP.png}
+                \caption{MSE success of prediction for short-term linear prediction.}
+                \label{fig:eltlpres}
+            \end{minipage}\hfill
+            \begin{minipage}{0.45\textwidth}
+                \centering
+                \includegraphics[width=1\textwidth]{figures/expCompELP.png}
+                \caption{MSE success of prediction for extended short-term linear prediction.}
+                \label{fig:eltlpmse}
+            \end{minipage}
+        \end{figure}
+
+        \begin{figure}[!ht]
+            \begin{minipage}{0.45\textwidth}
+                \centering
+                \includegraphics[width=1\textwidth]{figures/expCompLTLP.png}
+                \caption{MSE success of prediction for long-term linear prediction.}
+                \label{fig:eltlpres}
+            \end{minipage}\hfill
+            \begin{minipage}{0.45\textwidth}
+                \centering
+                \includegraphics[width=1\textwidth]{figures/expCompELTLP.png}
+                \caption{MSE success of prediction for long-term linear prediction.}
+                \label{fig:eltlpmse}
+            \end{minipage}
+        \end{figure}

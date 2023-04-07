@@ -48,7 +48,7 @@ There are several mathematical models used for sales prediction, including:
 \end{enumerate}
 The choice of mathematical model depends on the characteristics of the data, the desired level of accuracy, and the computational resources available.
 \\
-    \subsection{Time-series models} \label{sec:longlp}
+    \subsection{Time-series models} \label{sec:timeseries}
     Time-series models are mathematical models used to analyze and forecast data that are collected over time~\cite{Cryer}. These models are used to
     study and make predictions about the trends, patterns, and behavior of the data over time, taking into account historical values and their
     relationship with the present. Time-series models are widely used in areas such as economics, finance, and weather forecasting, among others.
@@ -72,7 +72,7 @@ The choice of mathematical model depends on the characteristics of the data, the
         \item These models are valuable tools for analyzing and predicting time-series data, but they require careful consideration of the specific
         characteristics of the data being analyzed and the appropriate model to use.
     \end{enumerate}
-    \subsection{Regression models} \label{sec:longlp}
+    \subsection{Regression models} \label{sec:regression}
     Regression models are a type of statistical models used to examine the relationship between a dependent variable and one or more
     independent variables~\cite{Fahrmeir}.
     The goal of regression analysis is to model the relationship between these variables and make predictions about the dependent variable based on
@@ -91,7 +91,7 @@ The choice of mathematical model depends on the characteristics of the data, the
     \end{enumerate}
 
     The choice of regression model depends on the nature of the data and the research question being asked.
-    \subsection{Decision tree models} \label{sec:longlp}
+    \subsection{Decision tree models} \label{sec:trees}
     Decision tree models are a type of machine learning models used for both regression and classification tasks~\cite{Kotsiantis}.
     They are tree-like structures that
     make predictions by breaking down a dataset into smaller and smaller subsets, based on the values of the input variables. At each internal
@@ -113,7 +113,7 @@ The choice of mathematical model depends on the characteristics of the data, the
     The decision tree model is trained using a dataset, and the tree structure is built using a greedy algorithm that seeks to maximize
     the reduction in impurity of the target variable at each split. The model can then be used to make predictions on new data by following
     the decision rules in the tree.
-    \subsection{Machine learning models} \label{sec:longlp}
+    \subsection{Machine learning models} \label{sec:ml}
     Machine learning models are a subset of artificial intelligence that allows computers to learn and make predictions or decisions without being
     explicitly programmed. Machine learning models are based on algorithms that use statistical methods to find patterns in data and make predictions
     about new, unseen data.
@@ -379,8 +379,7 @@ developed for specific tasks, such as object detection, speech recognition, and 
 
     The Levinson-Durbin algorithm~\cite{Levinson} is an iterative numerical method used to solve the autoregressive (AR) model of a time series.
 
-
-    \begin{equation}
+    \begin{equation} \label{eq:levinson}
         Y_t = \beta_0 + \beta_1 Y_{t-1} + \beta_2 Y_{t-2} + \cdots + \beta_p Y_{t-p} + \epsilon_t
     \end{equation}
 
@@ -468,7 +467,7 @@ developed for specific tasks, such as object detection, speech recognition, and 
     several weeks to a few months. The linear prediction models used for short-term forecasting are typically simple and straightforward, often
     using a small number of independent variables. The goal is to provide a quick and easily interpretable forecast that can be used to make operational
     decisions in the short-term.
-    \begin{equation}
+    \begin{equation} \label{eq:slp}
         \begin{aligned}
             &\hat{a}_0 = 1 \\
             &\hat{a}_m = \frac{1}{m} \sum_{j=1}^{m} r_j \hat{a}_{m-j} - \frac{\sum_{j=1}^{m-1} \hat{a}_j r_{m-j+1}}{m} \\
