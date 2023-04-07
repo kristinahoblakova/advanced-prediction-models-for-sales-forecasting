@@ -1,6 +1,41 @@
 % !TEX root = ../thesis.tex
 
 \chapter{Summary} \label{summary}
+The aim of this master's thesis was to improve the accuracy of linear prediction models for sales
+and financial forecasting using modern machine learning techniques. To achieve this goal, a mathematical
+model based on long-term linear prediction was created, and periodical weights were implemented
+to improve the accuracy of the linear prediction models.\\
+\\
+Two main techniques were employed to apply machine learning to linear prediction. The first technique,
+called feature engineering, involved using machine learning to extract meaningful features from
+the input signal, which were then used as inputs for a linear prediction model. Several feature
+engineering techniques were used, including principal component analysis, wavelet transform, and
+Fourier transform.\\
+\\
+The second technique involved model selection and training, which used machine learning to choose
+the best linear model for the prediction task and estimate its parameters from the data. Common machine
+learning algorithms such as linear regression, support vector regression, and artificial neural networks
+were used for model selection and training.\\
+\\
+The ultimate goal of long-term linear prediction was to estimate future values of a signal or time
+series based on its past values using a linear model. The extended long-term linear prediction method
+proved to be the most effective, with comparison parameters such as R2 getting 0.9171, RMSE of 34.7782, and MSE ending
+with a value of 1206.7.\\
+\\
+The dataset used for the analysis was collected in 2022 as real orders. The first part of the dataset
+was used to train the models, and the second part was used to validate the results.\\
+\\
+The results of this study were achieved in collaboration with the E-commerce Association o.z,
+the creator of the storePredictor platform. The organization provided valuable business insights into
+the industry, which helped set mechanisms for periodical weights to extend linear prediction models
+with minimal deflection. As a result, the next steps should focus on clearly defining and validating
+mechanisms to set independent industry weights only on ordinary accessible data without consultation
+with business owners.\\
+\\
+In conclusion, this study successfully improved the accuracy of linear prediction models for sales
+and financial forecasting by utilizing modern machine learning techniques. The results of this study
+have practical implications for businesses, as accurate forecasting can help them make better decisions,
+increase profits, and achieve their goals.
 
 \chapter{Resume} \label{resume}
     \section{Analyza} \label{sk:analytic}
@@ -81,9 +116,9 @@
     jazyka a autonómnych vozidiel, medzi inými.
     \section{Synteza}
     Vychadzajme z analytickej časti \ref{sk:analytic}, vytvorme nové matematické modely a prístupy, aby sme mohli vykonať rýchle a presné predpovede predaja,
-    ktoré sa skladajú z dlhodobej lineárnej predikcie s individuálnymi váhami vypočítanými pre každé obdobie, založené na Levinson-Durbinovej schéme
+    ktoré sa skladajú z long-term lineárnej predikcie s individuálnymi váhami vypočítanými pre každé obdobie, založené na Levinson-Durbinovej schéme
     nazývanej Extended Linear Prediction (ELP). Očakávame lepšie výsledky než pri použití predikcie založenej na krátkodobej alebo
-    dlhodobej štandardnej lineárnej predikcii (viď časť 1.4). Nakoniec, náš prístup bude vracať budúce hodnoty pre predaj spoločností na základe
+    long-term štandardnej lineárnej predikcii (viď časť 1.4). Nakoniec, náš prístup bude vracať budúce hodnoty pre predaj spoločností na základe
     predchádzajúcich dát s lepšou odchýlkou, než to dokáže lineárna predikcia.\\
     \\
     Pre vytvorenie matematického modelu na predikciu predajných dát s periodickými trendmi môžete použiť model sezónnej ARIMA (SARIMA).
@@ -101,21 +136,63 @@
     \item Definujte problém a ciele: Jasne definujte problém a predmet ktoré má vyriešiť dlhodobý lineárny predikčný model. V tomto
     Cieľom je predpovedať objednávky v internetovom obchode na dlhé časové obdobie pomocou lineárneho modelu.
     \item  Zhromažďovanie údajov: Zhromažďujte historické údaje o objednávkach online obchodov, ako je napríklad objednávka
-    dátumy, sumy objednávok a ďalšie relevantné premenné. Tieto údaje budú použité trénovať a overovať model dlhodobej lineárnej predikcie. Naše údaje boli
+    dátumy, sumy objednávok a ďalšie relevantné premenné. Tieto údaje budú použité trénovať a overovať model long-term lineárnej predikcie. Naše údaje boli
     zbierať z online systému storePredictor, ktorý je dostupný na storepredictor.com a údaje sú anonymizované a pseudonimizované,
     aby sa mohli použiť na ďalšie účely výpočty.
     \item  Pripravte údaje: Vyčistite a predspracujte údaje, aby ste sa uistili, že sú konzistentné stan a vhodné na použitie v dlhodobom
     lineárnom predikčnom modeli. Toto môže zahŕňajú úlohy, ako je odstraňovanie duplikátov, spracovanie chýbajúcich hodnôt a transformovať premenné
     podľa potreby. Predspracovanie našich údajov je popísané v ref{subsec:preprocessing}.
-    \item  Vytvorte model dlhodobej lineárnej predikcie: Pomocou historických údajov, vyvinúť dlhodobý lineárny predikčný model,
+    \item  Vytvorte model long-term lineárnej predikcie: Pomocou historických údajov, vyvinúť dlhodobý lineárny predikčný model,
     ktorý dokáže predpovedať internetový obchod objednávky počas určitého časového obdobia, ktoré je podrobne popísané v bode 4.4 a prakticky
     aplikovaný v 
     \item  Overenie modelu: Keď je model vytvorený, je potrebné ho overiť aby sa zabezpečilo, že je presný a účinný.
-    \item Vyhodnoťte výsledky: Analyzujte výsledky experimentu, aby ste určili presnosť modelu dlhodobej lineárnej predikcie. To bude zahŕňať
+    \item Vyhodnoťte výsledky: Analyzujte výsledky experimentu, aby ste určili presnosť modelu long-term lineárnej predikcie. To bude zahŕňať
     výpočet metrík, ako je stredná štvorcová chyba (MSE), r-kvadrát (R2) a stredná kvadratická chyba (RMSE) 5.1.3.
     \item Počas riešenia predchádzajúcich krokov bol model predefinovaný a revalidovaný, keď výsledky nie sú uspokojivé, upravte model a zopakujte validáciu
     až kým nevznikne presný a efektívny dlhodobý lineárny predikčný model vyvinuté.
     \end{enumerate}
-    Stručne povedané, pripraviť experiment na overenie dlhodobej lineárnej predpovede model pre objednávky v internetovom obchode, musíte definovať
+    Stručne povedané, pripraviť experiment na overenie long-term lineárnej predpovede model pre objednávky v internetovom obchode, musíte definovať
     problém a ciele, zhromažďovať a pripravovať údaje, vyvíjať model, overovať ho, hodnotiť výsledky, a ak je to potrebné, model spresnite a znovu overte.
     \section{Zaver}
+    Cieľom tejto diplomovej práce bolo zlepšiť presnosť lineárnej predikcie
+    modely pre predaj a finančné prognózy využívajúce moderné technológie strojového učenia
+    niky. Na dosiahnutie tohto cieľa bol vytvorený matematický model založený na dlhodobom lineárnom
+    bola vytvorená predpoveď a boli implementované periodické váhy na zlepšenie
+    presnosť lineárnych predikčných modelov.\\
+    \\
+    Na aplikáciu strojového učenia na lineárne pre-
+    dikcia. Prvá technika, nazývaná inžinierstvo funkcií, zahŕňala použitie stroja
+    naučiť sa extrahovať zmysluplné vlastnosti zo vstupného signálu, ktoré boli vtedy
+    používané ako vstupy pre lineárny predikčný model. Niekoľko technických funkcií -
+    boli použité niques, vrátane analýzy hlavných komponentov, vlnkovej transformácie,
+    a Fourierova transformácia.\\
+    \\
+    Druhá technika zahŕňala výber modelu a tréning, ktorý využíval stroj
+    naučiť sa vybrať najlepší lineárny model pre predikčnú úlohu a odhadnúť jej
+    parametre z údajov. Bežné algoritmy strojového učenia, ako napríklad lineárne
+    bola použitá regresia, podporná vektorová regresia a umelé neurónové siete
+    pre výber modelu a tréning.\\
+    \\
+    Konečným cieľom dlhodobej lineárnej predikcie bolo odhadnúť budúce hodnoty
+    signálu alebo časového radu na základe jeho minulých hodnôt pomocou lineárneho modelu. bývalý
+    tendencia dlhodobej lineárnej predikčnej metódy sa ukázala ako najefektívnejšia, s
+    porovnávacie parametre, ako napríklad R2 získavanie 0,9171, RMSE 34,7782 a MSE
+    končiace hodnotou 1206,7.\\
+    \\
+    Súbor údajov použitý na analýzu bol zozbieraný v roku 2022 ako skutočné objednávky. Prvý
+    časť súboru údajov bola použitá na trénovanie modelov a druhá časť bola použitá na
+    overiť výsledky.\\
+    \\
+    Výsledky tejto štúdie boli dosiahnuté v spolupráci s E-commerce
+    Združenie o.z, tvorca platformy storePredictor. Organizácia pre-
+    poskytli cenné obchodné poznatky v tomto odvetví, ktoré pomohli nastaviť mechanizmy
+    pre periodické váhy na rozšírenie modelov lineárnej predikcie s minimálnym priehybom
+    cie. V dôsledku toho by sa ďalšie kroky mali zamerať na jasné definovanie a overenie
+    mechanizmov na nastavenie nezávislých odvetvových váh len na bežne dostupné údaje
+    bez konzultácie s majiteľmi firiem.\\
+    \\
+    Na záver, táto štúdia úspešne zlepšila presnosť lineárnej predikcie
+    modely pre predaj a finančné prognózy s využitím moderného strojového učenia
+    techniky. Výsledky tejto štúdie majú praktické dôsledky pre podniky,
+    keďže presné predpovede im môžu pomôcť robiť lepšie rozhodnutia, zvýšiť zisky a
+    dosiahnuť svoje ciele.
