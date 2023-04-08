@@ -2,62 +2,73 @@
 
 \chapter{Evaluation} \label{evaluation}
 \section{Experiment} \label{sec:experiment}
-Lets prepare the experiment to validating a long-term linear prediction model for online store orders. We will use experimentation by these steps:\\
+Lets prepare the experiment to validating a long-term linear prediction model for online store orders.
+We will use experimentation by these steps:\\
 \begin{enumerate}
-    \item Define the problem and objectives: Clearly define the problem and objectives that the long-term linear prediction model is intended to solve.
-    In this case, the objective is to predict online store orders over a long period of time using a linear model.
-    \item Gather data: Collect historical data on online store orders, such as order dates, order amounts, and other relevant variables.
-    This data will be used to train and validate the long-term linear prediction model. Our data was collect from online system storePredictor
-    which is available on storepredictor.com and data are anonymized and pseudonimized to be used for next calculations.
-    \item Prepare the data: Clean and preprocess the data to ensure that it is consistent and suitable for use in the long-term linear prediction model.
-    This may involve tasks such as removing duplicates, handling missing values, and transforming variables as needed.
-    Preprocessing of our data is described in \ref{subsec:preprocessing}
-    \item Develop the long-term linear prediction model: Using the historical data, develop a long-term linear prediction model that can
-    forecast online store orders over a specified time period, which is detailed described in \ref{sec:extlonglp} and practically applied in \label{subsec:calculate_models}
-    \item Validate the model: Once the model is developed, it needs to be validated to ensure that it is accurate and effective.
-    This can be done by comparing the model's predictions with actual online store orders over a specified time period, described in \label{subsec:validatibg_models}
-    \item Evaluate the results: Analyze the results of the experiment to determine the accuracy of the long-term linear prediction model.
-    This will involve calculating metrics such as the mean square error (MSE), r-squared ($R^2$) and the root mean square error (RMSE) \ref{subsec:experimentResults}.
-    \item During solving previous steps the model was redefined and revalidate when the results are not satisfactory, refine the model and repeat the validation
-    process until an accurate and effective long-term linear prediction model is developed.
+    \item Define the problem and objectives: Clearly define the problem and objectives that the long-term linear
+    prediction model is intended to solve. In this case, the objective is to predict online store orders over a long
+    period of time using a linear model.
+    \item Gather data: Collect historical data on online store orders, such as order dates, order amounts, and other
+    relevant variables. This data will be used to train and validate the long-term linear prediction model.
+    Our data was collect from online system storePredictor which is available on storepredictor.com and data are
+    anonymized and pseudonimized to be used for next calculations.
+    \item Prepare the data: Clean and preprocess the data to ensure that it is consistent and suitable for
+    use in the long-term linear prediction model. This may involve tasks such as removing duplicates, handling missing
+    values, and transforming variables as needed. Preprocessing of our data is described in \ref{subsec:preprocessing}
+    \item Develop the long-term linear prediction model: Using the historical data, develop a long-term linear
+    prediction model that can forecast online store orders over a specified time period, which is detailed
+    described in \ref{sec:extlonglp} and practically applied in \label{subsec:calculate_models}
+    \item Validate the model: Once the model is developed, it needs to be validated to ensure that it is
+    accurate and effective. This can be done by comparing the model's predictions with actual online store orders
+    over a specified time period, described in \label{subsec:validatibg_models}
+    \item Evaluate the results: Analyze the results of the experiment to determine the accuracy of the long-term
+    linear prediction model. This will involve calculating metrics such as the mean square error (MSE),
+    r-squared ($R^2$) and the root mean square error (RMSE) \ref{subsec:experimentResults}.
+    \item During solving previous steps the model was redefined and revalidate when the results are not satisfactory,
+    refine the model and repeat the validation process until an accurate and effective long-term linear prediction
+    model is developed.
 \end{enumerate}
-In summary, to prepare an experiment to validate a long-term linear prediction model for online store orders, you need to
-define the problem and objectives, gather and prepare the data, develop the model, validate it, evaluate the results, and refine and revalidate
-the model if necessary.
+In summary, to prepare an experiment to validate a long-term linear prediction model for online store orders, we need to
+define the problem and objectives, gather and prepare the data, develop the model, validate it, evaluate the results,
+and refine and revalidate the model if necessary.
     \subsection{Preprocessing of input data} \label{subsec:preprocessing}
-    Preprocessing the data is an important step in preparing the data for a linear order prediction model. Here are some common
-    steps to preprocess the data for linear order prediction:
+    Preprocessing the data is an important step in preparing the data for a linear order prediction model.
+    Here are some common steps to preprocess the data for linear order prediction we used:
 
     \begin{enumerate}
-        \item Data cleaning: Remove any irrelevant data or duplicate records in the dataset. In our purpose is to clean the unsuccessfull orders,
-        returned orders and fraud orders from competitors to detect power of the store.
-        \item Handling missing data: for fill in any missing values in the dataset machine learning algorithms K-Nearest Neighbors (KNN) \ref{sec:knn} will be used
-        to check the dataset.
-        \item Feature selection: Select the relevant features (predictors) that are likely to have a strong influence on the order
-        prediction. This may include variables such as customer demographics, purchase history, product attributes, and marketing campaigns.
-        \item Feature scaling: Scale the features so that they are on the same scale to ensure that each feature has equal importance.
-        This can be done using normalization or standardization techniques.
+        \item Data cleaning: Remove any irrelevant data or duplicate records in the dataset. In our purpose is to
+        clean the unsuccessful orders, returned orders and fraud orders from competitors to detect power of the store.
+        \item Handling missing data: for fill in any missing values in the dataset machine learning algorithms
+        K-Nearest Neighbors (KNN) \ref{sec:knn} will be used to check the dataset.
+        \item Feature selection: Select the relevant features (predictors) that are likely to have a strong
+        influence on the order prediction. This may include variables such as customer demographics, purchase
+        history, product attributes, and marketing campaigns.
+        \item Feature scaling: Scale the features so that they are on the same scale to ensure that each feature
+        has equal importance. This can be done using normalization or standardization techniques.
         \item Handling categorical variables: Convert categorical variables into numerical values using techniques
         such as one-hot encoding, ordinal encoding, or label encoding.
-        \item Dimensionality reduction: If the dataset contains many features, use dimensionality reduction
-        techniques such as principal component analysis (PCA) or linear discriminant analysis (LDA) to reduce the number of features and simplify the model.
+        \item Dimensionality reduction: If the dataset contains many features, use dimensionality reduction techniques
+        such as principal component analysis (PCA) or linear discriminant analysis (LDA) to reduce the
+        number of features and simplify the model.
         \item Handling outliers: Detect and handle any outliers in the dataset using appropriate techniques
         such as Z-score, Tukey’s method, or machine learning algorithms such as Isolation Forest or Local Outlier Factor.
     \end{enumerate}
-    Overall, the goal of this steps for linear order prediction experiment is to ensure that the data is clean, complete, and properly
-    formatted for use in the linear prediction model. This helps to improve the accuracy and effectiveness of the model in predicting online store orders.
+    Overall, the goal of this steps for linear order prediction experiment is to ensure that the data is clean,
+    complete, and properly formatted for use in the linear prediction model. This helps to improve the
+    accuracy and effectiveness of the model in predicting online store orders.
     \subsection{Model for sales forecasting} \label{subsec:calculate_models}
-    Let's prepare 4 models to test our theory and result expectation.  Set up MATLAB live script to prepare our dataset, calculate statistical variables and
-    develop several versions of linear predictors to get reults of our experiment. We will use this models:
+    Let's prepare 4 models to test our theory and result expectation.  Set up MATLAB live script to prepare our dataset,
+    calculate statistical variables and develop several versions of linear predictors to get results of our experiment.
+    We will use this models:
     \begin{enumerate}
         \item Short-term linear prediction 
-        Based on linear prediction \ref{subsec:shortlp} we calculate optimal coeficients by \ref{subsec:levinson} and made prediction over our dataset.
-        This model is described in equation \ref{eq:slp}.
+        Based on linear prediction \ref{subsec:shortlp} we calculate optimal coeficients by \ref{subsec:levinson} and
+        made prediction over our dataset. This model is described in equation \ref{eq:slp}.
 
         \item Extended short-term linear prediction 
-        This model is based on linear prediction \ref{subsec:shortlp} with optimal parameters by levinson schema \ref{subsec:levinson}.
-        To compare our developed model \label{subsec:extlonglp} and we will prepare similar principle as in equation \ref{eq:eltlp} to the short-term linear
-        prediction with results:
+        This model is based on linear prediction \ref{subsec:shortlp} with optimal parameters by levinson
+        schema \ref{subsec:levinson}. To compare our developed model \label{subsec:extlonglp} and we will prepare
+        similar principle as in equation \ref{eq:eltlp} to the short-term linear prediction with results:
         
         \begin{equation} \label{eq:slp}
             \begin{aligned}
@@ -71,15 +82,17 @@ the model if necessary.
         \end{itemize}
 
         \item Long-term linear prediction 
-        To compare more linear prediction and check theorem about application of long-term prediction on sales data we will prepare the model
-        based on \label{subsec:longlp} and use the equation \ref{eq:ltlp}.
+        To compare more linear prediction and check theorem about application of long-term prediction on sales data
+        we will prepare the model based on \label{subsec:longlp} and use the equation \ref{eq:ltlp}.
 
         \item Extended long-term linear prediction
-        The last model in our comparison will be our developed model which is based on long-term linear prediction describe in \ref{subsec:longlp} and
-        use weights coefficients \ref{sec:weights} to get better results in economics data. This model is describe in equation \ref{eq:eltlp}.
+        The last model in our comparison will be our developed model which is based on long-term linear prediction
+        describe in \ref{subsec:longlp} and use weights coefficients \ref{sec:weights} to get better results in
+        economics data. This model is describe in equation \ref{eq:eltlp}.
     \end{enumerate}
     % reference to equations: eq:eltlp, 
-    All the models will be used dataset prepared in \ref{subsec:preprocessing} and results of prediction is described in \ref{subsec:experimentResults}.
+    All the models will be used dataset prepared in \ref{subsec:preprocessing} and results of prediction is
+    described in \ref{subsec:experimentResults}.
     \subsection{Results} \label{subsec:experimentResults}
         The metrics described in \ref{subsec:comparison} are commonly used to evaluate
         the performance of each prepared models.
