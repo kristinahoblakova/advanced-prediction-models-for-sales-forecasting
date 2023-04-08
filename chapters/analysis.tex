@@ -78,7 +78,7 @@ The choice of mathematical model depends on the characteristics of the data, the
     The goal of regression analysis is to model the relationship between these variables and make predictions about the dependent variable based on
     the values of the independent variables. Regression models are widely used in many fields, including economics, finance, marketing, and social sciences,
     to make predictions and understand the relationship between variables.
-    There are several types of regression models, including:
+    There are several types of regression models, including:\\
     \begin{enumerate}
         \item Linear regression: a simple regression model where the relationship between the dependent and independent variables is modeled
         using a linear equation.
@@ -89,23 +89,29 @@ The choice of mathematical model depends on the characteristics of the data, the
         \item Polynomial regression: used when the relationship between the dependent and independent variables is non-linear and can be modeled
         using a polynomial equation.
     \end{enumerate}
-
     The choice of regression model depends on the nature of the data and the research question being asked.
     \subsection{Decision tree models} \label{sec:trees}
     Decision tree models are a type of machine learning models used for both regression and classification tasks~\cite{Kotsiantis}.
-    They are tree-like structures that
+    They are tree-like structures that, as you can see on fig \ref{fig:example_tree} and
     make predictions by breaking down a dataset into smaller and smaller subsets, based on the values of the input variables. At each internal
     node of the tree, a decision rule is used to split the data based on the value of a feature, and the process continues until the data are separated
     into homogeneous groups, or leaves. The predictions are then made based on the average or majority class in each leaf node.
-    \Tree [.S        [.NP            [.Det the ]
-            [.N cat ]
-        ]
-        [.VP            [.V chased ]
-            [.NP                [.Det the ]
-                [.N mouse ]
+    \begin{figure}
+        \centering
+        \begin{tikzpicture}
+            \Tree [.S        [.NP            [.Det the ]
+                    [.N cat ]
+                ]
+                [.VP            [.V chased ]
+                    [.NP                [.Det the ]
+                        [.N mouse ]
+                    ]
+                ]
             ]
-        ]
-     ]
+        \end{tikzpicture}
+        \caption{Example of decission tree flow.}
+        \label{fig:example_tree}
+    \end{figure}
     \\
     Decision trees have several advantages, including ease of interpretability, handling of non-linear relationships, and ability to handle both
     categorical and numerical data. Some examples of decision tree algorithms are CART (Classification and Regression Tree) and Random Forest.
@@ -147,7 +153,7 @@ The choice of mathematical model depends on the characteristics of the data, the
     \\
     KNN is a relatively simple algorithm, but it can be very effective when applied to the right problems.
     It is particularly useful in cases where the decision boundary is nonlinear or where there is no clear separation between classes.
-    However, KNN can be computationally expensive when working with large datasets, and it may not perform well in high-dimensional spaces.
+    However, KNN can be computationally expensive when working with large datasets, and it may not perform well in high-dimensional spaces\cite{liao2015review}.
 
 \section{Neural networks} \label{sec:nn}
 A neural network is a type of machine learning algorithm inspired by the structure and function of biological neurons in the human brain.
@@ -196,7 +202,7 @@ Neural networks can be broadly classified into the following types:
         \begin{figure}[!ht]
             \centering
             \includegraphics[width=0.6\textwidth]{figures/ff}
-            \caption{Typical feed-forward neural network composed of three layers. \cite{SVOZIL199743}}
+            \caption{Typical feed-forward neural network composed of three layers. \cite{svozil1997quantum}}
             \label{fig:ff}
         \end{figure}
     \end{center}
@@ -220,6 +226,7 @@ Neural networks can be broadly classified into the following types:
             \label{fig:rn}
         \end{figure}
     \end{center}
+    \newpage
     \item Long Short-Term Memory Networks (LSTMs): These are a type of RNN that are designed to address the problem of vanishing gradients in traditional RNNs.
     They use memory cells and gates to selectively retain or forget information over time, making them well-suited for learning from long sequences.
     \begin{center}
@@ -253,7 +260,7 @@ Neural networks can be broadly classified into the following types:
         \end{figure}
     \end{center}
 \end{enumerate}
-These are some of the most common types of neural networks, but there are many other specialized types of neural networks that have been
+Those are some of the most common types of neural networks, but there are many other specialized types of neural networks that have been
 developed for specific tasks, such as object detection, speech recognition, and natural language processing.\\
     \subsection{Classification} \label{subsec:clasification}
     Neural network data classification is a technique for categorizing data into different classes or categories based on patterns and features
@@ -279,7 +286,7 @@ developed for specific tasks, such as object detection, speech recognition, and 
         \end{figure}
     \end{center}
     \subsection{Activation functions} \label{subsec:nnaf}
-    There are several types of activation functions used in neural networks, including:
+    There are several types of activation functions~\cite{geron2022hands} used in neural networks, including:
     \begin{enumerate}
         \item Sigmoid Function: The sigmoid function is a commonly used activation function that maps any input value to a value between 0 and 1.
         It is typically used in binary classification problems and in the output layer of neural networks that produce probability estimates.
@@ -354,7 +361,8 @@ developed for specific tasks, such as object detection, speech recognition, and 
     and can learn to identify subtle patterns and trends that may be difficult to detect using traditional statistical methods.
     In the context of long-term linear prediction, neural networks can be trained on historical data to identify patterns and trends in the
     data and make predictions for future values. They can also be used to detect shifts in the long-term linear prediction, which can be useful for
-    identifying changes in the underlying processes that generate the data.
+    identifying changes in the underlying processes that generate the data~\cite{brownlee2005artificial}.\\
+    \\
     However, it's important to note that neural networks can be computationally expensive and require large amounts of data to train effectively. 
     They also require careful tuning of hyperparameters and selection of appropriate architecture to achieve good performance.
     In addition, the interpretation of the results of a neural network can be more challenging than with traditional statistical methods.
@@ -381,9 +389,9 @@ developed for specific tasks, such as object detection, speech recognition, and 
     The Levinson-Durbin algorithm~\cite{Levinson} is an iterative numerical method used to solve the autoregressive (AR) model of a time series.
 
     \begin{equation} \label{eq:levinson}
-        Y_t = \beta_0 + \beta_1 Y_{t-1} + \beta_2 Y_{t-2} + \cdots + \beta_p Y_{t-p} + \epsilon_t
+        Y_t = \beta_0 + \beta_1 Y_{t-1} + \beta_2 Y_{t-2} + \cdots + \beta_p Y_{t-p} + \epsilon_t,
     \end{equation}
-
+    \\
     where $Y_t$ is the dependent variable at time $t$, $\beta_0$ is the intercept, $\beta_1, \beta_2, \dots, \beta_p$ are the
     regression coefficients, $Y_{t-1}, Y_{t-2}, \dots, Y_{t-p}$ are the lagged values of the dependent variable up to order $p$, and $\epsilon_t$ is
     the error term at time $t$.
@@ -405,7 +413,7 @@ developed for specific tasks, such as object detection, speech recognition, and 
         \end{aligned}
     \end{equation*}
     \\
-    where $r_i$ is the $i$th autocorrelation coefficient, $\alpha_k$ is the $k$th reflection coefficient, and $a_k$ is the $k$th prediction coefficient.
+    where $r_i$ is the $i$th autocorrelation coefficient, $\alpha_k$ is the $kth$ reflection coefficient, and $a_k$ is the $k$th prediction coefficient.
     \\
     The recursion begins with $\alpha_0 = r_0$, and computes each subsequent reflection coefficient $\alpha_k$ in terms of the previous
     coefficients $\alpha_0, \alpha_1, \ldots, \alpha_{k-1}$ and the autocorrelation coefficients $r_1, r_2, \ldots, r_k$.\\
@@ -433,25 +441,27 @@ developed for specific tasks, such as object detection, speech recognition, and 
         -r_p
         \end{bmatrix},
         \end{equation*}
-        
-        where $r_0, r_1, \ldots, r_{p-1}$ are the autocorrelation coefficients and $a_1, a_2, \ldots, a_p$ are the prediction coefficients.
-        
+        \\
+        where $r_0, r_1, \ldots, r_{p-1}$ are the autocorrelation coefficients and $a_1, a_2, \ldots, a_p$ are the prediction coefficients.\\
+        \\
         The algorithm proceeds as follows:
         
         \begin{enumerate}
         \item Set $\alpha_0 = r_0$ and $k = 1$.
         \item Compute the reflection coefficient $\alpha_k$ using the formula
         
-        \begin{equation*}
-        \alpha_k = -\frac{1}{\alpha_{k-1}} \sum_{i=1}^{k-1} \alpha_{k-i} r_i.
-        \end{equation*}
+        \begin{equation} \label{eq:levinson2}
+            \alpha_k = -\frac{1}{\alpha_{k-1}} \sum_{i=1}^{k-1} \alpha_{k-i} r_i
+        \end{equation}
         
         \item Compute the new prediction coefficients $a_1, a_2, \ldots, a_k$ using the formulas
         
-        \begin{align*}
-        a_k &= -\alpha_k \\
-        a_i &= a_{i-1} - \alpha_k a_{k-i} \quad (1 \leq i < k).
-        \end{align*}
+        \begin{equation} \label{eq:levinson3}
+            \begin{aligned}
+                &a_k = -\alpha_k \\
+                &a_i = a_{i-1} - \alpha_k a_{k-i} \quad (1 \leq i < k)\\
+            \end{aligned}
+        \end{equation}
         
         \item If $k = p$, terminate. Otherwise, increment $k$ and repeat from step 2.
         \end{enumerate}
@@ -462,13 +472,13 @@ developed for specific tasks, such as object detection, speech recognition, and 
 
     Short-term linear prediction~\cite{Riahy} refers to the use of linear prediction techniques to make predictions about the near-term
     future values of a time series.
-    It is used to forecast future values of a dependent variable based on its past values and any relevant independent variables.
+    It is used to forecast future values of a dependent variable based on its past values and any relevant independent variables.\\
     \\
     In short-term linear prediction, the focus is on accurately predicting the next few values of the dependent variable, typically in the range of
     several weeks to a few months. The linear prediction models used for short-term forecasting are typically simple and straightforward, often
     using a small number of independent variables. The goal is to provide a quick and easily interpretable forecast that can be used to make operational
-    decisions in the short-term.
-    \begin{equation} \label{eq:slp}
+    decisions in the short-term.\\
+    \begin{equation} \label{eq:slpmain}
         \begin{aligned}
             &\hat{a}_0 = 1 \\
             &\hat{a}_m = \frac{1}{m} \sum_{j=1}^{m} r_j \hat{a}_{m-j} - \frac{\sum_{j=1}^{m-1} \hat{a}_j r_{m-j+1}}{m} \\
@@ -483,24 +493,25 @@ developed for specific tasks, such as object detection, speech recognition, and 
         \item $\hat{E}_m$ is the estimated prediction error at order $m$
         \item $m$ is the current order of the predictor (typically starts at $m=0$)
     \end{itemize}
-    
+
     Common techniques for short-term linear prediction include moving average models, exponential smoothing, and autoregressive models. These methods
     use the historical data of the time series to model the relationship between the dependent and independent variables, and to make predictions
     about future values. The accuracy of short-term linear predictions can be evaluated using metrics such as mean absolute error, mean squared
     error, or the correlation coefficient between the actual and predicted values.
     
-    \subsection{Long-term linear prediction} \label{subsec:longlp}
+    \subsection{Long-term linear prediction} \label{subsec:longtermlp}
     Long-term linear prediction is a technique commonly used in the analysis of time-series data, including health data. In the context of health data,
     the shift of long-term linear prediction refers to the way in which the patterns in the data change over time, reflecting changes in the underlying
     health status of the individual or population being studied.\\
+    \\
     For example, in the case of a patient with a chronic disease, the long-term linear prediction of their health data may show a gradual decline over
     time as the disease progresses. Alternatively, the data may show periodic shifts corresponding to changes in medication or other interventions.
     In population health studies, long-term linear prediction can be used to identify trends and patterns in health outcomes over time.
     For example, a long-term linear prediction model might be used to track changes in the prevalence of a particular disease or condition
     over a period of several years, taking into account factors such as demographic changes and changes in healthcare policy.
     Overall, the shift of long-term linear prediction for health data reflects the dynamic nature of health status and healthcare interventions,
-    and can be a powerful tool for understanding trends and patterns in health outcomes over time.
-\\
+    and can be a powerful tool for understanding trends and patterns in health outcomes over time.\\
+    \\
     Long-term linear prediction refers to the use of linear prediction techniques to make predictions about the future values of a time series
     over an extended period of time, typically several months to several years. Unlike short-term linear prediction, which focuses on forecasting the
     near-term future, long-term linear prediction aims to provide a more comprehensive and accurate forecast of future values.
@@ -516,12 +527,12 @@ developed for specific tasks, such as object detection, speech recognition, and 
     In long-term linear prediction, more sophisticated models~\cite{Nave} are typically used, such as multiple linear regression or time series models,
     and a larger
     number of independent variables may be considered. The models are also trained on a larger historical dataset to ensure that they capture any
-    long-term trends or patterns in the data.
+    long-term trends or patterns in the data.\\
     \\
     Long-term linear prediction is commonly used in fields such as finance, economics, and marketing, to make long-term projections about variables
     such as sales, demand, or stock prices. The goal is to provide a comprehensive and accurate forecast that can be used to make strategic
     decisions in the long-term. The accuracy of long-term linear predictions can be evaluated using the same metrics as for short-term linear
-    predictions~\cite{Baker}, as well as additional metrics such as mean absolute percentage error or mean absolute scaled error.
+    predictions~\cite{Baker}, as well as additional metrics such as mean absolute percentage error or mean absolute scaled error.\\
     \\
     In some long-term prediction use cases it needs to solve the suppression of Late Reverberation Effect\footnote{Late Reverberation Effect
     refers to the decay of sound in an environment after the initial sound source has stopped. This effect results in the persistence of
@@ -536,12 +547,13 @@ developed for specific tasks, such as object detection, speech recognition, and 
     Criterion (BIC), and cross-validation. The Akaike Information Criterion (AIC) is a measure of the relative quality of a statistical model for a given 
     set of data. The AIC score is based on the goodness of fit of the model and the complexity of the model. In the context of linear prediction, the AIC
     can be used to select the optimal order of the autoregressive (AR) model. The AR model uses past observations to predict the next observation in a time
-    series. The optimal order of the AR model is the order that minimizes the AIC score.
+    series. The optimal order of the AR model is the order that minimizes the AIC score~\cite{hayes1996statistical}.\\
+    \\
     The Bayesian Information Criterion (BIC) is similar to the AIC but places a greater penalty on model complexity. The BIC can also be used to select the
     optimal order of the AR model. Cross-validation is a technique that involves splitting the data into training and testing sets. The model is trained
     on the training set, and the performance of the model is evaluated on the testing set. The optimal order of the AR model is the order that produces
     the best performance on the testing set. Overall, the optimal order of linear prediction can be found using a combination of these methods,
-    taking into account the complexity of the model, the goodness of fit, and the performance on a testing set.\\
+    taking into account the complexity of the model, the goodness of fit, and the performance on a testing set~\cite{burnham1998model}.\\
     \\
     Autocorrelation can be a useful tool for detecting the optimal shift in long-term linear prediction for time-series data. Autocorrelation measures the
     linear relationship between lagged versions of a time-series, and can be used to identify the presence of cyclic patterns in the data.
@@ -549,13 +561,14 @@ developed for specific tasks, such as object detection, speech recognition, and 
     values of the time-series. This lag can be used as the optimal shift for the long-term linear prediction model.
     To use autocorrelation for detecting the optimal shift in long-term prediction, one would first calculate the autocorrelation
     function (ACF) for the time-series data. The ACF measures the correlation between the time-series at different lags. The lag at which the ACF is highest
-    corresponds to the optimal shift for long-term linear prediction.
+    corresponds to the optimal shift for long-term linear prediction.\\
+    \\
     Once the optimal shift has been identified, it can be used to train a long-term linear prediction model using techniques such as autoregressive
     models, moving average models, or combinations of both. However, it's important to note that while autocorrelation can be a useful tool for
     identifying the optimal shift for long-term linear prediction, it may not always be the most appropriate technique for all types of time-series data.
     Other methods, such as spectral analysis or wavelet analysis, may be more appropriate in some cases.\\
     \\
-    Autocorrelation function (ACF) of a time series is typically denoted as $\rho_k$ or $r_k$ and can be expressed mathematically using the following equation:
+    Autocorrelation function (ACF) of a time series is typically denoted as $\rho_k$ or $r_k$ and can be expressed mathematically using the following equation~\cite{box2015time}:
     \begin{equation}
         \rho_k = \frac{\gamma_k}{\gamma_0} = \frac{\sum_{t=k+1}^{T}(y_t - \bar{y})(y_{t-k} - \bar{y})}{\sum_{t=1}^{T}(y_t - \bar{y})^2}
     \end{equation}
@@ -589,7 +602,7 @@ developed for specific tasks, such as object detection, speech recognition, and 
     and underscores the importance of using multiple sources of data and analysis techniques to make informed investment decisions.\\
     \\
     To calculate the shift for long-term linear prediction, you can use the autocorrelation function of the signal.
-    The shift value corresponds to the lag at which the autocorrelation function has its maximum value.
+    The shift value corresponds to the lag at which the autocorrelation function has its maximum value~\cite{mills2015time}.
     \section{Detection of repeatable patterns}
     To detect repeatable patterns in time series data, you can use several techniques. Here are a few methods that can be used:
     \begin{enumerate}
@@ -598,20 +611,20 @@ developed for specific tasks, such as object detection, speech recognition, and 
         If there are repeating patterns, the autocorrelation plot will show peaks at the lags corresponding to the pattern.
         \item Seasonal decomposition: Seasonal decomposition separates the time series data into different components such as trend,
         seasonal, and residual. By analyzing the seasonal component, you can identify whether there are any repeating patterns in the data.
-        If there are repeating patterns, the seasonal component will show a consistent pattern over time.
+        If there are repeating patterns, the seasonal component will show a consistent pattern over time~\ref{subsec:seasonaldec}.
         \item Fourier transform: Fourier transform can be used to analyze the frequency components of the time series data. By applying
-        Fourier transform, you can identify whether there are any repeating frequency patterns in the data.
+        Fourier transform, you can identify whether there are any repeating frequency patterns in the data~\ref{subsec:furier}.
         \item Wavelet analysis: Wavelet analysis is a mathematical technique that can be used to analyze the time-frequency
         structure of the time series data. By applying wavelet analysis, you can identify whether there are any repeating patterns at different
         frequency scales.
         \item Hidden Markov models: Hidden Markov models can be used to identify repeating patterns in the data.
         These models assume that the data follows a probabilistic process, where the state of the process is not directly observable.
-        By estimating the model parameters, you can identify the underlying pattern and predict future values of the time series data.
+        By estimating the model parameters, you can identify the underlying pattern and predict future values of the time series data~\ref{subsec:hhm}.
         \item PDMD alghoritm developed on University of California, Riverside
     \end{enumerate}
     These techniques can be used individually or in combination to detect repeatable patterns in time series data.
     It's important to note that the choice of technique depends on the characteristics of the data and the specific problem being addressed.
-        \subsection{Hidden Markov models}
+        \subsection{Hidden Markov models} \label{subsec:hhm}
         Hidden Markov Models (HMMs) are probabilistic models that are used to analyze sequential data where the state of the system is not directly observable.
         HMMs consist of a set of hidden states that are not directly observable, and a set of observable symbols that are emitted from the hidden states.\\
         \\
@@ -637,7 +650,7 @@ developed for specific tasks, such as object detection, speech recognition, and 
         \end{enumerate}
         It's important to note that building an HMM model requires knowledge of probability theory and statistical
         modeling, and may require significant computational resources.
-        \subsection{Fourier transform}
+        \subsection{Fourier transform} \label{subsec:furier}
         Fourier transform is a mathematical technique that is used to analyze the frequency components of a signal or a time series data.
         It transforms a signal from the time domain into the frequency domain, which allows us to analyze the signal in terms of its frequency components.
         The Fourier transform is widely used in many fields, including signal processing, image processing, and physics.\\
@@ -664,7 +677,7 @@ developed for specific tasks, such as object detection, speech recognition, and 
         The Fourier transform has many practical applications. For example, it can be used to analyze the frequency components of a music signal,
         to filter out noise from a signal, or to compress data by removing high-frequency components that are not essential for the representation of the signal.
         It is a powerful tool for understanding the underlying structure of signals and is widely used in scientific research and engineering applications.
-        \subsection{Seasonal decomposition}
+        \subsection{Seasonal decomposition} \label{subsec:seasonaldec}
         Seasonal decomposition is a statistical technique that is used to decompose a time series into its underlying components, including trend,
         seasonal, and residual components. This technique is useful for identifying and understanding the repeating patterns or seasonal
         effects in a time series data.\\
@@ -688,7 +701,7 @@ developed for specific tasks, such as object detection, speech recognition, and 
         \\
         Overall, seasonal decomposition is a powerful tool for identifying and analyzing the seasonal patterns in a time series
         data, and it can be useful in a wide range of applications, including finance, economics, and meteorology.\\
-        \subsection{PDMD algorithm}
+        \subsection{PDMD algorithm} 
         PDMD (Probabilistic Data Mining on Data Streams) is an algorithm for online learning and prediction in data streams that was
         developed by KDD Lab at University of California, Riverside. It is a probabilistic model-based approach that can learn from a stream of input
         data and make predictions in real-time.
