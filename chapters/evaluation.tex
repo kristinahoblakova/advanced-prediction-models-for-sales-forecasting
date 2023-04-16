@@ -17,7 +17,7 @@ We will use experimentation by these steps:\\
     \item Develop the~long-term linear prediction model: Using the~historical data, develop a~long-term linear
     prediction model that can forecast online store orders over a~specified time period, which is detailed
     described in~\ref{sec:extlonglp} and practically applied in~\ref{subsec:calculate_models}
-    over a~specified time period, described in~\ref{subsec:}
+    over a~specified time period, described in~\ref{evaluation}.
     \item Evaluate the~results: Analyze the~results of the~experiment to determine the~accuracy of the~long-term
     linear prediction model. This will involve calculating metrics such as the~mean square error (MSE),
     r-squared ($R^2$) and the~root mean square error (RMSE)~\ref{subsec:experimentResults}.
@@ -75,7 +75,7 @@ We will use this models:
 
     \item Long-term linear prediction 
     To compare more linear prediction and check theorem about application of long-term prediction on sales data
-    we will prepare the~model based on \label{subsec:longlp} and use the~equation \ref{eq:ltlp}.
+    we will prepare the~model based on \ref{subsec:longlp} and use the~equation \ref{eq:ltlp}.
 
     \item Extended long-term linear prediction
      the~last model in our comparison will be our developed model which is based on long-term linear prediction
@@ -96,9 +96,9 @@ described in~\ref{subsec:experimentResults}.
     from the~model are about 40.6 units away from the~actual values.
     And the~MSE of 1650.1 means that on average, the~squared difference between the
     predicted and actual values is 1650,1.\\
-    On figure \ref{fig:slpres} we can see predicted orders and on figure \ref{fig:slpmse}
-    is the~prediction error. 
-    \subsubsection{Extended short-term linear prediction} \label{subsec:res_estlp}
+    On figure \ref{fig:slpres} we can see predicted orders and on figure \ref{fig:mselp}
+    is the~prediction error for short-term linear prediction.
+    \subsubsection{Extended short-term linear prediction}\label{subsec:res_estlp}
     After conducting our experiment, we calculated~an~R-squared (R2) value of 0.8881.
     This indicates that approximately 88.8\% of the~variation in the~dependent
     variable can be explained by the~independent variables included in our model.\\ 
@@ -138,7 +138,9 @@ described in~\ref{subsec:experimentResults}.
     In this case,~an~RMSE of 35.0163 means that on average, the~predicted values from
      the~model are about 35.02 units away from the~actual values. And the
     MSE of 1223.3 means that on average, the~squared difference between the~predicted
-    and actual values is 1223.3.
+    and actual values is 1223.3. On figure \ref{fig:longresult} we can see predicted
+    orders and on figure \ref{fig:ltlpmse} is the~prediction error for short-term
+    linear prediction.
     \begin{figure}[h!]
         \centering
         \begin{subfigure}[b]{0.4\textwidth}
@@ -150,10 +152,10 @@ described in~\ref{subsec:experimentResults}.
         \begin{subfigure}[b]{0.4\textwidth}
             \includegraphics[width=1\textwidth]{figures/expELTLP.png}
             \caption{Extended LP.}
-            \label{fig:ltlpmse}
+            \label{fig:eltlp}
         \end{subfigure}
         \caption{Results of long-term linear prediction.}
-        \label{fig:shortresult}
+        \label{fig:longresult}
     \end{figure}
     
     \subsubsection{Extended long-term linear prediction} \label{subsec:res_eltlp}
@@ -169,7 +171,7 @@ described in~\ref{subsec:experimentResults}.
         \begin{subfigure}[b]{0.4\textwidth}
             \includegraphics[width=1\textwidth]{figures/mseLP.png}
             \caption{Short-term LP.}
-            \label{fig:ltlp}
+            \label{fig:mselp}
         \end{subfigure}
         \hspace{0.1\textwidth}
         \begin{subfigure}[b]{0.4\textwidth}
@@ -178,7 +180,7 @@ described in~\ref{subsec:experimentResults}.
             \label{fig:ltlpmse}
         \end{subfigure}
         \caption{Comparison of MSE for standard and extended LP.}
-        \label{fig:shortresult}
+        \label{fig:mseresult}
     \end{figure}
     Overall, higher R-squared values and lower RMSE and MSE values in this model are
     desirable as they indicate a~better fit of the~model to the~data and better predictive accuracy.
@@ -190,7 +192,7 @@ described in~\ref{subsec:experimentResults}.
     \\
     On the~figures with MSE representation we can see the~main better point of long-term
     prediction for economical datasets. From $R^2$ and RMSE the~improvments of the~models is not
-    see so higher than on the~figures (\ref{fig:slpmse},\ref{fig:eslpmse},\ref{fig:ltlpmse}, \ref{fig:eltlpmse}).
+    see so higher than on the~figure \ref{fig:mseresults}.
     \newpage
     \begin{table}[!ht]
         \centering
