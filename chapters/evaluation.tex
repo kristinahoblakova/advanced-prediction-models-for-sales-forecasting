@@ -62,6 +62,10 @@ We will use this models:
     \item Short-term linear prediction 
     Based on linear prediction \ref{subsec:shortlp} we calculate optimal coeficients by \ref{subsec:levinson} and
     made prediction over our dataset. This model is described in equation \ref{eq:linear-predictor}.
+    \begin{equation}
+        \hat{x}(n) = \sum_{i=1}^{p} a_i x(n-i),
+    \end{equation}
+    where $\hat{x}(n)$ is the~predicted value of $x(n)$, $p$ is the~order of the~predictor, and $a_i$ are the~predictor coefficients.
 
     \item Extended short-term linear prediction 
     This model is based on linear prediction \ref{subsec:shortlp} with optimal parameters by levinson
@@ -71,16 +75,26 @@ We will use this models:
         \hat{x}(n) = \sum_{i=1}^{p} a_i x(n-i) * \gamma(n),
     \end{equation}
     \\
-    where $\hat{x}(n)$ is the~predicted value of $x(n)$, $p$ is the~order of the~predictor, and $a_i$ are the~predictor coefficients. the~predictor.The seasonal weights is represent by $\gamma(n)$
+    where $\hat{x}(n)$ is the~predicted value of $x(n)$, $p$ is the~order of the~predictor, and $a_i$ are the~predictor coefficients. The~predictor.The seasonal weights is represent by $\gamma(n)$
 
     \item Long-term linear prediction 
     To compare more linear prediction and check theorem about application of long-term prediction on sales data
     we will prepare the~model based on \ref{subsec:longlp} and use the~equation \ref{eq:ltlp}.
+    \begin{equation}
+        \hat{x}(n) = \sum_{i=1}^{p} a_i x(n-i) + \sum_{i=-q}^{q} b_i x(n-i-T),
+    \end{equation}
+    \\
+    where $\hat{x}(n)$ is the~predicted value of the~signal at time $n$, $x(n-i)$ are the~past $p$ samples of the~signal, $x(n-i-T)$ are the~past $q$ shifted samples of the signal, and $a_i$ id the~short-therm predictor coefficients and $b_i$ is the~long-term predcitor koeficient. The~order of the~predictor is $p$ for the~autoregressive (AR) part and $q$ for the~long-term part. The pitch period $T$ can be obtained from the autocorrelation function~\cite{vaseghi2008advanced}.\\
 
     \item Extended long-term linear prediction
      the~last model in our comparison will be our developed model which is based on long-term linear prediction
     describe in \ref{subsec:longlp} and use weights coefficients \ref{sec:weights} to get better results in
     economics data. This model is describe in equation \ref{eq:eltlp}.
+    \begin{equation}
+        \hat{x}(n) = \left(\sum_{i=1}^{p} a_i x(n-i) + \sum_{i=1}^{q} b_i x(n-S-i)\right) * \gamma(n),
+    \end{equation}
+    \\
+    where $\hat{x}(n)$ is the~predicted value of the~order at time $n$, $x(n-i)$ are the~past short-therm predition part $p$ samples of the~dataset, $x(n-S-i)$ are the~past long-term prediction part with seasonal shift $S$, and $a_i$ and $b_i$ are the~predictors coefficients. The~order of the~predictor is $p$ for short-term and $q$ for the long-term linear prediction. The seasonal weights is represent by $\gamma(n)$.\\
 \end{enumerate}
 % reference to equations: eq:eltlp, 
 All the~models will be used dataset prepared in~\ref{subsec:preprocessing} and results of prediction is
@@ -112,7 +126,7 @@ described in~\ref{subsec:experimentResults}.
         \centering
         \begin{subfigure}[b]{0.4\textwidth}
             \includegraphics[width=\textwidth]{figures/expLP.png}
-            \caption{Standart LP.}
+            \caption{Standard LP.}
             \label{fig:slpres}
         \end{subfigure}
         \hspace{0.1\textwidth}
@@ -162,8 +176,8 @@ described in~\ref{subsec:experimentResults}.
      the~R-squared value of 0.9171 indicates that the~independent variables in the
     model can explain about 91.7\% of the~variation observed in the~dependent variable.
      the~RMSE and MSE are metrics used to evaluate the~accuracy of the~model's predictions
-    compared to the~actual values. the~RMSE value of 34.7782 means that the~average difference
-    between the~predicted and actual values is approximately 34.7 units. the~MSE value of
+    compared to the~actual values. The~RMSE value of 34.7782 means that the~average difference
+    between the~predicted and actual values is approximately 34.7 units. The~MSE value of
     1206.7 indicates that the~average squared difference between the~predicted and actual
     values is approximately 1206.7.\\
     \begin{figure}[!ht]

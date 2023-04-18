@@ -17,7 +17,7 @@ prediction models. Specifically, there are two ways in which machine learning ar
 The goal of long-term linear prediction is to estimate future values of a~signal or time series based on its past
 values using a~linear model.
 The linear prediction model uses a~set of coefficients to weight past values of the~signal and produce a~prediction for
-future values. the~accurate of the~prediction depends on the~quality of the~model and the~complexity of the
+future values. The~accurate of the~prediction depends on the~quality of the~model and the~complexity of the
 underlying signal. Combine this principles get to us the~best results from linear prediction over
 sales and financial datasets.
 \chapter{Methodology}\label{sec:methodology}
@@ -58,7 +58,7 @@ sales and financial datasets.
         That is a~value from $[-1, 1]$ range indicating the~strength of the~association of the~observed data
         for the~two variables.\\
         a~linear regression line has~an~equation of the~form $Y = a~+ bX$, where $X$ is the~explanatory variable
-        and $Y$ is the~dependent variable. the~slope of the~line is $b$, and $a$ is the~intercept.
+        and $Y$ is the~dependent variable. The~slope of the~line is $b$, and $a$ is the~intercept.
         Example of some basic linear models:\\
         \begin{equation} \label{eq:4}
         \begin{array}{l@{}l}
@@ -70,7 +70,7 @@ sales and financial datasets.
         \subsection{Linear prediction}\label{subsec:lp}
         Linear prediction is a~statistical technique used to forecast future values based on past observations.
         It is a~method for modeling the~relationship between a~dependent variable and one or more independent
-        variables in a~linear form. the~goal of linear prediction is to find the~best linear approximation of the
+        variables in a~linear form. The~goal of linear prediction is to find the~best linear approximation of the
         relationship between the~variables, which can then be used to make predictions about future
         values of the~dependent variable.
         \subsection{Backpropagation}\label{subsec:backpropagation}
@@ -87,8 +87,8 @@ sales and financial datasets.
             the~forward pass computes the~predictions of the~network on a~given input.
             \item Backward pass: the~backward pass involves computing the~gradients of the~loss function with
             respect to each weight in the~network, starting from the~output layer and propagating backwards
-            through the~hidden layers to the~input layer. the~gradients are computed by applying the~chain rule of
-            differentiation to the~output of each layer. the~gradients are then used to update the~weights of
+            through the~hidden layers to the~input layer. The~gradients are computed by applying the~chain rule of
+            differentiation to the~output of each layer. The~gradients are then used to update the~weights of
             the~network using~an~optimization algorithm such as SGD.
         \end{enumerate}
         the~backpropagation algorithm can be optimized using various techniques, such as parallel computing, weight
@@ -182,12 +182,12 @@ sales and financial datasets.
     \\
    ~The~median is a~robust statistic, meaning that it is not affected by outliers or extreme values in the~dataset,
     unlike the~mean. This makes it a~useful measure of central tendency in datasets with a~large number of outliers or
-    skewed distributions. the~median is commonly used in various applications, such as finance, economics, and social
+    skewed distributions. The~median is commonly used in various applications, such as finance, economics, and social
     sciences, to summarize and compare datasets.\\
     \\
     \textbf{Standard deviation}\\
     Standard deviation is a~statistical measure that quantifies the~amount of variation or dispersion in a~dataset.
-    It measures how far the~values in a~dataset deviate from the~mean, or average, of the~dataset. the~standard
+    It measures how far the~values in a~dataset deviate from the~mean, or average, of the~dataset. The~standard
     deviation is a~non-negative number and has the~same units as the~data being measured.
     \\
     To compute the~standard deviation of a~dataset, we first calculate the~mean of the~dataset.
@@ -287,7 +287,7 @@ based on previous data with better aberration than linear prediction has.
             $[val, idx] = max(Rxx);$\\
             \\
             $val$ is ignored value of the~maximum, and idx is the~index of the~maximum value in the~Rxx vector.
-            \item Calculate the~shift value from the~lag index. the~shift value is simply the~lag value
+            \item Calculate the~shift value from the~lag index. The~shift value is simply the~lag value
             corresponding to the~maximum value in the~autocorrelation function.\\
             \\
             $shift = lag(idx);$\\
@@ -311,7 +311,7 @@ based on previous data with better aberration than linear prediction has.
             we want to solve. In this case, a~recurrent neural network (RNN) architecture such as a~Long Short-Term
             Memory (LSTM) or Gated Recurrent Unit (GRU) may be suitable, as they are specifically designed to handle
             sequential data.
-            \item Define the~input and output: Define the~input and output of our neural network. the~input should
+            \item Define the~input and output: Define the~input and output of our neural network. The~input should
             be the~time series data, and the~output should be the~predicted shift and long shift.
             \item Define the~loss function: Choose~an~appropriate loss function to measure the~difference
             between the~predicted shift and long shift and the~actual shift and long shift.
@@ -393,7 +393,7 @@ based on previous data with better aberration than linear prediction has.
         \item Estimate the~parameters: Estimate the~parameters of the~SARIMA model using the~sales data.
         This can be done using statistical software such as R or Python.
         \item Interpret the~weights: Once the~parameters have been estimated, interpret the~weights of the~model
-        to understand how they contribute to the~prediction. the~weights represent the~strength of the~relationship
+        to understand how they contribute to the~prediction. The~weights represent the~strength of the~relationship
         between the~sales data and the~predictor variables.
         \item Validate the~model: Validate the~model by comparing the~predicted sales data with the~actual sales data.
         Use statistical measures such as mean squared error or mean absolute error to evaluate the

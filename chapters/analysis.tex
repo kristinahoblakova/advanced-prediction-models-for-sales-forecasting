@@ -7,10 +7,10 @@ The Durbin-Levinson algorithm is a~method for solving the~linear prediction prob
 models\footnote{Autoregressive (AR) models are time series models that describe the~the~relationship between the~current
 value of a~variable and its past values. In~an~autoregressive model, each observation is modeled as a~linear
 combination of past observations, with weights called AR coefficients. AR models are widely used in various fields
-such as economics, engineering, and finance for modeling and forecasting time series data. the~order of the~AR model, denoted as "p", refers to the~number of past values used to predict the~current value. For example,~an~AR(1) model uses
+such as economics, engineering, and finance for modeling and forecasting time series data. The~order of the~AR model, denoted as "p", refers to the~number of past values used to predict the~current value. For example,~an~AR(1) model uses
 only the~previous observation to predict the~current value, while~an~AR(2) model uses the~previous two observations.},
-which are models where the~current output depends on previous outputs. the~algorithm solves the~linear prediction
-problem by finding the~coefficients of the~AR model that minimize the~prediction error. the~resulting AR coefficients
+which are models where the~current output depends on previous outputs. The~algorithm solves the~linear prediction
+problem by finding the~coefficients of the~AR model that minimize the~prediction error. The~resulting AR coefficients
 can be used to make predictions about future values based on past observations. This method should be used with
 using the~pattern of linear relationship between the~independent and dependent variables.
 Here's a~basic outline of the~steps involved in using linear prediction to forecast sales data:\\
@@ -43,9 +43,9 @@ computational resources available.
 Time-series models are mathematical models used to analyze and forecast data that are collected over time~\cite{Cryer}.
 These models are used to study and make predictions about the~trends, patterns, and behavior of the~data over time,
 taking into account historical values and their relationship with the~present. Time-series models are widely
-used in areas such as economics, finance, and weather forecasting, among others. the~models are based on various
+used in areas such as economics, finance, and weather forecasting, among others. The~models are based on various
 statistical techniques, including ARIMA (AutoRegressive Integrated Moving Average), SARIMA (Seasonal ARIMA),
-and exponential smoothing, among others. the~goal of time-series modeling is to build a~mathematical representation
+and exponential smoothing, among others. The~goal of time-series modeling is to build a~mathematical representation
 of the~underlying process that generates the~time-series data, allowing for accurate prediction of future values.
 Time-series models are statistical models used to analyze and make predictions about time-dependent data. They are
 widely used in various fields, including finance, economics, engineering, and social sciences.
@@ -116,7 +116,7 @@ and ability to handle both categorical and numerical data. Some examples of deci
 (Classification and Regression Tree) and Random Forest.
 \\
 The decision tree model is trained using a~dataset, and the~tree structure is built using a~greedy algorithm
-that seeks to maximize the~reduction in impurity of the~target variable at each split. the~model can then be used
+that seeks to maximize the~reduction in impurity of the~target variable at each split. The~model can then be used
 to make predictions on new data by following the~decision rules in the~tree.
 \subsection{Machine learning models}\label{sec:ml}
 Machine learning models are a~subset of artificial intelligence that allows computers to learn and make
@@ -138,7 +138,7 @@ classification and regression tasks in supervised learning.\\
 \\
 KNN is a~non-parametric algorithm, which means it doesn't make any assumptions about the~underlying
 distribution of the~data. Instead, it uses the~similarity between data points to classify or predict the~target
-variable. the~algorithm works by finding the~k-nearest neighbors to a~new data point and then assigning the~class
+variable. The~algorithm works by finding the~k-nearest neighbors to a~new data point and then assigning the~class
 label of the~majority of those neighbors to the~new data point.\\
 \\
 For example, if we have a~dataset of images with labels indicating whether each image contains a~cat or a~dog,
@@ -153,7 +153,7 @@ it may not perform well in high-dimensional spaces.
 
 \section{Neural networks} \label{sec:nn}
 A neural network is a~type of machine learning algorithm inspired by the~structure and function of biological neurons
-in the~human brain. It is composed of interconnected nodes, called neurons, that are organized into layers. the~input
+in the~human brain. It is composed of interconnected nodes, called neurons, that are organized into layers. The~input
 layer receives raw data, such as images or text, and passes it on to the~hidden layers, which perform calculations and
 apply weights to the~input data to create a~prediction. Finally, the~output layer produces the~final prediction
 or classification.\\
@@ -164,7 +164,7 @@ producing the~neuron’s output signal.
 \begin{center}
     \begin{figure}[!ht]
         \centering
-        \includegraphics[width=1\textwidth]{figures/nn}
+        \includegraphics[width=0.6\textwidth]{figures/nn}
         \caption{Perceptron preview. \cite{Mourgias-Alexandris:19}}
         \label{fig:perceptron}
     \end{figure}
@@ -178,8 +178,8 @@ It is modeled after the~biological neuron in the~human brain, which receives inp
 processes them, and sends output signals to other neurons.\\
 \\
 In a~neural network, a~neuron receives input from other neurons or directly from the~input data, applies a~mathematical
-function to the~input, and produces~an~output that is sent to other neurons in the~network. the~input to a~neuron is
-usually a~vector of numbers, and each input is multiplied by a~corresponding weight. the~neuron then sums up the
+function to the~input, and produces~an~output that is sent to other neurons in the~network. The~input to a~neuron is
+usually a~vector of numbers, and each input is multiplied by a~corresponding weight. The~neuron then sums up the
 weighted inputs, adds a~bias term, and applies~an~activation function to the~result.\\
 \\
 The purpose of the~activation function is to introduce nonlinearity into the~neuron, which allows the~neural network
@@ -187,7 +187,7 @@ to learn complex patterns and relationships in the~data. There are several diffe
 that can be used, such as the~sigmoid function, ReLU (Rectified Linear Unit) function, and tanh (hyperbolic tangent)
 function.\\
 \\
-The output of a~neuron is typically fed into other neurons in the~next layer of the~neural network. the~weights and
+The output of a~neuron is typically fed into other neurons in the~next layer of the~neural network. The~weights and
 biases of the~neurons are adjusted during the~training process using a~technique called backpropagation, which involves
 computing the~gradient of the~error with respect to the~weights and updating them using~an~optimization algorithm such
 as stochastic gradient descent.\\
@@ -223,7 +223,7 @@ These networks are designed to work with sequential data, such as time-series or
     \begin{center}
         \begin{figure}[!ht]
             \centering
-            \includegraphics[width=0.8\textwidth]{figures/rn}
+            \includegraphics[width=0.4\textwidth]{figures/rn}
             \caption{Typical recurrent network. \cite{medsker2001recurrent}}
             \label{fig:rn}
         \end{figure}
@@ -233,11 +233,12 @@ These are a~type of RNN that are designed to address the~problem of vanishing gr
     \begin{center}
         \begin{figure}[!ht]
             \centering
-            \includegraphics[width=0.4\textwidth]{figures/ltmn}
+            \includegraphics[width=0.35\textwidth]{figures/ltmn}
             \caption{Long short-term memory network. \cite{cheng2016long}}
             \label{fig:ltmn}
         \end{figure}
     \end{center}
+\newpage
 \textbf{Autoencoder Neural Networks}\\
 These networks are used for unsupervised learning and are designed to learn a~compressed representation of the~input data. As we can see on figure~\ref{fig:ann} they consist of~an~encoder that maps the~input data to a~compressed representation, and a~decoder that maps the~compressed representation back to the~original data.
     \begin{center}
@@ -249,7 +250,7 @@ These networks are used for unsupervised learning and are designed to learn a~co
         \end{figure}
     \end{center}
 \textbf{Generative Adversarial Networks (GANs)}\\
-These networks consist of two networks, a~generator and a~discriminator (see on figure~\ref{fig:gan}), that are trained together in a~game-theoretic framework. the~generator is trained to generate realistic data samples, while the~discriminator is trained to distinguish between real and generated data samples.
+These networks consist of two networks, a~generator and a~discriminator (see on figure~\ref{fig:gan}), that are trained together in a~game-theoretic framework. The~generator is trained to generate realistic data samples, while the~discriminator is trained to distinguish between real and generated data samples.
     \begin{center}
         \begin{figure}[!ht]
             \centering
@@ -270,11 +271,11 @@ after the~structure and function of the~human brain. It is composed of interconn
 organized into layers.\\
 In a~classification task, the~neural network is trained on a~dataset that is labeled with the~correct
 class for each example. During training, the~network learns to recognize patterns and features in the~input data
-that are associated with each class. the~process of training involves adjusting the~weights and biases of the~neurons
+that are associated with each class. The~process of training involves adjusting the~weights and biases of the~neurons
 in the~network to minimize the~error between the~predicted class and the~actual class of each example in the
 training set.\\
 Once the~neural network is trained, it can be used to classify new, unseen examples by inputting the~data into
-the network and obtaining a~prediction of the~most likely class. the~output of the~neural network is a~probability
+the network and obtaining a~prediction of the~most likely class. The~output of the~neural network is a~probability
 distribution over the~different classes, with the~highest probability indicating the~predicted class.\\
 Neural network data classification has been successfully applied to a~wide range of tasks, including image
 classification, speech recognition, natural language processing, and fraud detection, among others~\cite{feraud2002methodology}.
@@ -370,7 +371,7 @@ used to predict the~value of the~dependent variable, while in multiple linear re
 variables are used to make the~prediction.
 \\
 Linear prediction models are commonly used in finance, economics, and engineering, among other fields, to forecast
-future values of time series data, such as stock prices, sales, or demand. the~accuracy of linear prediction models
+future values of time series data, such as stock prices, sales, or demand. The~accuracy of linear prediction models
 depends on several factors, including the~quality of the~data, the~choice of independent variables, and the~degree of
 linearity in the~relationship between the~variables.
 
@@ -381,18 +382,18 @@ the near-term future values of a~time series. It is used to forecast future valu
 its past values and any relevant independent variables.
 \\
 In short-term linear prediction, the~focus is on accurately predicting the~next few values of the~dependent variable,
-typically in the~range of several weeks to a~few months. the~linear prediction models used for short-term
+typically in the~range of several weeks to a~few months. The~linear prediction models used for short-term
 forecasting are typically simple and straightforward, often using a~small number of independent variables.
 The goal is to provide a~quick and easily interpretable forecast that can be used to make operational decisions in
 the short-term.
-Consider a~signal $x(n)$ that is modeled using a~linear predictor. the~linear predictor is defined as:
+Consider a~signal $x(n)$ that is modeled using a~linear predictor. The~linear predictor is defined as:
 
 \begin{equation}
   \hat{x}(n) = \sum_{i=1}^{p} a_i x(n-i),
   \label{eq:linear-predictor}
 \end{equation}
 
-where $\hat{x}(n)$ is the~predicted value of $x(n)$, $p$ is the~order of the~predictor, and $a_i$ are the~predictor coefficients. the~predictor coefficients can be found by minimizing the~prediction error:
+where $\hat{x}(n)$ is the~predicted value of $x(n)$, $p$ is the~order of the~predictor, and $a_i$ are the~predictor coefficients. The~predictor coefficients can be found by minimizing the~prediction error:
 
 \begin{equation}
   e(n) = x(n) - \hat{x}(n),
@@ -440,7 +441,7 @@ where $r(k)$ is the~autocorrelation function of the~signal $x(n)$ defined as:
 
 Common techniques for short-term linear prediction include moving average models, exponential smoothing, and
 autoregressive models. These methods use the~historical data of the~time series to model the~relationship between the
-dependent and independent variables, and to make predictions about future values. the~accuracy of short-term linear
+dependent and independent variables, and to make predictions about future values. The~accuracy of short-term linear
 predictions can be evaluated using metrics such as mean absolute error, mean squared error, or the~correlation
 coefficient between the~actual and predicted values.
 
@@ -460,22 +461,30 @@ healthcare interventions, and can be a~powerful tool for understanding trends an
 Long-term linear prediction refers to the~use of linear prediction techniques to make predictions about the~future
 values of a~time series over~an~extended period of time, typically several months to several years. Unlike short-term
 linear prediction, which focuses on forecasting the~near-term future, long-term linear prediction aims to provide a~more
-comprehensive and accurate forecast of future values.\\
+comprehensive and accurate forecast of future values. On the figure~\ref{fig:shiftExplain} you can see the explanation od the long-term linear prediction shift.\\
 \begin{equation}\label{eq:ltlp}
-    \hat{x}(n) = \sum_{i=1}^{p} a_i x(n-i) + \sum_{i=1}^{q} b_i e(n-T-i),
+    \hat{x}(n) = \sum_{i=1}^{p} a_i x(n-i) + \sum_{i=-q}^{q} b_i x(n-i-T),
 \end{equation}
 \\
-where $\hat{x}(n)$ is the~predicted value of the~signal at time $n$, $x(n-i)$ are the~past $p$ samples of the~signal, $e(n-i)$ are the~past $q$ prediction errors, and $a_i$ and $b_i$ are the~predictor coefficients. the~order of the~predictor is $p$ for the~autoregressive (AR) part and $q$ for the~moving average (MA) part.
-
-The long-term linear prediction equation is a~generalization of the~short-term linear prediction equation that was shown in section~\ref{subsec:shortlp}. the~short-term equation only includes the~autoregressive (AR) part, whereas the~long-term equation includes both the~autoregressive (AR) and the~moving average (MA) parts.
+where $\hat{x}(n)$ is the~predicted value of the~signal at time $n$, $x(n-i)$ are the~past $p$ samples of the~signal, $x(n-i-T)$ are the~past $q$ shifted samples of the signal, and $a_i$ id the~short-therm predictor coefficients and $b_i$ is the~long-term predcitor koeficient. The~order of the~predictor is $p$ for the~autoregressive (AR) part and $q$ for the~long-term part. The pitch period $T$ can be obtained from the autocorrelation function~\cite{vaseghi2008advanced}.\\
+\\
+The long-term linear prediction equation is a~generalization of the~short-term linear prediction equation that was shown in section~\ref{subsec:shortlp}. The~short-term equation only includes the~autoregressive (AR) part, whereas the~long-term equation includes both the~autoregressive (AR) and the~moving average (MA) parts.
+\begin{center}
+    \begin{figure}[!ht]
+        \centering
+        \includegraphics[width=1\textwidth]{figures/shift}
+        \caption{Shift explanation~\cite{vaseghi2008advanced}.}
+        \label{fig:shiftExplain}
+    \end{figure}
+\end{center}
 
 In long-term linear prediction, more sophisticated models~\cite{Nave} are typically used, such as multiple linear
-regression or time series models, and a~larger number of independent variables may be considered. the~models are also
+regression or time series models, and a~larger number of independent variables may be considered. The~models are also
 trained on a~larger historical dataset to ensure that they capture any long-term trends or patterns in the~data.
 \\
 Long-term linear prediction is commonly used in fields such as finance, economics, and marketing, to make long-term
-projections about variables such as sales, demand, or stock prices. the~goal is to provide a~comprehensive and accurate
-forecast that can be used to make strategic decisions in the~long-term. the~accuracy of long-term linear predictions
+projections about variables such as sales, demand, or stock prices. The~goal is to provide a~comprehensive and accurate
+forecast that can be used to make strategic decisions in the~long-term. The~accuracy of long-term linear predictions
 can be evaluated using the~same metrics as for short-term linear predictions~\cite{Baker}, as well as additional metrics
 such as mean absolute percentage error or mean absolute scaled error.
 \\
@@ -494,7 +503,7 @@ Specifically, it describes the~changes that occur in the~speech signal over rela
 measured in tens to hundreds of milliseconds. Long-term linear prediction is a~technique used in speech analysis and
 synthesis to model the~way that the~vocal system produces speech sounds. It involves breaking the~speech signal into
 short segments and using mathematical algorithms to predict the~signal in each segment based on the~signal in preceding
-segments. the~shift of long-term linear prediction in human speech refers to the~fact that the~vocal system is constantly
+segments. The~shift of long-term linear prediction in human speech refers to the~fact that the~vocal system is constantly
 adjusting and adapting the~way that it produces sounds based on a~variety of factors, including the~phonemes being spoken,
 the speaker's emotions and intentions, and the~context of the~speech. This means that the~speech signal is not static,
 but rather is constantly shifting and evolving over time. For example, when a~speaker is emphasizing a~particular
@@ -506,7 +515,7 @@ In the~context of stock data analysis, the~shift in long-term prediction refers 
 the data change over time, reflecting changes in the~underlying market conditions and investor sentiment.
 Long-term linear prediction is a~technique that can be used to model and forecast stock prices based on historical
 price data. It involves breaking the~time-series data into short segments and using mathematical algorithms to predict
-the price in each segment based on the~price in preceding segments. the~shift in long-term prediction for stock data
+the price in each segment based on the~price in preceding segments. The~shift in long-term prediction for stock data
 can occur due to a~variety of factors such as changes in the~macroeconomic environment, company earnings announcements,
 news events, investor sentiment, and other market-moving events. These shifts can cause changes in the~underlying trends
 and patterns in the~data, which can make it difficult to accurately predict stock prices over longer time horizons.
@@ -524,15 +533,15 @@ The shift value corresponds to the~lag at which the~autocorrelation function has
 \subsection{Estimation of Optimal Predictor Order} \label{subsec:orderlp}
 The optimal order of linear prediction refers to the~number of past observations that should be used to predict the~next
 observation in a~time series. There are several methods for finding the~optimal order of linear prediction, including
-the Akaike Information Criterion (AIC), the~Bayesian Information Criterion (BIC), and cross-validation. the~Akaike
+the Akaike Information Criterion (AIC), the~Bayesian Information Criterion (BIC), and cross-validation. The~Akaike
 Information Criterion (AIC) is a~measure of the~relative quality of a~statistical model for a~given set of data.
 The AIC score is based on the~goodness of fit of the~model and the~complexity of the~model. In the~context of linear
-prediction, the~AIC can be used to select the~optimal order of the~autoregressive (AR) model. the~AR model uses past
-observations to predict the~next observation in a~time series. the~optimal order of the~AR model is the~order that
-minimizes the~AIC score. the~Bayesian Information Criterion (BIC) is similar to the~AIC but places a~greater penalty
-on model complexity. the~BIC can also be used to select the~optimal order of the~AR model. Cross-validation is a
-technique that involves splitting the~data into training and testing sets. the~model is trained on the~training set, and
-the performance of the~model is evaluated on the~testing set. the~optimal order of the~AR model is the~order that produces
+prediction, the~AIC can be used to select the~optimal order of the~autoregressive (AR) model. The~AR model uses past
+observations to predict the~next observation in a~time series. The~optimal order of the~AR model is the~order that
+minimizes the~AIC score. The~Bayesian Information Criterion (BIC) is similar to the~AIC but places a~greater penalty
+on model complexity. The~BIC can also be used to select the~optimal order of the~AR model. Cross-validation is a
+technique that involves splitting the~data into training and testing sets. The~model is trained on the~training set, and
+the performance of the~model is evaluated on the~testing set. The~optimal order of the~AR model is the~order that produces
 the best performance on the~testing set. Overall, the~optimal order of linear prediction can be found using a~combination
 of these methods, taking into account the~complexity of the~model, the~goodness of fit, and the~performance on a~testing set.\\
 \\
@@ -542,7 +551,7 @@ the presence of cyclic patterns in the~data. In the~context of long-term linear 
 used to identify the~lag that maximizes the~correlation between past and future values of the~time-series. This lag can
 be used as the~optimal shift for the~long-term linear prediction model. To use autocorrelation for detecting the~optimal
 shift in long-term prediction, one would first calculate the~autocorrelation function (ACF) for the~time-series data.
-The ACF measures the~correlation between the~time-series at different lags. the~lag at which the~ACF is highest
+The ACF measures the~correlation between the~time-series at different lags. The~lag at which the~ACF is highest
 corresponds to the~optimal shift for long-term linear prediction. Once the~optimal shift has been identified, it can
 be used to train a~long-term linear prediction model using techniques such as autoregressive models, moving average
 models, or combinations of both. However, it's important to note that while autocorrelation can be a~useful tool for
@@ -557,7 +566,7 @@ mathematically using the~following equation:
 \end{equation}
 where $y_t$ is the~value of the~time series at time $t$, $\bar{y}$ is the~mean of the~time series, $k$ is the~lag or
 time shift, $\gamma_k$ is the~autocovariance at lag $k$, $\gamma_0$ is the~autocovariance at lag 0, and $T$ is the~total number
-of observations in the~time series. the~ACF measures the~correlation between the~time series and a~lagged version of
+of observations in the~time series. The~ACF measures the~correlation between the~time series and a~lagged version of
 itself, with values ranging between -1 and 1.
 
 \subsection{Levinson-Durbin scheme} \label{subsec:levinson}
@@ -578,7 +587,7 @@ AR models are used to model and forecast time series data~\cite{Durbin}, such as
 future value of the~series depends on a~linear combination of previous values.
 \\
 The Levinson-Durbin algorithm solves the~AR model by iteratively updating the~coefficients of the~model to minimize
-the prediction error between the~model and the~actual data. the~algorithm is fast and efficient, and it is widely
+the prediction error between the~model and the~actual data. The~algorithm is fast and efficient, and it is widely
 used in digital signal processing, speech processing, and control systems, among other applications.
 The Levinson-Durbin recursion schema is a~method for solving the~autocorrelation equations of a~linear
 prediction problem. It can be expressed in the~form of a~triangular system of equations:
@@ -622,7 +631,7 @@ rounding errors.\\
     \end{bmatrix},
 \end{equation*}
 
-where $r_0, r_1, \ldots, r_{p-1}$ are the~autocorrelation coefficients and $a_1, a_2, \ldots, a_p$ are the~prediction coefficients. the~algorithm proceeds as follows:\\
+where $r_0, r_1, \ldots, r_{p-1}$ are the~autocorrelation coefficients and $a_1, a_2, \ldots, a_p$ are the~prediction coefficients. The~algorithm proceeds as follows:\\
 
 \begin{enumerate}
     \item Set $\alpha_0 = r_0$ and $k = 1$.
@@ -657,7 +666,7 @@ system is not directly observable. HMMs consist of a~set of hidden states that a
 set of observable symbols that are emitted from the~hidden states~\cite{math10081230}.\\
 \\
 The HMM assumes that the~hidden states form a~Markov chain, which means that the~probability of transitioning from
-one hidden state to another depends only on the~current state and not on the~previous states. the~emission
+one hidden state to another depends only on the~current state and not on the~previous states. The~emission
 probabilities of the~observable symbols depend only on the~current hidden state.\\
 \\
 HMMs are typically used for two main tasks:
@@ -687,14 +696,14 @@ modeling, and may require significant computational resources.
 \subsection{Fourier transform}\label{subsec:fourier}
 Fourier transform is a~mathematical technique that is used to analyze the~frequency components of a~signal or a~time
 series data. It transforms a~signal from the~time domain into the~frequency domain, which allows us to analyze the
-signal in terms of its frequency components. the~Fourier transform is widely used in many fields, including signal
+signal in terms of its frequency components. The~Fourier transform is widely used in many fields, including signal
 processing, image processing, and physics.\\
 \\
 The Fourier transform decomposes a~signal into a~set of sinusoidal waves with different frequencies, amplitudes, and phases.
 These sinusoidal waves are called the~Fourier series, and they represent the~signal as a~sum of complex exponential functions.\\
 \\
 The Fourier transform can be expressed as~an~integral equation that takes a~time-domain signal and
-produces a~frequency-domain representation of that signal. the~formula for the~Fourier transform is:\\
+produces a~frequency-domain representation of that signal. The~formula for the~Fourier transform is:\\
 \begin{equation}
     F(\omega) = \int f(t) e^{(-i \omega t)} dt,
 \end{equation}
@@ -702,7 +711,7 @@ where $F(\omega)$ is the~frequency-domain representation of the~signal, $f(t)$ i
 frequency, and i is the~imaginary unit.\\
 \\
 The inverse Fourier transform can be used to transform the~frequency-domain representation of a~signal back into the
-time domain. the~formula for the~inverse Fourier transform is:
+time domain. The~formula for the~inverse Fourier transform is:
 \begin{equation}
     f(t) = \frac{1}{2\pi} \int F(\omega) e^{(i \omega t)} d\omega,
 \end{equation}
