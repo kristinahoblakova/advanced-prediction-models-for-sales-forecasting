@@ -72,7 +72,7 @@ We will use this models:
     schema \ref{subsec:levinson}. To compare our developed model \label{subsec:extlonglp} and we will prepare
     similar principle as in equation \ref{eq:eltlp} to the~short-term linear prediction with results.
     \begin{equation} \label{eq:slp}
-        \hat{x}(n) = \sum_{i=1}^{p} a_i x(n-i) * \gamma(n),
+        \hat{x}(n) = \sum_{i=1}^{p} a_i x(n-i) ~\gamma(n),
     \end{equation}
     \\
     where $\hat{x}(n)$ is the~predicted value of $x(n)$, $p$ is the~order of the~predictor, and $a_i$ are the~predictor coefficients. The~predictor.The seasonal weights is represent by $\gamma(n)$
@@ -81,20 +81,20 @@ We will use this models:
     To compare more linear prediction and check theorem about application of long-term prediction on sales data
     we will prepare the~model based on \ref{subsec:longlp} and use the~equation \ref{eq:ltlp}.
     \begin{equation}
-        \hat{x}(n) = \sum_{i=1}^{p} a_i x(n-i) + \sum_{i=-q}^{q} b_i x(n-i-T),
+        \hat{x}(n) = \sum_{i=1}^{p} a_i x(n-i) + \sum_{i=-q}^{q} b_i x(n-i-Q),
     \end{equation}
     \\
-    where $\hat{x}(n)$ is the~predicted value of the~signal at time $n$, $x(n-i)$ are the~past $p$ samples of the~signal, $x(n-i-T)$ are the~past $q$ shifted samples of the signal, and $a_i$ id the~short-therm predictor coefficients and $b_i$ is the~long-term predcitor koeficient. The~order of the~predictor is $p$ for the~autoregressive (AR) part and $q$ for the~long-term part. The pitch period $T$ can be obtained from the autocorrelation function~\cite{vaseghi2008advanced}.\\
+    where $\hat{x}(n)$ is the~predicted value of the~signal at time $n$, $x(n-i)$ are the~past $p$ samples of the~signal, $x(n-i-Q)$ are the~past $q$ shifted samples of the signal, and $a_i$ id the~short-therm predictor coefficients and $b_i$ is the~long-term predcitor koeficient. The~order of the~predictor is $p$ for the~autoregressive (AR) part and $q$ for the~long-term part. The pitch period $T$ can be obtained from the autocorrelation function~\cite{vaseghi2008advanced}.\\
 
     \item Extended long-term linear prediction
      the~last model in our comparison will be our developed model which is based on long-term linear prediction
     describe in \ref{subsec:longlp} and use weights coefficients \ref{sec:weights} to get better results in
     economics data. This model is describe in equation \ref{eq:eltlp}.
     \begin{equation}
-        \hat{x}(n) = \left(\sum_{i=1}^{p} a_i x(n-i) + \sum_{i=1}^{q} b_i x(n-S-i)\right) * \gamma(n),
+        \hat{x}(n) = \left(\sum_{i=1}^{p} a_i x(n-i) + \sum_{i=1}^{q} b_i x(n-i-Q)\right) \gamma(n),
     \end{equation}
     \\
-    where $\hat{x}(n)$ is the~predicted value of the~order at time $n$, $x(n-i)$ are the~past short-therm predition part $p$ samples of the~dataset, $x(n-S-i)$ are the~past long-term prediction part with seasonal shift $S$, and $a_i$ and $b_i$ are the~predictors coefficients. The~order of the~predictor is $p$ for short-term and $q$ for the long-term linear prediction. The seasonal weights is represent by $\gamma(n)$.\\
+    where $\hat{x}(n)$ is the~predicted value of the~order at time $n$, $x(n-i)$ are the~past short-therm predition part $p$ samples of the~dataset, $x(n-i-Q)$ are the~past long-term prediction part with seasonal shift $Q$, and $a_i$ and $b_i$ are the~predictors coefficients. The~order of the~predictor is $p$ for short-term and $q$ for the long-term linear prediction. The seasonal weights is represent by $\gamma(n)$.\\
 \end{enumerate}
 % reference to equations: eq:eltlp, 
 All the~models will be used dataset prepared in~\ref{subsec:preprocessing} and results of prediction is

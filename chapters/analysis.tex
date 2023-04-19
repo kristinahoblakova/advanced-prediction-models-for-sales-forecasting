@@ -463,10 +463,10 @@ values of a~time series over~an~extended period of time, typically several month
 linear prediction, which focuses on forecasting the~near-term future, long-term linear prediction aims to provide a~more
 comprehensive and accurate forecast of future values. On the figure~\ref{fig:shiftExplain} you can see the explanation od the long-term linear prediction shift.\\
 \begin{equation}\label{eq:ltlp}
-    \hat{x}(n) = \sum_{i=1}^{p} a_i x(n-i) + \sum_{i=-q}^{q} b_i x(n-i-T),
+    \hat{x}(n) = \sum_{i=1}^{p} a_i x(n-i) + \sum_{i=-q}^{q} b_i x(n-i-Q),
 \end{equation}
 \\
-where $\hat{x}(n)$ is the~predicted value of the~signal at time $n$, $x(n-i)$ are the~past $p$ samples of the~signal, $x(n-i-T)$ are the~past $q$ shifted samples of the signal, and $a_i$ id the~short-therm predictor coefficients and $b_i$ is the~long-term predcitor koeficient. The~order of the~predictor is $p$ for the~autoregressive (AR) part and $q$ for the~long-term part. The pitch period $T$ can be obtained from the autocorrelation function~\cite{vaseghi2008advanced}.\\
+where $\hat{x}(n)$ is the~predicted value of the~signal at time $n$, $x(n-i)$ are the~past $p$ samples of the~signal, $x(n-i-T)$ are the~past $q$ shifted samples of the signal, and $a_i$ id the~short-therm predictor coefficients and $b_i$ is the~long-term predcitor koeficient. The~order of the~predictor is $p$ for the~autoregressive (AR) part and $q$ for the~long-term part. The pitch period $Q$ can be obtained from the autocorrelation function~\cite{vaseghi2008advanced}.\\
 \\
 The long-term linear prediction equation is a~generalization of the~short-term linear prediction equation that was shown in section~\ref{subsec:shortlp}. The~short-term equation only includes the~autoregressive (AR) part, whereas the~long-term equation includes both the~autoregressive (AR) and the~moving average (MA) parts.
 \begin{center}

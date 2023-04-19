@@ -415,10 +415,10 @@ based on previous data with better aberration than linear prediction has.
     median and standard deviation statistical parameters from dataset. As a~base equation we will user equation
     for long-term prediction\ref{eq:ltlp} with the~new weights and get:
     \begin{equation} \label{eq:eltlp}
-        \hat{x}(n) = \left(\sum_{i=1}^{p} a_i x(n-i) + \sum_{i=1}^{q} b_i x(n-S-i)\right) * \gamma(n),
+        \hat{x}(n) = \left(\sum_{i=1}^{p} a_i x(n-i) + \sum_{i=1}^{q} b_i x(n-i-Q)\right) \gamma(n),
     \end{equation}
     \\
-    where $\hat{x}(n)$ is the~predicted value of the~order at time $n$, $x(n-i)$ are the~past short-therm predition part $p$ samples of the~dataset, $x(n-S-i)$ are the~past long-term prediction part with seasonal shift $S$, and $a_i$ and $b_i$ are the~predictors coefficients. The~order of the~predictor is $p$ for short-term and $q$ for the long-term linear prediction. The seasonal weights is represent by $\gamma(n)$.\\
+    where $\hat{x}(n)$ is the~predicted value of the~order at time $n$, $x(n-i)$ are the~past short-therm predition part $p$ samples of the~dataset, $x(n-S-i)$ are the~past long-term prediction part with seasonal shift $Q$, and $a_i$ and $b_i$ are the~predictors coefficients. The~order of the~predictor is $p$ for short-term and $q$ for the long-term linear prediction. The seasonal weights is represent by $\gamma(n)$.\\
     \\
     When building a~long-term prediction model, the~use of weights in this use case have a~significant effect on
     the~model's performance. Weights are used to assign different levels of importance to different
