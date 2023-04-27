@@ -1,10 +1,13 @@
 % !TEX root = ../thesis.tex
 \chapter{Goal of the~thesis}\label{sec:goal}
-In this thesis we are focus on improving linear prediction in sales and financial forecasting and combine it with
-modern machine learning approaches. Machine learning techniques are used to improve the~accurate of linear
-prediction models. Specifically, there are two ways in which machine learning are applied to linear prediction:
+In this thesis we are focused on improving linear prediction in sales and financial forecasting and combine it with
+modern machine learning approaches. Machine learning techniques are used to improve the~accuracy of linear
+prediction models. Specifically, there are two ways in which machine learning is applied to linear prediction:
 \begin{enumerate}
-    \item Feature engineering: In this approach, machine learning is used to extract relevant features from the~input
+    \item Feature engineering\footnote{Feature engineering involves the extraction and transformation of
+    variables from raw data, such as price lists, product descriptions, and sales volumes so that you
+    can use features for training and prediction}: In this approach, machine learning is used to extract
+    relevant features from the~input
     signal that can be used as input to a~linear prediction model.The extracted features can capture complex patterns
     in the~data that are not captured by the~raw input. Feature engineering can be done using techniques such as
     principal component analysis, wavelet transform, and Fourier transform.
@@ -17,8 +20,8 @@ prediction models. Specifically, there are two ways in which machine learning ar
 The goal of long-term linear prediction is to estimate future values of a~signal or time series based on its past
 values using a~linear model.
 The linear prediction model uses a~set of coefficients to weight past values of the~signal and produce a~prediction for
-future values. The~accurate of the~prediction depends on the~quality of the~model and the~complexity of the
-underlying signal. Combine this principles get to us the~best results from linear prediction over
+future values. The~accuracy of the~prediction depends on the~quality of the~model and the~complexity of the
+underlying signal. Combining these principles offers the~best results from linear prediction on the
 sales and financial datasets.
 \chapter{Methodology}\label{sec:methodology}
     \section{Characteristics of the~research object}\label{subsec:research_object}
@@ -44,35 +47,33 @@ sales and financial datasets.
     time series forecasting, and risk assessment.
     \section{Methods}\label{subsec:methods}
     In our thesis was used mainly these list of methods like a linear prediction, regression, backpropagation or statistical  measures.
-        \subsection{Linear regression}\label{sec:linear}
-        Linear regression~\cite{Levinson} attempts to model the~relationship between two variables by fitting a~linear
-        equation to observed data. One variable is considered to be~an~explanatory variable, and the~other is
-        considered to be a~dependent variable. For example, we want to relate the~weights of individuals to their
-        heights using a~linear regression model. Before attempting to fit a~linear model to observed data, we should
-        first determine if there exists a~relationship between the~variables of interest. This does not necessarily
-        mean that one variable causes the~other, but that there is some significant association between them.
-        To determine the~strength of relationship a~scatterplot can be a~helpful tool.
-        If there appears to be no association between the~proposed explanatory and dependent variables, then
-        fitting a~linear regression model to the~data probably will not provide a~useful model.
-        a~valuable numerical measure of association between two variables is the~correlation coefficient.
-        That is a~value from $[-1, 1]$ range indicating the~strength of the~association of the~observed data
-        for the~two variables.\\
-        a~linear regression line has~an~equation of the~form $Y = a~+ bX$, where $X$ is the~explanatory variable
-        and $Y$ is the~dependent variable. The~slope of the~line is $b$, and $a$ is the~intercept.
-        Example of some basic linear models:\\
-        \begin{equation} \label{eq:4}
-        \begin{array}{l@{}l}
-            Y = ax + b\\
-            Y = a~+ bx + c\\
-            Y = a\sin x + b\\
-        \end{array}
-        \end{equation}
         \subsection{Linear prediction}\label{subsec:lp}
         Linear prediction is a~statistical technique used to forecast future values based on past observations.
         It is a~method for modeling the~relationship between a~dependent variable and one or more independent
         variables in a~linear form. The~goal of linear prediction is to find the~best linear approximation of the
         relationship between the~variables, which can then be used to make predictions about future
-        values of the~dependent variable.
+        values of the~dependent variable.\\
+        \\
+        In short-term linear prediction, the~focus is on accurately predicting the~next few values of the~dependent variable,
+        typically in the~range of several weeks to a~few months. The~linear prediction models used for short-term
+        forecasting are typically simple and straightforward, often using a~small number of independent variables.
+        The goal is to provide a~quick and easily interpretable forecast that can be used to make operational decisions in
+        the short-term.
+        Consider a~signal $x(n)$ that is modeled using a~linear predictor. The~linear predictor is defined as:
+
+        \begin{equation}
+        \hat{x}(n) = \sum_{i=1}^{p} a_i x(n-i),
+        \label{eq:m-linear-predictor}
+        \end{equation}
+
+        Long-term linear prediction refers to the~use of linear prediction techniques to make predictions about the~future
+        values of a~time series over~an~extended period of time, typically several months to several years. Unlike short-term
+        linear prediction, which focuses on forecasting the~near-term future, long-term linear prediction aims to provide a~more
+        comprehensive and accurate forecast of future values. On the figure~\ref{fig:shiftExplain} you can see the explanation od the long-term linear prediction shift.\\
+        \begin{equation}\label{eq:ltlp}
+            \hat{x}(n) = \sum_{i=1}^{p} a_i x(n-i) + \sum_{i=-q}^{q} b_i x(n-i-Q),
+        \end{equation}
+        \newpage
         \subsection{Backpropagation}\label{subsec:backpropagation}
         Backpropagation is a~widely used algorithm for computing the~gradients of the~loss function with
         respect to the~weights of a~neural network. It is the~backbone of training deep neural networks using
@@ -168,7 +169,7 @@ sales and financial datasets.
     \\
     MSE is a~popular metric used in many fields, such as machine learning, statistics, and engineering, to evaluate the
     performance of prediction models. a~lower MSE indicates better performance of the~model in predicting the~outcomes.
-    \section{Statistics measures} \label{subsec:statistics}
+    \section{Statistical measures} \label{subsec:statistics}
     \textbf{Median}\\
    ~The~median is a~statistical measure that represents the~middle value of a~dataset. It is a~value that separates
     the~dataset into two halves: half of the~values are greater than the~median, and half of the~values are less than
@@ -178,8 +179,12 @@ sales and financial datasets.
     To compute the~median of a~dataset, we first sort the~values in ascending or descending order. If the~dataset
     has~an~odd number of values, the~median is the~middle value. For example, in the~dataset ${1, 2, 3, 4, 5}$, the
     median is $3$. If the~dataset has~an~even number of values, the~median is the~average of the~two middle values.
-    For example, in the~dataset ${1, 2, 3, 4}$, the~median is $(2 + 3) / 2 = 2.5$.
-    \\
+    For example, in the~dataset ${1, 2, 3, 4}$, the~median is $(2 + 3) / 2 = 2.5$.\\
+    \begin{equation}
+        Median = \frac{x(n/2) + x(n/2 + 1)}{2},
+        \label{eq:median}
+    \end{equation}
+    where $n$ is the number of observations abd $x$ is a vector of observation values.\\
    ~The~median is a~robust statistic, meaning that it is not affected by outliers or extreme values in the~dataset,
     unlike the~mean. This makes it a~useful measure of central tendency in datasets with a~large number of outliers or
     skewed distributions. The~median is commonly used in various applications, such as finance, economics, and social
@@ -188,14 +193,19 @@ sales and financial datasets.
     \textbf{Standard deviation}\\
     Standard deviation is a~statistical measure that quantifies the~amount of variation or dispersion in a~dataset.
     It measures how far the~values in a~dataset deviate from the~mean, or average, of the~dataset. The~standard
-    deviation is a~non-negative number and has the~same units as the~data being measured.
+    deviation is a~non-negative number and has the~same units as the~data being measured.\\
+    \begin{equation}
+        SD = \sqrt[2]{\frac{\sum \lvert x - \mu \rvert^2}{N}},
+    \end{equation}
+    where $x$ is a value in the data set, $\mu$ is the mean of the data set, and $N$ is the
+    number of data points in the population.\\
     \\
     To compute the~standard deviation of a~dataset, we first calculate the~mean of the~dataset.
     Then, we calculate the~difference between each value in the~dataset and the~mean, square each difference, and
     sum up the~squared differences. Finally, we divide the~sum of squared differences by the~number of values in the
     dataset, and take the~square root of the~result. This gives us the~standard deviation of the~dataset.
     \\
-    a~small standard deviation indicates that the~values in the~dataset are tightly clustered around the~mean,
+    The~small standard deviation indicates that the~values in the~dataset are tightly clustered around the~mean,
     while a~large standard deviation indicates that the~values are widely spread out from the~mean. Standard
     deviation is commonly used in various applications, such as finance, engineering, and natural sciences, to
     analyze and compare datasets. It is also~an~important parameter in many statistical tests and models, such as the
@@ -208,7 +218,7 @@ period all based on Levinson-Durbin scheme caled Extended linear prediction (ELP
 We expect to get better results than by using prediction based on short-term or standard long-term linear
 prediction (see section~\ref{sec:lp}).  Finally, our approach will return future number of orders for sales companies
 based on previous data with better aberration than linear prediction has.
-    \section{Predictor Order estimation}\label{sec:ordercalc}
+    \section{Prediction order estimation}\label{sec:ordercalc}
         This section describe our created Neural Network which we used to detect optimal order of predictor (long-term and short-term) for our dataset to get the best results of final forecasting.\\
         \\
         \textbf{Create neural network to estimate predictor order}\\
@@ -270,8 +280,8 @@ based on previous data with better aberration than linear prediction has.
             It's important to remember that there is no single approach that works best for all problems, and
             experimentation is often necessary to find the~optimal solution.
         \end{enumerate}
-    \section{Shift estimation}\label{sec:shiftcalc}
-    I nthis section we see second Neural Network which replace the basic Autocorrelation approach.This neural network will be used for long-term linear prediction.
+    \section{Long-term prediction shift estimation}\label{sec:shiftcalc}
+    In this section we see second Neural Network which replace the basic Autocorrelation approach.This neural network will be used for long-term linear prediction.
         \subsection{Autocorrelation approach} \label{subsec:acorr}
         \begin{enumerate}
             \item Compute the~autocorrelation function of the~signal using the~xcorr function in MATLAB.
@@ -381,7 +391,7 @@ based on previous data with better aberration than linear prediction has.
         shift and long shift values. It's important to note that the~quality of the~predictions depends on the
         quality and quantity of the~data used for training and the~architecture and hyperparameters of the~model.
         Therefore, it's important to experiment with different models and training data to find the~optimal solution.
-    \section{Estimation of seasonal weights}\label{sec:weights}
+    \section{Estimation of the seasonal weights}\label{sec:weights}
     To create a~mathematical model for predicting sales data with periodical trends, we can use a~seasonal
     ARIMA (SARIMA) model. This model takes into account seasonal variations in the~data and uses autoregressive and
     moving average terms to capture the~patterns and trends in the~data.\\

@@ -342,7 +342,7 @@ activation functions that have been developed for specific tasks or to address c
     \label{fig:activationfunctions}
 \end{figure}
 
-\subsection{Application of neural netwrok in prediction} \label{subsec:nnprediction}
+\subsection{Application of neural netwroks in prediction} \label{subsec:nnprediction}
 Neural networks can be used for long-term linear prediction in time-series data, including speech, health, and
 stock data. Neural networks can be trained to model and forecast the~patterns in the~data, including shifts in
 the long-term linear prediction. Neural networks have been shown to be effective in capturing the~complex relationships
@@ -466,7 +466,7 @@ comprehensive and accurate forecast of future values. On the figure~\ref{fig:shi
     \hat{x}(n) = \sum_{i=1}^{p} a_i x(n-i) + \sum_{i=-q}^{q} b_i x(n-i-Q),
 \end{equation}
 \\
-where $\hat{x}(n)$ is the~predicted value of the~signal at time $n$, $x(n-i)$ are the~past $p$ samples of the~signal, $x(n-i-T)$ are the~past $q$ shifted samples of the signal, and $a_i$ id the~short-therm predictor coefficients and $b_i$ is the~long-term predcitor koeficient. The~order of the~predictor is $p$ for the~autoregressive (AR) part and $q$ for the~long-term part. The pitch period $Q$ can be obtained from the autocorrelation function~\cite{vaseghi2008advanced}.\\
+where $\hat{x}(n)$ is the~predicted value of the~signal at time $n$, $x(n-i)$ are the~past $p$ samples of the~signal, $x(n-i-Q)$ are the~past $q$ shifted samples of the signal, and $a_i$ id the~short-therm predictor coefficients and $b_i$ is the~long-term predcitor koeficient. The~order of the~predictor is $p$ for the~autoregressive (AR) part and $q$ for the~long-term part. The pitch period $Q$ can be obtained from the autocorrelation function~\cite{vaseghi2008advanced}.\\
 \\
 The long-term linear prediction equation is a~generalization of the~short-term linear prediction equation that was shown in section~\ref{subsec:shortlp}. The~short-term equation only includes the~autoregressive (AR) part, whereas the~long-term equation includes both the~autoregressive (AR) and the~moving average (MA) parts.
 \begin{center}
@@ -497,40 +497,13 @@ by with minimal performance degradation by framework developed by Keisuke Kinosh
 single-channel and multichannel scenarios.\\
 \\
 \textbf{Shift Estimation}\\
-
-The shift of long-term linear prediction for example in human speech refers to the~way in which the~human vocal system produces sounds over time.
-Specifically, it describes the~changes that occur in the~speech signal over relatively long periods of time, typically
-measured in tens to hundreds of milliseconds. Long-term linear prediction is a~technique used in speech analysis and
-synthesis to model the~way that the~vocal system produces speech sounds. It involves breaking the~speech signal into
-short segments and using mathematical algorithms to predict the~signal in each segment based on the~signal in preceding
-segments. The~shift of long-term linear prediction in human speech refers to the~fact that the~vocal system is constantly
-adjusting and adapting the~way that it produces sounds based on a~variety of factors, including the~phonemes being spoken,
-the speaker's emotions and intentions, and the~context of the~speech. This means that the~speech signal is not static,
-but rather is constantly shifting and evolving over time. For example, when a~speaker is emphasizing a~particular
-word or phrase, they may change the~pitch, intensity, or duration of certain sounds in order to convey their meaning
-more effectively. These changes will be reflected in the~long-term linear prediction of the~speech signal, which will
-show shifts in the~predicted signal over time.\\
-\\
-In the~context of stock data analysis, the~shift in long-term prediction refers to the~way in which the~patterns in
-the data change over time, reflecting changes in the~underlying market conditions and investor sentiment.
-Long-term linear prediction is a~technique that can be used to model and forecast stock prices based on historical
-price data. It involves breaking the~time-series data into short segments and using mathematical algorithms to predict
-the price in each segment based on the~price in preceding segments. The~shift in long-term prediction for stock data
-can occur due to a~variety of factors such as changes in the~macroeconomic environment, company earnings announcements,
-news events, investor sentiment, and other market-moving events. These shifts can cause changes in the~underlying trends
-and patterns in the~data, which can make it difficult to accurately predict stock prices over longer time horizons.
-For example, sudden changes in market conditions such as a~global financial crisis or a~political event can cause
-significant shifts in long-term prediction for stock data, making it difficult to accurately forecast future prices.
-Similarly, a~company's financial performance or regulatory changes can cause sudden shifts in the~long-term prediction
-for that company's stock. Overall, the~shift in long-term prediction for stock data reflects the~dynamic and
-unpredictable nature of the~stock market, and underscores the~importance of using multiple sources of data and analysis
-techniques to make informed investment decisions.\\
-\\
+Correct estimate of the shift in the long-term linear prediction is important to get correct results. Mechanism to
+detect the shift is based on detection of repeatable patterns~\ref{sec:patterns} mechanism in our datasets.
 To calculate the~shift for long-term linear prediction, we can use the~autocorrelation function of the~signal.
-The shift value corresponds to the~lag at which the~autocorrelation function has its maximum value. Other approaches to estimate shift we can see in section~\ref{sec:patterns}
+The shift value corresponds to the~lag at which the~autocorrelation function has its maximum value. Other
+approaches to estimate shift we can see in section.
 
-
-\subsection{Estimation of Optimal Predictor Order} \label{subsec:orderlp}
+\subsection{Estimation of optimal prediction order} \label{subsec:orderlp}
 The optimal order of linear prediction refers to the~number of past observations that should be used to predict the~next
 observation in a~time series. There are several methods for finding the~optimal order of linear prediction, including
 the Akaike Information Criterion (AIC), the~Bayesian Information Criterion (BIC), and cross-validation. The~Akaike
@@ -653,12 +626,47 @@ where $r_0, r_1, \ldots, r_{p-1}$ are the~autocorrelation coefficients and $a_1,
 
 
 \section{Detection of repeatable patterns}\label{sec:patterns}
-To detect repeatable patterns in time series data, we can use several techniques. As a basic method Autocorrelation is used to measures the~correlation between the~time series data at different time lags~\ref{subsec:orderlp}. The next one which is mainly use is th Seasonal decomposition~\ref{subsec:seasonal} which separates the~time series data into different components
-such as trend, seasonal, and residual. To analyse the~frequency components of the~time series data Fourier transform~\ref{subsec:fourier} can be used. Same as another mathematical technique to analyse the~time-frequency structure of the~time series data called Wavelet analysis.
+To detect repeatable patterns in time series data, we can use several techniques. As a basic method
+Autocorrelation is used to measures the~correlation between the~time series data at different time
+lags~\ref{subsec:orderlp}.
+The next one which is mainly use is th Seasonal decomposition~\ref{subsec:seasonal} which separates the~time
+series data into different components such as trend, seasonal, and residual. To analyse the~frequency components
+of the~time series data Fourier transform~\ref{subsec:fourier} can be used. Same as another mathematical
+technique to analyse the~time-frequency structure of the~time series data called Wavelet analysis.
 To detect pattern in seasonal trends Hidden Markov models~\ref{subsec:hmm} can be used.
-These models assume that the~data follows a~probabilistic process, where the~state of the~process is not directly observable. The last one method which is as much as used is the Pattern Masking for Dictionary Matching (PMDM)~\ref{subsec:pmdm}.\\
-These techniques can be used individually or in combination to detect repeatable patterns in time series data. It's important to note that the~choice of technique depends on the~characteristics of the~data and the~specific problem being addressed.
-
+These models assume that the~data follows a~probabilistic process, where the~state of the~process is not
+directly observable. The last one method which is as much as used is the Pattern Masking for Dictionary
+Matching (PMDM)~\ref{subsec:pmdm}.\\
+These techniques can be used individually or in combination to detect repeatable patterns in time series data.
+It's important to note that the~choice of technique depends on the~characteristics of the~data and the~specific
+problem being addressed.\\
+The shift of long-term linear prediction for example in human speech refers to the~way in which the~human vocal
+system produces sounds over time. Specifically, it describes the~changes that occur in the~speech signal over
+relatively long periods of time, typically measured in tens to hundreds of milliseconds. Long-term linear
+prediction is a~technique used in speech analysis and synthesis to model the~way that the~vocal system produces
+speech sounds. It involves breaking the~speech signal into short segments and using mathematical algorithms to
+predict the~signal in each segment based on the~signal in preceding segments. The~shift of long-term linear
+prediction in human speech refers to the~fact that the~vocal system is constantly adjusting and adapting
+the~way that it produces sounds based on a~variety of factors, including the~phonemes being spoken,
+the speaker's emotions and intentions, and the~context of the~speech. This means that the~speech signal is not
+static, but rather is constantly shifting and evolving over time. For example, when a~speaker is emphasizing
+a~particular word or phrase, they may change the~pitch, intensity, or duration of certain sounds in order to
+convey their meaning more effectively. These changes will be reflected in the~long-term linear prediction
+of the~speech signal, which will show shifts in the~predicted signal over time~\cite{Kinoshita}.\\
+In the~context of stock data analysis, the~shift in long-term prediction refers to the~way in which the~patterns
+in the data change over time, reflecting changes in the~underlying market conditions and investor sentiment.
+Long-term linear prediction is a~technique that can be used to model and forecast stock prices based on historical
+price data. It involves breaking the~time-series data into short segments and using mathematical algorithms to predict
+the price in each segment based on the~price in preceding segments. The~shift in long-term prediction for stock data
+can occur due to a~variety of factors such as changes in the~macroeconomic environment, company earnings announcements,
+news events, investor sentiment, and other market-moving events. These shifts can cause changes in the~underlying trends
+and patterns in the~data, which can make it difficult to accurately predict stock prices over longer time horizons.
+For example, sudden changes in market conditions such as a~global financial crisis or a~political event can cause
+significant shifts in long-term prediction for stock data, making it difficult to accurately forecast future prices.
+Similarly, a~company's financial performance or regulatory changes can cause sudden shifts in the~long-term prediction
+for that company's stock. Overall, the~shift in long-term prediction for stock data reflects the~dynamic and
+unpredictable nature of the~stock market, and underscores the~importance of using multiple sources of data and analysis
+techniques to make informed investment decisions~\cite{mills2015time}.\\
 
 \subsection{Hidden Markov models}\label{subsec:hmm}
 Hidden Markov Models (HMMs) are probabilistic models that are used to analyse sequential data where the~state of the
