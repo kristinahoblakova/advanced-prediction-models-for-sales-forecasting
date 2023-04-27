@@ -218,10 +218,69 @@ period all based on Levinson-Durbin scheme caled Extended linear prediction (ELP
 We expect to get better results than by using prediction based on short-term or standard long-term linear
 prediction (see section~\ref{sec:lp}).  Finally, our approach will return future number of orders for sales companies
 based on previous data with better aberration than linear prediction has.
+    
+    \section{Novel approach to forecast sales data}\label{subsec:combining_models}
+    In this chapter we prepare sub-parts of our novel aproache to forecast orders in sales companies.
+    Here are the steps how to made our approache function and return accurate results for number of orders.
+    \begin{enumerate}
+        \item Run neural network to get right order of linear predictor. In this section we have trained Neural network from section~\ref{sec:ordercalc} and detect correct order from our neural network really fast.
+        \item Run neural network to get righ shift and long shift of linear prediction~\ref{sec:shiftcalc}.
+        Than ve can run our next neural network trained for detect shift for our prediction. In this neural network as one of the~inputs we are using results from previous neural network.
+        \item Run extended long-term prediction~\ref{sec:extlonglp} to ger predicted values of sales data.
+        When we have optimal order and shift we are able to run linear prediction in a~standard way.
+        \item Apply periodical wages~\ref{sec:weights} to previous response data.
+        Results from previous step are corrected by the~weights vector which is calculated over the~trained dataset.
+        \item Calculate comparison criteria for results and plot data and mean square errors.
+        When we run all the~models we are able to calculate comparison criteria from~\ref{subsec:comparison} and
+        get a~table of results to plot errors and compare predicted and measured orders from validation dataset.
+    \end{enumerate}
+
+    \section{Extended long-term prediction}\label{sec:extlonglp}
+    For my purpose i created extended long-term prediction which handle the~seasonality and repeated patterns
+    in economics data. This correction mechanism is used to reflect historical peaks in graphs thrue dataset.
+    This simple correction increase accurate of the~model and get better response due tue psychology,
+    sociology and marketing aspects in dataset.\\
+    \\
+    To set up periodical weights its needs to create a~vector of correction parameters from original dataset using
+    median and standard deviation statistical parameters from dataset. As a~base equation we will user equation
+    for long-term prediction\ref{eq:ltlp} with the~new weights and get:
+    \begin{equation} \label{eq:eltlp}
+        \hat{x}(n) = \left(\sum_{i=1}^{p} a_i x(n-i) + \sum_{i=1}^{q} b_i x(n-i-Q)\right) \gamma(n),
+    \end{equation}
+    \\
+    where $\hat{x}(n)$ is the~predicted value of the~order at time $n$, $x(n-i)$ are the~past short-therm
+    predition part $p$ samples of the~dataset, $x(n-Q-i)$ are the~past long-term prediction part with seasonal
+    shift $Q$, and $a_i$ and $b_i$ are the~predictors coefficients. The~order of the~predictor is $p$ for short-term
+    and $q$ for the long-term linear prediction. The seasonal weights are represented by $\gamma(n)$.\\
+    \\
+    When building a~long-term prediction model, the~use of weights in this use case have a~significant effect on
+    the~model's performance. Weights are used to assign different levels of importance to different
+    features or inputs in the~model.\\
+    \\
+    In a~long-term prediction model, the~weight assigned to each input can determine its impact on the~model's predictions.
+    Using weights in order prediction model, the~weight assigned to a~historical company's financial data are more important
+    than the~weight assigned to its historical visitors. This is why we are ignore this data for prediction.\\
+    \\
+    If the~weights are not carefully chosen, the~model may give too much importance to some inputs and not enough to others,
+    leading to inaccurate predictions. Therefore, selecting the~right weights is crucial for creating~an~accurate and
+    effective long-term prediction model. In our case it reduce the~prediction error and returns more usable
+    data for order prediction.\\
+    \\
+    In addition, the~choice of weights can also affect the~model's ability to adapt to changing conditions over time.
+    a~model with carefully chosen weights can be more resilient and adaptable to changes in the~input data,
+    while a~model with poorly chosen weights may be less flexible and struggle to adjust to new information.
+    So it's really important to set correct shift and period to recalculation of the~shift.
+    This is ride by neural network from \ref{subsec:neural}.\\
+    \\
+    Overall, the~use of weights is~an~important consideration in building our predictive model, and careful selection
+    can significantly improve the~accurate and effectiveness of our long-term prediction model.
+
     \section{Prediction order estimation}\label{sec:ordercalc}
-        This section describe our created Neural Network which we used to detect optimal order of predictor (long-term and short-term) for our dataset to get the best results of final forecasting.\\
+        This section describes the created Neural Network which was used to detect optimal
+        order of predictor (long-term and short-term) for the dataset to get the best results
+        of final forecasting.\\
         \\
-        \textbf{Create neural network to estimate predictor order}\\
+        \textbf{Neural network for prediction order estimation}\\
         \\
         Creating a~neural network for linear prediction and optimal order detection involves several steps.
         Here's a~general overview of the~process:
@@ -234,54 +293,57 @@ based on previous data with better aberration than linear prediction has.
             shuffling the~dataset, and splitting it into training, validation, and testing sets.
             \item Model Architecture: Choose~an~appropriate neural network architecture for our problem. For linear
             prediction, we could use a~recurrent neural network (RNN) such as LSTM or GRU. For optimal order
-            detection, we could use a~feedforward neural network.
+            detection, we could use a~feedforward neural network. Choosing the~right activation function for linear
+            prediction order detection in neural networks depends on
+            several factors such as the~type of data, the~complexity of the~problem, and the~architecture of the~neural
+            network. In our approach we test some most common used activation functions to test and choose the right one.
+            Linear activation function was not return good results because of our problem is not linear. ReLU activation
+            function is one of the~most popular activation functions used in deep learning. Sigmoid activation function
+            maps any input value to a~value between 0 and 1 so for our problem not good because of we are not solving
+            binnary problems. In general, it's a~good idea to start with the~ReLU activation function and see if it works
+            well for our problem.\\
             \item Training: Train the~neural network on the~training set using~an~appropriate optimization algorithm
             such as stochastic gradient descent (SGD), Adam, or RMSProp. During training, monitor the~performance of the
             network on the~validation set to detect overfitting and adjust the~hyperparameters accordingly.
+            To training our neural network we used training dataset created from our main dataset as half a year order data.
+            Then we feed our neural network by that dataset to adjusting the weights of its connections between neurons to
+            minimize the difference between the network's output and the correct output for each input. This process is
+            known as backpropagation.\\
+            The training process is typically repeated many times, with the network being presented with different
+            sets of data each time, until it reaches a satisfactory level of accuracy on a validation set of data.
+            Once the network is trained, it can be used to make predictions or decisions on new, unseen data.\\
             \item Testing: Evaluate the~performance of the~trained neural network on the~testing set
             to get~an~estimate of its generalization ability.
-            \item Deployment: Deploy the~trained neural network to make predictions on new data.
+            \item Using neural network to get optimal order: Deploy the~trained neural network to
+            make predictions on new data. Our trained Neural network is consist of 4 layers with 40 neurons in input
+            layer than two hidden layers with 20 and 10 neurons and 5 neuron in output layer. Our trained network
+            use ReLU activation function. Training was made over 120 of observations.
+            Once a~neural network is trained, there are several steps we can take to get the~best performance out of it:
+            \begin{enumerate}[label=\alph*]
+                \item Use the~validation set to tune hyperparameters: the~validation set is a~dataset that is separate
+                from the~training and testing sets and is used to tune hyperparameters such as learning rate, batch size,
+                and number of epochs. By experimenting with different hyperparameters, we can find the~optimal settings
+                that result in the~best performance.
+                \item Test the~model on a~separate dataset: Once the~model is trained and the~hyperparameters are tuned,
+                it's important to test the~model on a~separate dataset to evaluate its performance. This dataset should be
+                completely separate from the~training and validation sets.
+                \item Use data augmentation techniques: Data augmentation techniques such as rotation, translation, and
+                scaling can be used to generate additional training data, which can improve the~performance of the~model.
+                \item Use ensembling techniques: Ensembling techniques such as bagging and boosting can be used to
+                combine the~predictions of multiple models to improve the~overall performance.
+                \item Use regularization techniques: Regularization techniques such as L1 and L2 regularization
+                can be used to prevent overfitting and improve the~generalization of the~model.
+                \item Fine-tune the~model on new data: If new data becomes available, the~model can be fine-tuned on the
+                new data to further improve its performance.
+                \item By following these steps, we can get the~best performance out of a~trained neural network.
+                It's important to remember that there is no single approach that works best for all problems, and
+                experimentation is often necessary to find the~optimal solution.
+            \end{enumerate}
         \end{enumerate}
-        \textbf{Choose activation function}\\
-        \\
-        Choosing the~right activation function for linear prediction order detection in neural networks depends on
-        several factors such as the~type of data, the~complexity of the~problem, and the~architecture of the~neural
-        network. In our approach we test some most common used activation functions to test and choose the right one.
-        Linear activation function was not return good results because of our problem is not linear. ReLU activation function is one of the~most popular activation functions used in deep learning. Sigmoid activation function
-        maps any input value to a~value between 0 and 1 so for our problem not good because of we are not solving binnary problems. In general, it's a~good idea to start with the~ReLU activation function and see if it works well for our problem.\\
-        \\  
-        \textbf{Train neural network}\\
-        \\
-        To training our neural network we used training dataset created from our main dataset as half a year order data. Then we feed our neural network by that dataset to adjusting the weights of its connections between neurons to minimize the difference between the network's output and the correct output for each input. This process is known as backpropagation.\\
-        \\
-        The training process is typically repeated many times, with the network being presented with different sets of data each time, until it reaches a satisfactory level of accuracy on a validation set of data. Once the network is trained, it can be used to make predictions or decisions on new, unseen data.\\
-        \\
-        \textbf{Run neural network to get optimal order}\\
-        Our trained Neural network is consist of 4 layers with 40 neurons in input layer than two hidden layers with 20 and 10 neurons and 5 neuron in output layer. Our trained network use ReLU activation function. Training was made over 120 of observations.\\
-        \\
-        Once a~neural network is trained, there are several steps we can take to get the~best performance out of it:
-        \begin{enumerate}
-            \item Use the~validation set to tune hyperparameters: the~validation set is a~dataset that is separate
-            from the~training and testing sets and is used to tune hyperparameters such as learning rate, batch size,
-            and number of epochs. By experimenting with different hyperparameters, we can find the~optimal settings
-            that result in the~best performance.
-            \item Test the~model on a~separate dataset: Once the~model is trained and the~hyperparameters are tuned,
-            it's important to test the~model on a~separate dataset to evaluate its performance. This dataset should be
-            completely separate from the~training and validation sets.
-            \item Use data augmentation techniques: Data augmentation techniques such as rotation, translation, and
-            scaling can be used to generate additional training data, which can improve the~performance of the~model.
-            \item Use ensembling techniques: Ensembling techniques such as bagging and boosting can be used to
-            combine the~predictions of multiple models to improve the~overall performance.
-            \item Use regularization techniques: Regularization techniques such as L1 and L2 regularization
-            can be used to prevent overfitting and improve the~generalization of the~model.
-            \item Fine-tune the~model on new data: If new data becomes available, the~model can be fine-tuned on the
-            new data to further improve its performance.
-            \item By following these steps, we can get the~best performance out of a~trained neural network.
-            It's important to remember that there is no single approach that works best for all problems, and
-            experimentation is often necessary to find the~optimal solution.
-        \end{enumerate}
+    
     \section{Long-term prediction shift estimation}\label{sec:shiftcalc}
-    In this section we see second Neural Network which replace the basic Autocorrelation approach.This neural network will be used for long-term linear prediction.
+    In this section we see second Neural Network which replace the basic Autocorrelation approach.
+    This neural network will be used for long-term linear prediction.
         \subsection{Autocorrelation approach} \label{subsec:acorr}
         \begin{enumerate}
             \item Compute the~autocorrelation function of the~signal using the~xcorr function in MATLAB.
@@ -306,10 +368,7 @@ based on previous data with better aberration than linear prediction has.
             corresponds to the~shift value for long-term linear prediction. Note that the~shift value is expressed in
             samples, so we may need to convert it to a~time delay if our signal has a~specific sampling rate.
         \end{enumerate}
-        \newpage
-        \subsection{Neural network approach} \label{subsec:neural}
-        \textbf{Create neural network for shift and long shift estimation}\\
-        \\
+        \subsection{Neural network approach for shift estimation} \label{subsec:neural}
         To create a~neural network for shift and long shift prediction, we can follow these steps:
         \begin{enumerate}
             \item Define the~problem: the~first step is to define the~problem we want to solve. In this case, the
@@ -320,13 +379,31 @@ based on previous data with better aberration than linear prediction has.
             \item Choose the~architecture: Choose the~architecture for our neural network based on the~problem
             we want to solve. In this case, a~recurrent neural network (RNN) architecture such as a~Long Short-Term
             Memory (LSTM) or Gated Recurrent Unit (GRU) may be suitable, as they are specifically designed to handle
-            sequential data.
+            sequential data. Choosing the~activation function for a~neural network for shift and long shift prediction depends on the
+            architecture of the~network and the~problem being solved.\\
+            For a~recurrent neural network (RNN) architecture such as Long Short-Term Memory (LSTM) or
+            Gated Recurrent Unit (GRU), the~most commonly used activation function is the~hyperbolic tangent (tanh) function.
+            This is because the~tanh function produces outputs in the~range $[-1, 1]$, which makes it suitable for RNNs
+            that use recurrent connections to store and update memory over time.\\
+            However, other activation functions such as the~Rectified Linear Unit (ReLU) or its variants, such as leaky
+            ReLU or exponential ReLU, can also be used in RNNs for shift and long shift prediction. These activation
+            functions are computationally efficient and can be used in deep neural networks without the~problem of
+            vanishing gradients.\\
+            In general, the~choice of activation function should be based on the~characteristics of the~problem being
+            solved, the~architecture of the~network, and the~properties of the~activation function itself.
+            Experimentation with different activation functions can help to determine the~most appropriate one
+            for a~given problem.\\
             \item Define the~input and output: Define the~input and output of our neural network. The~input should
             be the~time series data, and the~output should be the~predicted shift and long shift.
             \item Define the~loss function: Choose~an~appropriate loss function to measure the~difference
             between the~predicted shift and long shift and the~actual shift and long shift.
             \item Train the~model: Train the~model using the~training data and tune the~hyperparameters to
             improve the~performance of the~model. Monitor the~model's performance using the~validation set.
+            To train our neural network, we utilized a training dataset derived from our main dataset consisting of six months of order data. The neural network was fed this dataset in order to adjust the weights of its connections between neurons and minimize the difference between the network's output and the correct output for each input, a process commonly referred to as backpropagation.\\
+            \\
+            It's important to experiment with different architectures and hyperparameters to find the~best model for
+            our data. Additionally, it's important to properly preprocess the~data and monitor the~model's performance
+            to avoid overfitting. With these steps, we can train a~neural network for shift and long shift prediction.\\
             \item Evaluate the~model: Evaluate the~performance of the~model on the~testing set to see how well
             it generalizes to new data.
             \item Fine-tune the~model: If the~model does not perform well on the~testing set, fine-tune the~model by
@@ -334,40 +411,14 @@ based on previous data with better aberration than linear prediction has.
             \item Use the~model: Once we have a~well-performing model, we can use it to predict the
             shift and long shift of new time series data.
         \end{enumerate}
+        \textbf{Run neural network to get optimal shift and long shift}\\
+        \\
         By following these steps, we can create a~neural network for shift and long shift prediction.
         It's important to experiment with different architectures and hyperparameters to find the~best
         model for our data.\\
-        \\
-        \textbf{Choose activation function}\\
-        \\
-        Choosing the~activation function for a~neural network for shift and long shift prediction depends on the
-        architecture of the~network and the~problem being solved.\\
-        \\
-        For a~recurrent neural network (RNN) architecture such as Long Short-Term Memory (LSTM) or
-        Gated Recurrent Unit (GRU), the~most commonly used activation function is the~hyperbolic tangent (tanh) function.
-        This is because the~tanh function produces outputs in the~range $[-1, 1]$, which makes it suitable for RNNs
-        that use recurrent connections to store and update memory over time.\\
-        \\
-        However, other activation functions such as the~Rectified Linear Unit (ReLU) or its variants, such as leaky
-        ReLU or exponential ReLU, can also be used in RNNs for shift and long shift prediction. These activation
-        functions are computationally efficient and can be used in deep neural networks without the~problem of
-        vanishing gradients.\\
-        \\
-        In general, the~choice of activation function should be based on the~characteristics of the~problem being
-        solved, the~architecture of the~network, and the~properties of the~activation function itself.
-        Experimentation with different activation functions can help to determine the~most appropriate one
-        for a~given problem.\\
-        \\
-        \textbf{Train neural network}\\
-        \\
-        To train our neural network, we utilized a training dataset derived from our main dataset consisting of six months of order data. The neural network was fed this dataset in order to adjust the weights of its connections between neurons and minimize the difference between the network's output and the correct output for each input, a process commonly referred to as backpropagation.\\
-        \\
-        It's important to experiment with different architectures and hyperparameters to find the~best model for
-        our data. Additionally, it's important to properly preprocess the~data and monitor the~model's performance
-        to avoid overfitting. With these steps, we can train a~neural network for shift and long shift prediction.\\
-        \\
-        \textbf{Run neural network to get optimal shift and long shift}\\
-        Our trained Neural network is consist of 4 layers with 40 neurons in input layer than two hidden layers with 17 and 8 neurons and 6 neuron in output layer. Our trained network use leaky ReLU activation function. Training was made over 120 of observations.\\
+        Our trained Neural network is consist of 4 layers with 40 neurons in input layer than two
+        hidden layers with 17 and 8 neurons and 6 neuron in output layer. Our trained network
+        use leaky ReLU activation function. Training was made over 120 of observations.\\
         \\
         To run a~trained neural network for shift and long shift prediction, we can follow these steps:
         \begin{enumerate}
@@ -390,7 +441,8 @@ based on previous data with better aberration than linear prediction has.
         With these steps, we can run a~trained neural network for shift and long shift prediction and obtain optimal
         shift and long shift values. It's important to note that the~quality of the~predictions depends on the
         quality and quantity of the~data used for training and the~architecture and hyperparameters of the~model.
-        Therefore, it's important to experiment with different models and training data to find the~optimal solution.
+        Therefore, it's important to experiment with different models and training data to find the~optimal solution.   
+    
     \section{Estimation of the seasonal weights}\label{sec:weights}
     To create a~mathematical model for predicting sales data with periodical trends, we can use a~seasonal
     ARIMA (SARIMA) model. This model takes into account seasonal variations in the~data and uses autoregressive and
@@ -413,57 +465,13 @@ based on previous data with better aberration than linear prediction has.
     \end{enumerate}
     It's important to note that creating a~SARIMA model can be complex and requires knowledge of time series
     analysis and statistical modeling. Therefore, it's recommended to seek the~help of a~data scientist
-    or a~statistician for assistance.
-
-    \section{Extended long-term prediction}\label{sec:extlonglp}
-    For my purpose i created extended long-term prediction which handle the~seasonality and repeated patterns
-    in economics data. This correction mechanism is used to reflect historical peaks in graphs thrue dataset.
-    This simple correction increase accurate of the~model and get better response due tue psychology,
-    sociology and marketing aspects in dataset.\\
-    \\
-    To set up periodical weights its needs to create a~vector of correction parameters from original dataset using
-    median and standard deviation statistical parameters from dataset. As a~base equation we will user equation
-    for long-term prediction\ref{eq:ltlp} with the~new weights and get:
-    \begin{equation} \label{eq:eltlp}
-        \hat{x}(n) = \left(\sum_{i=1}^{p} a_i x(n-i) + \sum_{i=1}^{q} b_i x(n-i-Q)\right) \gamma(n),
-    \end{equation}
-    \\
-    where $\hat{x}(n)$ is the~predicted value of the~order at time $n$, $x(n-i)$ are the~past short-therm predition part $p$ samples of the~dataset, $x(n-S-i)$ are the~past long-term prediction part with seasonal shift $Q$, and $a_i$ and $b_i$ are the~predictors coefficients. The~order of the~predictor is $p$ for short-term and $q$ for the long-term linear prediction. The seasonal weights is represent by $\gamma(n)$.\\
-    \\
-    When building a~long-term prediction model, the~use of weights in this use case have a~significant effect on
-    the~model's performance. Weights are used to assign different levels of importance to different
-    features or inputs in the~model.\\
-    \\
-    In a~long-term prediction model, the~weight assigned to each input can determine its impact on the~model's predictions.
-    Using weights in order prediction model, the~weight assigned to a~historical company's financial data are more important
-    than the~weight assigned to its historical visitors. This is why we are ignore this data for prediction.\\
-    \\
-    If the~weights are not carefully chosen, the~model may give too much importance to some inputs and not enough to others,
-    leading to inaccurate predictions. Therefore, selecting the~right weights is crucial for creating~an~accurate and
-    effective long-term prediction model. In our case it reduce the~prediction error and returns more usable
-    data for order prediction.\\
-    \\
-    In addition, the~choice of weights can also affect the~model's ability to adapt to changing conditions over time.
-    a~model with carefully chosen weights can be more resilient and adaptable to changes in the~input data,
-    while a~model with poorly chosen weights may be less flexible and struggle to adjust to new information.
-    So it's really important to set correct shift and period to recalculation of the~shift.
-    This is ride by neural network from \ref{subsec:neural}.\\
-    \\
-    Overall, the~use of weights is~an~important consideration in building our predictive model, and careful selection
-    can significantly improve the~accurate and effectiveness of our long-term prediction model.
-
-    \section{Novel approach to forecast sales data}\label{subsec:combining_models}
-    In this chapter we prepare sub-parts of our novel aproache to forecast orders in sales companies.
-    Here are the steps how to made our approache function and return accurate results for number of orders.
-    \begin{enumerate}
-        \item Run neural network to get right order of linear predictor. In this section we have trained Neural network from section~\ref{subsec:neural} and detect correct order from our neural network really fast.
-        \item Run neural network to get righ shift and long shift of linear prediction.
-        Than ve can run our next neural network trained for detect shift for our prediction. In this neural network as one of the~inputs we are using results from previous neural network.
-        \item Run extended long-term prediction to ger predicted values of sales data.
-        When we have optimal order and shift we are able to run linear prediction in a~standard way.
-        \item Apply periodical wages to previous response data.
-        Results from previous step are corrected by the~weights vector which is calculated over the~trained dataset.
-        \item Calculate comparison criteria for results and plot data and mean square errors.
-        When we run all the~models we are able to calculate comparison criteria from~\ref{subsec:comparison} and
-        get a~table of results to plot errors and compare predicted and measured orders from validation dataset.
-    \end{enumerate}
+    or a~statistician for assistance.\\
+    Based on these steps we prepared the the vector of seasonal weights $\gamma$ for each record in
+    our dataset using median and standard deviation~\ref{subsec:statistics} to created the equation:\\
+    \begin{equation}
+        \gamma_i = 1 + \left( x_i - m - \frac{S}{p} \right) c,
+    \end{equation}\\
+    where $\gamma_i$ is the weight for each record for our dataset, for our purpose is the day weight,
+    $x_i$ is the value from dataset, $m$ and $S$ are the median and standard deviation of our dataset,
+    $p$ is the order of our linear prediction model and the $c$ is correction coeeficient which was
+    set up experimentally. 
